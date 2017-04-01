@@ -1,0 +1,16 @@
+html,
+body {
+    width: 100%;
+    height: 100%;
+
+    text-align: center;
+}
+
+// 统一样式
+html, body, ul, p, h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+}
+li {
+    list-style: none;
+}
