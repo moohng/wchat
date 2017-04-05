@@ -1,19 +1,20 @@
 <template lang="pug">
-    .wchat
-        nav-bar
+    page.wchat(margin-bottom)
+        nav-bar(slot="nav-bar")
             .title(slot="title") {{ titleList[pageIndex] }}
             .add(slot="right", v-if="pageIndex === 0",
              @click="add") 添加
             .add-friend(slot="right", v-if="pageIndex === 1",
              @click="addFriend") 添加朋友
         //- tab bar 切换在这里   (嵌套路由)
-        section.content
+        template(slot="content")
             transition(name="fade", mode="out-in")
                 router-view
-        tab-bar
+        tab-bar(slot="tab-bar")
 </template>
 
 <script>
+import Page from '@/components/common/page'
 import NavBar from '@/components/common/nav-bar'
 import TabBar from '@/components/common/tab-bar'
 
@@ -29,6 +30,7 @@ export default {
         ...mapState(['titleList'])
     },
     components: {
+        Page,
         NavBar,
         TabBar
     },
@@ -54,16 +56,8 @@ export default {
 @import '../assets/mixin';
 
 .wchat {
-    @include abs(0, 0, 0, 0)
-
-    background-color: #efeff4;
 
     .content {
-        height: 100%;
-        box-sizing: border-box;
-        padding: 64px 0 49px;
-
-        overflow-y: scroll;
 
         // 动画效果 平缓切换
         .fade-enter,

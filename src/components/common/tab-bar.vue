@@ -31,7 +31,7 @@ export default {
 
 .tab-bar {
     @include abs(auto, 0, 0, 0)
-    height: 49px;
+    height: 48px;
 
     border-top: 1px solid #ccc;
     background: rgba(225, 225, 225, .95);

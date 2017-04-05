@@ -7,6 +7,9 @@ import Contact from '@/components/contact/contact'
 import Message from '@/components/message/message'
 
 import Me from '@/components/profile/me/me'
+import Setting from '@/components/profile/setting/setting'
+
+import Chat from '@/components/message/chat/chat'
 
 Vue.use(Router)
 
@@ -46,9 +49,18 @@ export default new Router({
         {
             path: '/me',
             name: 'me',
-            components: {
-                default: Me
-            }
+            component: Me
+        },
+        {
+            path: '/setting',
+            name: 'setting',
+            component: Setting
+        },
+
+        {
+            path: '/chat',
+            name: 'chat',
+            component: Chat
         }
     ]
 })

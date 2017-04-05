@@ -2,27 +2,30 @@
     .message
         search
         tab-group
-            wchat-list
-            wchat-list
-            wchat-list
-            wchat-list
-            wchat-list
-            wchat-list
-            wchat-list
-            wchat-list
-            wchat-list
-            wchat-list
+            message-list(@click.native="push('chat')")
+            message-list
+            message-list
+            message-list
+            message-list
+            message-list
+            message-list
+            message-list
 </template>
 
 <script>
 import TabGroup from '@/components/common/tab-group'
-import WchatList from './wchat-list'
+import MessageList from './message-list'
 import Search from '@/components/common/search'
 
 export default {
+    methods: {
+        push (to) {
+            this.$store.commit('push', {to, from: 'message'})
+        }
+    },
     components: {
         TabGroup,
-        WchatList,
+        MessageList,
         Search
     }
 }

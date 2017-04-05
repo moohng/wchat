@@ -6,16 +6,23 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
     data () {
         return {
-            transName: 'push'
+            // transName: 'push'
         }
+    },
+    computed: {
+        ...mapState({
+            transName: state => state.pushOrPop
+        })
     },
     watch: {
         '$route' (to, from) {
-            console.log(to.name, from.name)
-            //
+            // console.log(to.name, from.name)
+            // 待续 ...
         }
     }
 }
@@ -33,16 +40,18 @@ export default {
     // 1. push pop
     .push-enter,
     .pop-leave-active {
+        // 位于顶层
+        z-index: 10;
         transform: translateX(100%);
     }
     .push-enter-active,
     .pop-leave-active {
-        transition: transform 3s ease-out;
+        transition: transform .3s ease-out;
     }
     .push-leave-active,
     .pop-enter-active {
-        transition: transform 3s ease-out,
-                    opacity 3s ease-out;
+        transition: transform .3s ease-out,
+                    opacity .3s ease-out;
     }
     .push-leave-active,
     .pop-enter {

@@ -1,18 +1,18 @@
 <template lang="pug">
     .explore
         tab-group
-            tab-cell(:icon="icons[0]", :title="titles[0]")
+            tab-cell(:img="icons[0]", :title="titles[0]", disclosure)
         tab-group
-            tab-cell(:icon="icons[1]", :title="titles[1]")
-            tab-cell(:icon="icons[2]", :title="titles[2]")
+            tab-cell(:img="icons[1]", :title="titles[1]", disclosure)
+            tab-cell(:img="icons[2]", :title="titles[2]", disclosure)
         tab-group
-            tab-cell(:icon="icons[3]", :title="titles[3]")
-            tab-cell(:icon="icons[4]", :title="titles[4]")
+            tab-cell(:img="icons[3]", :title="titles[3]", disclosure)
+            tab-cell(:img="icons[4]", :title="titles[4]", disclosure)
         tab-group
-            tab-cell(:icon="icons[5]", :title="titles[5]")
-            tab-cell(:icon="icons[6]", :title="titles[6]")
+            tab-cell(:img="icons[5]", :title="titles[5]", disclosure)
+            tab-cell(:img="icons[6]", :title="titles[6]", disclosure)
         tab-group
-            tab-cell(:icon="icons[7]", :title="titles[7]")
+            tab-cell(:img="icons[7]", :title="titles[7]", disclosure)
 </template>
 
 <script>

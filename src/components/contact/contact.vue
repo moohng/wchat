@@ -2,22 +2,22 @@
     .contact
         search
         .group
-            tab-cell(icon="", :title="titles[0]")
-            tab-cell(icon="", :title="titles[1]")
-            tab-cell(icon="", :title="titles[2]")
-            tab-cell(icon="", :title="titles[3]")
+            tab-cell(img="", :title="titles[0]")
+            tab-cell(img="", :title="titles[1]")
+            tab-cell(img="", :title="titles[2]")
+            tab-cell(img="", :title="titles[3]")
         .group
-            tab-cell(icon="", :title="titles[4]")
-            tab-cell(icon="", :title="titles[5]")
+            tab-cell(img="", :title="titles[4]")
+            tab-cell(img="", :title="titles[5]")
         .group
-            tab-cell(icon="", :title="titles[6]")
-            tab-cell(icon="", :title="titles[7]")
-            tab-cell(icon="", :title="titles[8]")
+            tab-cell(img="", :title="titles[6]")
+            tab-cell(img="", :title="titles[7]")
+            tab-cell(img="", :title="titles[8]")
         .group
-            tab-cell(icon="", :title="titles[9]")
+            tab-cell(img="", :title="titles[9]")
         .group
-            tab-cell(icon="", :title="titles[10]")
-            tab-cell(icon="", :title="titles[11]")
+            tab-cell(img="", :title="titles[10]")
+            tab-cell(img="", :title="titles[11]")
 </template>
 
 <script>
