@@ -24,6 +24,17 @@ export default {
             // console.log(to.name, from.name)
             // 待续 ...
         }
+    },
+    created () {
+        console.log('App created')
+    },
+    beforeMount () {
+        console.log('App beforeMount')
+        // this.$router.push({name: 'profile'})
+    },
+    mounted () {
+        console.log('App mounted')
+        // this.$router.push({name: 'profile'})
     }
 }
 </script>

@@ -4,7 +4,7 @@
             .wrap
                 img.voice(:src="icons[0]")
             .wrap.input
-                input
+                input(@keyup.enter="send($event.target)")
             .wrap
                 img.emoji(:src="icons[1]")
             .wrap
@@ -21,6 +21,12 @@ export default {
     data () {
         return {
             icons: [voice, emoji, more]
+        }
+    },
+    methods: {
+        send (el) {
+            console.log(el.value)
+            this.$store.dispatch('send', el.value)
         }
     }
 }

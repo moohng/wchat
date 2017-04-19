@@ -2,22 +2,22 @@
     .contact
         search
         .group
-            tab-cell(img="", :title="titles[0]")
-            tab-cell(img="", :title="titles[1]")
-            tab-cell(img="", :title="titles[2]")
-            tab-cell(img="", :title="titles[3]")
+            tab-cell(img="", :title="titles[0]", contact)
+            tab-cell(img="", :title="titles[1]", contact)
+            tab-cell(img="", :title="titles[2]", contact)
+            tab-cell(img="", :title="titles[3]", contact)
         .group
-            tab-cell(img="", :title="titles[4]")
-            tab-cell(img="", :title="titles[5]")
+            tab-cell(img="", :title="titles[4]", contact)
+            tab-cell(img="", :title="titles[5]", contact)
         .group
-            tab-cell(img="", :title="titles[6]")
-            tab-cell(img="", :title="titles[7]")
-            tab-cell(img="", :title="titles[8]")
+            tab-cell(img="", :title="titles[6]", contact)
+            tab-cell(img="", :title="titles[7]", contact)
+            tab-cell(img="", :title="titles[8]", contact)
         .group
-            tab-cell(img="", :title="titles[9]")
+            tab-cell(img="", :title="titles[9]", contact)
         .group
-            tab-cell(img="", :title="titles[10]")
-            tab-cell(img="", :title="titles[11]")
+            tab-cell(img="", :title="titles[10]", contact)
+            tab-cell(img="", :title="titles[11]", contact)
 </template>
 
 <script>

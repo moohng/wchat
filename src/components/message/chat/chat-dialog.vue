@@ -53,7 +53,7 @@ export default {
 
             .context {
                 position: relative;
-                min-height: 38px;
+                min-height: 22px;
                 text-align: left;
                 padding: 8px;
                 border: 1px solid #ccc;

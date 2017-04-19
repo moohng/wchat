@@ -1,5 +1,5 @@
 <template lang="pug">
-    .tab-cell(:class="large")
+    .tab-cell(:class="{large, contact}")
         header.header(v-if="img")
             img(:src="img")
         section.content(:class="{subtitle, detail, center}")
@@ -14,9 +14,9 @@
 <script>
 
 export default {
-    // type: 'subtitle', 'detail', 'basic'(默认)
+    // type: 'subtitle', 'detail', 'basic'(默认), 'contact'(联系人列表)
     props: ['img', 'title', 'subtitle', 'detail', 'center',
-            'disclosure', 'more', 'large'],
+            'disclosure', 'more', 'large', 'contact'],
 }
 </script>
 
@@ -104,6 +104,10 @@ export default {
         .content.subtitle {
             height: 48px;
         }
+    }
+    // 联系人 高度不同
+    &.contact {
+        height: 54px;
     }
 
     // cell 下划线

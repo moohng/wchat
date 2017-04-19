@@ -10,7 +10,7 @@ export default {
 
 <style lang="scss" scoped>
 .search {
-    height: 21px;
+    height: 25px;
     border: 1px solid #ccc;
     border-radius: 4px;
     background-color: #fff;

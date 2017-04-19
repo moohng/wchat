@@ -1,5 +1,5 @@
 <template lang="pug">
-    .alert(@click.self="$emit('close')")
+    .modal(@click.self="$emit('close')")
         p {{text}}
 </template>
 
@@ -10,7 +10,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.alert {
+.modal {
     position: fixed;
     top: 0;
     left: 0;

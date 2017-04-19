@@ -2,14 +2,8 @@
     .message
         search
         tab-group
-            message-list(@click.native="push('chat')")
-            message-list
-            message-list
-            message-list
-            message-list
-            message-list
-            message-list
-            message-list
+            message-list(v-for="n in 10",
+            @click.native="push('chat')")
 </template>
 
 <script>

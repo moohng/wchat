@@ -7,10 +7,11 @@ import store from './vuex/store'
 // 全局样式
 import './assets/common.scss'
 
-import Alert from './plugins/alert'
+import Modal from './plugins/modal'
 
-Vue.use(Alert)
+Vue.use(Modal)
 Vue.config.productionTip = false
+
 
 /* eslint-disable no-new */
 new Vue({
