@@ -24,7 +24,7 @@ export default new Router({
             redirect: {name: 'login'}
         },
         {
-            path: '/login',
+            path: '/wellcome/login',
             name: 'login',
             component: Login
         },
@@ -56,18 +56,18 @@ export default new Router({
             ]
         },
         {
-            path: '/me',
+            path: '/wchat/profile/me',
             name: 'me',
             component: Me
         },
         {
-            path: '/setting',
+            path: '/wchat/profile/setting',
             name: 'setting',
             component: Setting
         },
 
         {
-            path: '/chat',
+            path: '/wchat/message/chat',
             name: 'chat',
             component: Chat
         }

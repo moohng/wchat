@@ -1,6 +1,8 @@
 <template lang="pug">
-    .modal(@click.self="$emit('close')")
-        p {{text}}
+    .modal
+        .wrap
+            i.icon
+        p.tip {{ text }}
 </template>
 
 <script>
@@ -10,19 +12,43 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+@import '../../assets/mixin';
 
-    background-color: rgba(0, 0, 0, .6);
+.modal {
+    @include fixed()
+
+    background-color: transparent;
     z-index: 100;
 
-    p {
-        font-size: 18px;
-        color: #fff;
+    @include flex(center, center, column)
+
+    .wrap {
+        padding: 16px;
+
+        background-color: #fff;
+        border-radius: 4px;
+    }
+    p.tip {
+        margin-top: 12px;
+
+        font-size: 15px;
+    }
+    i.icon {
+        display: inline-block;
+        width: 50px;
+        height: 50px;
+
+        border: 3px solid #444;
+        border-bottom-color: transparent;
+        border-radius: 50%;
+
+        animation: rotation .6s infinite linear;
+    }
+}
+
+@keyframes rotation {
+    100% {
+        transform: rotate(360deg);
     }
 }
 </style>

@@ -41,7 +41,7 @@ export default {
     },
     methods: {
         push (to) {
-            this.$store.commit('push', {to, from: 'profile'})
+            this.$router.replace({name: to})
         }
     },
     components: {

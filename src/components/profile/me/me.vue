@@ -1,7 +1,8 @@
 <template lang="pug">
     page.me(margin-top)
         nav-bar(slot="nav-bar")
-            nav-back(slot="left", title="我", @click.native="back")
+            nav-back(slot="left", title="我",
+             @click.native="$router.replace({name: 'profile'})")
             span(slot="title") 个人信息
         template(slot="content")
             tab-group
@@ -32,10 +33,6 @@ export default {
         TabCell
     },
     methods: {
-        back () {
-            this.$store.commit('pop')
-            // this.$router.push({name: 'profile'})
-        }
     }
 }
 </script>

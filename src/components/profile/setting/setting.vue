@@ -2,7 +2,8 @@
     page.setting(margin-top)
         nav-bar(slot="nav-bar")
             span(slot="title") 设置
-            nav-back(slot="left", title="我", @click.native="back")
+            nav-back(slot="left", title="我",
+             @click.native="$router.replace({name: 'profile'})")
         template(slot="content")
             tab-group
                 tab-cell(title="账号与安全", disclosure)
@@ -14,7 +15,8 @@
                 tab-cell(title="帮助与反馈", disclosure)
                 tab-cell(title="关于微信", disclosure)
             tab-group
-                tab-cell(title="退出登录", center)
+                tab-cell(title="退出登录", center,
+                @click.native="$router.replace({name: 'login'})")
 </template>
 
 <script>
@@ -26,9 +28,6 @@ import TabCell from '@/components/common/tab-cell'
 
 export default {
     methods: {
-        back () {
-            this.$store.commit('pop')
-        }
     },
     components: {
         Page,

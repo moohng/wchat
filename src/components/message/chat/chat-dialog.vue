@@ -7,12 +7,17 @@
                 .icon
                     img
                 .context
-                    p 里是;聊天内内容天内内容天内内容天内内容
+                    p {{ value.text }}
 </template>
 
 <script>
 export default {
-    props: ['date', 'reverse']
+    props: ['date', 'value'],
+    computed: {
+        reverse () {
+            return this.value.type === 'send'
+        }
+    },
 }
 </script>
 

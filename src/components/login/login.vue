@@ -36,11 +36,18 @@ export default {
             console.log('password: ', this.password)
 
             // 模拟登陆操作
-            this.$loading('hello world!')
+            this.$loading('登录中...')
             setTimeout(() => {
                 this.$close()
                 // 跳转
-                this.$router.push({name: 'message'})
+                this.$router.replace({
+                    name: 'message',
+                    // 假装传递用户信息
+                    params: {
+                        username: this.username,
+                        password: this.password
+                    }
+                })
             }, 1000)
 
         }
@@ -58,6 +65,8 @@ export default {
 .login {
     @include abs(0, 0, 0, 0)
     padding: 64px 18px 0;
+
+    background-color: #efefef;
 
     h3 {
         margin: 20px auto;

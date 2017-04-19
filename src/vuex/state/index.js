@@ -9,8 +9,19 @@ let chatLog = [
 let state = {
     titleList: ['微信', '通讯录', '发现', '我'],
 
-    pushOrPop: 'push',
-    popStack: []
+    messages: [{
+        type: 'send',
+        text: '这里是假装了聊天记录'
+    }, {
+        type: 'receive',
+        text: '请不要当真'
+    }, {
+        type: 'receive',
+        text: '假的聊天记录'
+    }, {
+        type: 'send',
+        text: '还是假的聊天记录'
+    }]
 }
 
 export default state

@@ -1,3 +1,4 @@
+import { ajax } from 'jquery'
 
 const request = (() => {
 
@@ -10,29 +11,19 @@ const request = (() => {
 
             return new Promise((resolve, reject) => {
 
-                if (!fetch) {
-                    throw '浏览器不支持Fetch!'
-                    return
-                }
-
-                let data = new FormData()
-                data.append('sss', 'ssssssss')
-                console.log(data)
-                // 开始请求
-                fetch(_url, {
-                    method: 'POST',
-                    // headers: {
-                    //     'Accept': 'application/json',
-                    //     'Content-Type': 'application/json'
-                    // },
-                    body: data,
-                    mode: 'no-cors'
-                })
-                .then(response => {
-                    resolve(response.json())
-                })
-                .catch(err => {
-                    reject(err)
+                ajax(_url, {
+                    type: 'POST',
+                    data: {
+                        key: _key,
+                        info: text
+                    },
+                    dataType: 'json',
+                    success (res) {
+                        resolve(res)
+                    },
+                    error (err) {
+                        reject(err)
+                    }
                 })
 
             })

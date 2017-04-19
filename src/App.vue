@@ -1,7 +1,7 @@
 <template lang="pug">
     #app
         //- 全屏切换
-        transition(:name="transName")
+        transition(:name="transName", :mode="transMode")
             router-view
 </template>
 
@@ -11,18 +11,43 @@ import { mapState } from 'vuex'
 export default {
     data () {
         return {
-            // transName: 'push'
+            transName: 'push',
+            transMode: ''
         }
     },
-    computed: {
-        ...mapState({
-            transName: state => state.pushOrPop
-        })
-    },
     watch: {
-        '$route' (to, from) {
-            // console.log(to.name, from.name)
-            // 待续 ...
+        $route (to, from) {
+            /**
+             * 通过路由路径来判断转场动画的类型
+             * 要求路由路径 满足 一定的规则
+             */
+            const toPath = to.path
+            const fromPath = from.path
+            if (toPath.startsWith(fromPath)) {
+                // push
+                console.log('push')
+                this.transName = 'push'
+                this.transMode = ''
+            }
+            else if (fromPath.startsWith(toPath)) {
+                // pop
+                console.log('pop')
+                this.transName = 'pop'
+                this.transMode = ''
+            }
+            else if (toPath.includes('wchat')) {
+                // dismiss
+                console.log('dismiss')
+                this.transName = 'dismiss'
+                this.transMode = 'in-out'
+            }
+            else if (fromPath.includes('wchat')) {
+                // modal
+                console.log('modal')
+                this.transName = 'modal'
+                this.transMode = 'in-out'
+            }
+            console.log(toPath, fromPath)
         }
     },
     created () {
@@ -30,11 +55,9 @@ export default {
     },
     beforeMount () {
         console.log('App beforeMount')
-        // this.$router.push({name: 'profile'})
     },
     mounted () {
         console.log('App mounted')
-        // this.$router.push({name: 'profile'})
     }
 }
 </script>
@@ -44,7 +67,7 @@ export default {
     position: relative;
     width: 100%;
     height: 100%;
-    background-color: #efeff4;
+    background-color: #efefef;
 
     // 转场动画
     // -------------------
@@ -68,6 +91,22 @@ export default {
     .pop-enter {
         opacity: 0;
         transform: translateX(-25%);
+    }
+    // modal dismiss
+    .modal-enter,
+    .dismiss-leave-active {
+        transform: translateY(100%);
+    }
+    .modal-enter-active,
+    .dismiss-leave-active {
+        transition: transform .3s ease-out;
+        // 位于最顶层
+        z-index: 1000;
+    }
+    .modal-leave-active,
+    .dismiss-enter-active {
+        // 位于最底层
+        z-index: -1;
     }
 }
 </style>

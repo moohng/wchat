@@ -1,19 +1,20 @@
 import router from '../router'
+import Vue from 'vue'
 
 let mutations = {
-    // 更改屏幕切换方式 push pop
-    push (state, {to, from}) {
-        // 更改切换方式
-        state.pushOrPop = 'push'
-        // 压入 popStack 栈顶
-        state.popStack.push(from)
-        router.push({name: to})
+    // send
+    send ({ messages }, text) {
+        Vue.set(messages, messages.length, {
+            type: 'send',
+            text
+        })
     },
-    pop (state) {
-        state.pushOrPop = 'pop'
-        // 出栈
-        const name = state.popStack.pop()
-        router.push({name})
+    // receive
+    receive ({ messages }, text) {
+        Vue.set(messages, messages.length, {
+            type: 'receive',
+            text
+        })
     }
 }
 

@@ -27,6 +27,7 @@ export default {
         send (el) {
             console.log(el.value)
             this.$store.dispatch('send', el.value)
+            el.value = ''
         }
     }
 }
