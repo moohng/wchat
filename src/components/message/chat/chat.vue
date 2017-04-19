@@ -23,11 +23,10 @@ import { mapState } from 'vuex'
 
 export default {
     computed: {
-        ...mapState(['messages'])
-    },
-    updated () {
-        console.log(this.$refs['last'][0].$el.offsetTop)
-        // this.$refs['last'][0].$el.offsetTop = 100 + 'px'
+        messages () {
+            const index = this.$route.params.index
+            return this.$store.state.chatLog[index].messages
+        }
     },
     components: {
         Page,

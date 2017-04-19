@@ -3,15 +3,15 @@ import Vue from 'vue'
 
 let mutations = {
     // send
-    send ({ messages }, text) {
-        Vue.set(messages, messages.length, {
+    send ({ chatLog }, text) {
+        chatLog[0].messages.push({
             type: 'send',
             text
         })
     },
     // receive
-    receive ({ messages }, text) {
-        Vue.set(messages, messages.length, {
+    receive ({ chatLog }, text) {
+        chatLog[0].messages.push({
             type: 'receive',
             text
         })

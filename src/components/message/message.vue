@@ -2,8 +2,9 @@
     .message
         search
         tab-group
-            message-list(v-for="n in 10", :key="'message-list-' + n",
-            @click.native="push('chat')")
+            message-list(v-for="n in chatLog.length",
+            :key="'message-list-' + n", :index="n - 1",
+            @click.native="push('chat', n - 1)")
 </template>
 
 <script>
@@ -11,10 +12,16 @@ import TabGroup from '@/components/common/tab-group'
 import MessageList from './message-list'
 import Search from '@/components/common/search'
 
+import { mapState } from 'vuex'
+
 export default {
+    computed: mapState(['chatLog']),
     methods: {
-        push (to) {
-            this.$router.replace({name: to})
+        push (to, index) {
+            this.$router.replace({
+                name: to,
+                params: { index }
+            })
         }
     },
     mounted () {

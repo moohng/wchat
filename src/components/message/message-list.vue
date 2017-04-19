@@ -4,15 +4,33 @@
             img
         section.content
             .top
-                span.title 微信团队
-                span.time 15:01
+                span.title {{ $store.state.chatLog[index].name }}
+                span.time {{ time }}
             .bottom
-                p.context 程序人生人程生人程生人程序人生人程序人生人人生人人生人生人生:过程
+                p.context {{ text }}
                 i.icon
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
+    props: ['index'],
+    computed: {
+        time () {
+            const messages = this.$store.state.chatLog[this.index].messages
+            const last = messages.length
+            return messages[length].time
+        },
+        text () {
+            const messages = this.$store.state.chatLog[this.index].messages
+            const last = messages.length
+            return messages[length].text
+        }
+    },
+    mounted () {
+        // console.log('aaaaaaaa', this.dialog.messages.pop().text)
+    }
 }
 </script>
 
