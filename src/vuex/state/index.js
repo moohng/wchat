@@ -1,8 +1,9 @@
 
 let message = {
     type: 'send',
+    // 这可能是一个假的时间
     time: '14:29',
-    text: '这里是假装了聊天记录'
+    text: '这可能是条假的聊天记录'
 }
 // 聊天记录列表
 let chatLog = [
@@ -50,8 +51,10 @@ let chatLog = [
 
 let state = {
     titleList: ['微信', '通讯录', '发现', '我'],
-
-    chatLog
+    // 聊天记录
+    chatLog,
+    // 当前聊天 索引
+    currentChatIndex: 0
 }
 
 export default state

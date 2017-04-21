@@ -4,32 +4,36 @@
             img
         section.content
             .top
-                span.title {{ $store.state.chatLog[index].name }}
+                span.title {{ name }}
                 span.time {{ time }}
             .bottom
                 p.context {{ text }}
-                i.icon
+                i.icon(v-if="disturb")
 </template>
 
 <script>
-import { mapState } from 'vuex'
-
 export default {
     props: ['index'],
     computed: {
+        disturb () {
+            return false
+        },
+        name () {
+            // 聊天列表的名字
+            return this.$store.state.chatLog[this.index].name
+        },
         time () {
+            // 最后一条消息 时间
             const messages = this.$store.state.chatLog[this.index].messages
             const last = messages.length
-            return messages[length].time
+            return messages[last - 1].time
         },
         text () {
+            // 最后一条消息 内容
             const messages = this.$store.state.chatLog[this.index].messages
             const last = messages.length
-            return messages[length].text
+            return messages[last - 1].text
         }
-    },
-    mounted () {
-        // console.log('aaaaaaaa', this.dialog.messages.pop().text)
     }
 }
 </script>

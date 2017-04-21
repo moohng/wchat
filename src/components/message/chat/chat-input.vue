@@ -26,7 +26,14 @@ export default {
     methods: {
         send (el) {
             console.log(el.value)
-            this.$store.dispatch('send', el.value)
+            // 封装消息
+            const time = new Date()
+            const message = {
+                type: 'send',
+                time: time.getHours() + ':' + time.getMinutes(),
+                text: el.value
+            }
+            this.$store.dispatch('send', message)
             el.value = ''
         }
     }

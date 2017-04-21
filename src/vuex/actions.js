@@ -1,14 +1,23 @@
 import { send } from '@/plugins/w-request'
 
 const actions = {
-    send ({ commit }, text) {
+    send ({ commit }, message) {
 
-        commit('send', text)
-        send(text)
+        commit('addMessage', message)
+
+        send(message.text)
         .then(res => {
             console.log('response success: ', res)
             if (res.code === 100000) {
-                commit('receive', res.text)
+                // 封装消息
+                const time = new Date()
+                const message = {
+                    type: 'receive',
+                    time: time.getHours() + ':' + time.getMinutes(),
+                    text: res.text
+                }
+
+                commit('addMessage', message)
             }
         })
         .catch(err => {

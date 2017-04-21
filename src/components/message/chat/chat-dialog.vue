@@ -1,21 +1,21 @@
 <template lang="pug">
     .chat-dialog
         .top(v-if="date")
-            span.date {{ date }}
+            span.date {{ message.time }}
         .bottom(:class="{reverse}")
             .content
                 .icon
                     img
                 .context
-                    p {{ value.text }}
+                    p {{ message.text }}
 </template>
 
 <script>
 export default {
-    props: ['date', 'value'],
+    props: ['message', 'date'],
     computed: {
         reverse () {
-            return this.value.type === 'send'
+            return this.message.type === 'send'
         }
     },
 }
