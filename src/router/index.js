@@ -28,6 +28,7 @@ export default new Router({
             name: 'login',
             component: Login
         },
+        // 主界面
         {
             path: '/wchat',
             name: 'wchat',

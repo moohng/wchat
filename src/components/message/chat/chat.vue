@@ -3,9 +3,9 @@
         nav-bar(slot="nav-bar")
             span.title(slot="title") {{ name }}
             nav-back(slot="left", title="微信",
-            @click.native="$router.replace({name: 'message'})")
-            .right(slot="right") 占位
-        template(slot="content")
+            @click.native="$router.replace({name: 'message', query: {mode: 'pop'}})")
+            span(slot="right") 占位
+        template(slot="main")
             chat-dialog(v-for="(message, index) in messages", :date="date(index)",
             :message="message", :key="'dialog' + index",
             :ref="index === messages.length - 1 ? 'last' : null")

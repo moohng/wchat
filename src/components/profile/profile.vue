@@ -41,7 +41,7 @@ export default {
     },
     methods: {
         push (to) {
-            this.$router.replace({name: to})
+            this.$router.replace({name: to, query: {mode: 'push'}})
         }
     },
     components: {

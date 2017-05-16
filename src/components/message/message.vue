@@ -22,12 +22,8 @@ export default {
             // 改变当前 列表到最前端
             this.$store.commit('updateChatLog', index)
             // 切换到聊天窗口
-            this.$router.replace({ name: to })
+            this.$router.replace({ name: to, query: {mode: 'push'} })
         }
-    },
-    mounted () {
-        // 接收到用户信息
-        console.log(this.$route.params)
     },
     components: {
         TabGroup,

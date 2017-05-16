@@ -1,28 +1,47 @@
 <template lang="pug">
-    nav.tab-bar
-        router-link.wrap(v-for="n in 4", :to="links[n - 1]" tag="div")
-            img(:src="icons[n - 1]")
-            span {{titles[n - 1]}}
+    footer.tab-bar
+        router-link.wrap(v-for="tab in tabbar", :to="tab.to")
+            .icon
+                component(:is="tab.icon")
+            span {{ tab.title }}
 </template>
 
 <script>
-import wchat from '@/assets/common/w-tab-bar-wchat.svg'
-import wchatSelected from '@/assets/common/w-tab-bar-wchat-selected.svg'
-import explore from '@/assets/common/w-tab-bar-explore.svg'
-import exploreSelected from '@/assets/common/w-tab-bar-explore-selected.svg'
+// SVG 图标
+import IconWchat from '@/components/icon/wchat'
+import IconContact from '@/components/icon/contact'
+import IconExplore from '@/components/icon/explore'
+import IconProfile from '@/components/icon/profile'
 
 export default {
     name: 'tab-bar',
     data () {
         return {
-            titles: ['微信', '通讯录', '发现', '我'],
-            icons: [wchat, explore],
-            links: [{name: 'message'},
-                    {name: 'contact'},
-                    {name: 'explore'},
-                    {name: 'profile'}]
+            tabbar: [
+                {
+                    title: '微信',
+                    icon: 'icon-wchat',
+                    to: {name: 'message'}
+                },
+                {
+                    title: '通讯录',
+                    icon: 'icon-contact',
+                    to: {name: 'contact'}
+                },
+                {
+                    title: '发现',
+                    icon: 'icon-explore',
+                    to: {name: 'explore'}
+                },
+                {
+                    title: '我',
+                    icon: 'icon-profile',
+                    to: {name: 'profile'}
+                }
+            ]
         }
-    }
+    },
+    components: { IconWchat, IconContact, IconExplore, IconProfile }
 }
 </script>
 
@@ -41,16 +60,14 @@ export default {
     @include flex()
 
     .wrap {
-        // 父容器宽度不够 自动等比缩小
-        width: 100%;
-        height: 100%;
+        flex: 1;
 
         font-size: 70%;
         color: #999;
 
         @include flex(center, center, column)
 
-        img {
+        .icon {
             height: 28px;
             width: 28px;
         }

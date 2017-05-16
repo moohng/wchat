@@ -1,5 +1,5 @@
 <template lang="pug">
-    .tab-cell(:class="{large, contact}")
+    li.tab-cell(:class="{large, contact}")
         header.header(v-if="img")
             img(:src="img")
         section.content(:class="{subtitle, detail, center}")
@@ -33,18 +33,16 @@ export default {
     @include flex(flex-start)
 
     .header {
-        margin-right: 8px;
-
         img {
             width: 28px;
             height: 28px;
-
-            border-radius: 4px;
         }
     }
 
     .content {
         width: 100%;
+        margin: auto 8px;
+        line-height: 1.6;
         // 默认
         @include flex(flex-start)
         // 上下子标题
@@ -61,17 +59,15 @@ export default {
         }
 
         .title {
-            font-size: 15px;
+            font-size: 94%;
         }
         .subtitle {
-            font-size: 13px;
+            font-size: 80%;
             color: #999;
         }
     }
 
     .more {
-        margin-left: 8px;
-
         @include flex()
 
         .button {
@@ -79,7 +75,6 @@ export default {
         }
 
         .disclosure {
-            display: inline-block;
             width: 8px;
             height: 8px;
 
@@ -98,11 +93,9 @@ export default {
             img {
                 width: 56px;
                 height: 56px;
-            }
-        }
 
-        .content.subtitle {
-            height: 48px;
+                border-radius: 4px;
+            }
         }
     }
     // 联系人 高度不同
@@ -110,7 +103,7 @@ export default {
         height: 54px;
     }
 
-    // cell 下划线
+    // cell 下划线 除了最后一个
     &:not(:nth-last-of-type(1))::after {
         content: '';
         @include abs(auto, 0, 0, 12px)

@@ -45,6 +45,9 @@ export default {
                     params: {
                         username: this.username,
                         password: this.password
+                    },
+                    query: {
+                        mode: 'modal'
                     }
                 })
             }, 1000)
