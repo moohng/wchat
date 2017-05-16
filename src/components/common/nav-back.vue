@@ -1,5 +1,5 @@
 <template lang="pug">
-    .nav-back
+    a.nav-back
         i.icon-back
         span {{ title || '返回'}}
 </template>
@@ -12,22 +12,16 @@ export default {
 
 <style lang="scss" scoped>
 .nav-back {
-    position: relative;
+    display: inline-block;
 
     .icon-back {
-        position: absolute;
+        display: inline-block;
         width: 10px;
         height: 10px;
-        // 居中
-        margin-top: -6px;
-        top: 50%;
 
         border-left: 2px solid #fff;
         border-bottom: 2px solid #fff;
         transform: rotate(45deg);
-    }
-    span {
-        margin-left: 10px;
     }
 }
 </style>

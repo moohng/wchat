@@ -1,19 +1,21 @@
 <template lang="pug">
     .login
         h3 使用账号和密码登录
-        form.wrap
-            w-input(name="账号", placeholder="请填写用户名", type="text",
-            @input="value => username = value")
-            w-input(name="密码", placeholder="请填写密码", type="password",
-            @input="value => password = value")
-            ui-button(name="登录", :disabled="loginDisbled",
-            @click="login")
-            p.tip 登录遇到问题?
+        form
+            .wrap
+                w-input(name="账号", placeholder="请填写用户名", type="text", v-model="username")
+                w-input(name="密码", placeholder="请填写密码", type="password", v-model="password")
+            .wrap
+                // 阻止表单默认行为
+                w-button(name="登录", :disabled="loginDisbled", type="submit",
+                @click.native.prevent="login")
+        .wrap
+            a.tip 登录遇到问题?
 </template>
 
 <script>
 import WInput from './w-input'
-import UiButton from './ui-button'
+import WButton from './w-button'
 
 export default {
     data () {
@@ -53,24 +55,24 @@ export default {
             }, 1000)
 
             // 连接WebSocket
-            const sock = new WebSocket('ws://192.168.16.106:8083/websocket?request=e2lkOjE7cmlkOjI2O3Rva2VuOiI0MzYwNjgxMWM3MzA1Y2NjNmFiYjJiZTExNjU3OWJmZCJ9')
-            sock.onmessage = (e) => {
-                const data = e.data
-                const message = JSON.parse(data)
-                console.log('on message: ', message)
-            }
-            sock.onopen = (e) => {
-                console.log('on open: ', e)
-            }
-            sock.onclose = (e) => {
-                console.log('on close: ', e)
-            }
+            // const sock = new WebSocket('ws://192.168.16.106:8083/websocket?request=e2lkOjE7cmlkOjI2O3Rva2VuOiI0MzYwNjgxMWM3MzA1Y2NjNmFiYjJiZTExNjU3OWJmZCJ9')
+            // sock.onmessage = (e) => {
+            //     const data = e.data
+            //     const message = JSON.parse(data)
+            //     console.log('on message: ', message)
+            // }
+            // sock.onopen = (e) => {
+            //     console.log('on open: ', e)
+            // }
+            // sock.onclose = (e) => {
+            //     console.log('on close: ', e)
+            // }
 
         }
     },
     components: {
         WInput,
-        UiButton
+        WButton
     }
 }
 </script>
@@ -87,7 +89,6 @@ export default {
     h3 {
         margin: 20px auto;
     }
-
     .wrap {
         margin-top: 28px;
     }

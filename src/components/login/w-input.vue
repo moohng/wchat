@@ -1,13 +1,13 @@
 <template lang="pug">
     .input(@click="focus")
         label {{ name }}
-        input(:type="type", :placeholder="placeholder",
+        input(:type="type", :placeholder="placeholder", :value="value",
         ref="input", @input="input($event.target)")
 </template>
 
 <script>
 export default {
-    props: ['name', 'placeholder', 'type'],
+    props: ['name', 'placeholder', 'type', 'value'],
     methods: {
         focus () {
             this.$refs['input'].focus()

@@ -63,6 +63,7 @@ export default {
         flex: 1;
 
         font-size: 70%;
+        // 未选中颜色
         color: #999;
 
         @include flex(center, center, column)
@@ -74,6 +75,7 @@ export default {
     }
 
     .router-link-active {
+        // 选中颜色
         color: #1aad19;
     }
 }

@@ -1,16 +1,16 @@
 <template lang="pug">
-    input.ui-button(type="button", :value="name", :disabled="disabled"
+    input.w-button(:type="type", :value="name", :disabled="disabled"
     @click="$emit('click')")
 </template>
 
 <script>
 export default {
-    props: ['name', 'disabled']
+    props: ['name', 'disabled', 'type']
 }
 </script>
 
 <style lang="scss" scoped>
-.ui-button {
+.w-button {
     width: 100%;
     height: 36px;
 

@@ -6,8 +6,6 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
-
 export default {
     data () {
         return {
@@ -64,6 +62,13 @@ export default {
     position: relative;
     width: 100%;
     height: 100%;
+
+    // 字体
+    font-family: "Microsoft YaHei", Helvetica, Arial, sans-serif;
+
+    overflow: hidden;
+    user-select: none;
+    cursor: default;
 
     // 转场动画
     // -------------------
