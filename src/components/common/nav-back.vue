@@ -1,5 +1,5 @@
 <template lang="pug">
-    .left
+    .nav-back
         i.icon-back
         span {{ title || '返回'}}
 </template>
@@ -11,7 +11,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.left {
+.nav-back {
     position: relative;
 
     .icon-back {

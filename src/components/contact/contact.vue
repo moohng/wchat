@@ -2,22 +2,21 @@
     .contact
         search
         .group
-            tab-cell(img="", :title="titles[0]", contact)
-            tab-cell(img="", :title="titles[1]", contact)
-            tab-cell(img="", :title="titles[2]", contact)
-            tab-cell(img="", :title="titles[3]", contact)
+            tab-cell(v-for="title, index in titles",
+            img="", :title="title", contact,
+            @click.native.stop="tabSelect(index)")
         .group
-            tab-cell(img="", :title="titles[4]", contact)
-            tab-cell(img="", :title="titles[5]", contact)
+            tab-cell(img="", :title="friends[0]", contact)
+            tab-cell(img="", :title="friends[1]", contact)
         .group
-            tab-cell(img="", :title="titles[6]", contact)
-            tab-cell(img="", :title="titles[7]", contact)
-            tab-cell(img="", :title="titles[8]", contact)
+            tab-cell(img="", :title="friends[2]", contact)
+            tab-cell(img="", :title="friends[3]", contact)
+            tab-cell(img="", :title="friends[4]", contact)
         .group
-            tab-cell(img="", :title="titles[9]", contact)
+            tab-cell(img="", :title="friends[5]", contact)
         .group
-            tab-cell(img="", :title="titles[10]", contact)
-            tab-cell(img="", :title="titles[11]", contact)
+            tab-cell(img="", :title="friends[6]", contact)
+            tab-cell(img="", :title="friends[7]", contact)
 </template>
 
 <script>
@@ -27,9 +26,20 @@ import Search from '@/components/common/search'
 export default {
     data () {
         return {
-            titles: ['新的朋友', '群聊', '标签', '公众号',
-                    '张三', '小明', '小黄', '小黑',
-                    '阿兰', '明月心', '黄蓉', '郭靖']
+            // 固定组件
+            titles: ['聊天室', '群聊', '标签', '公众号'],
+            // 朋友列表 服务器获取
+            friends: ['张三', '小明', '小黄', '小黑', '阿兰', '明月心', '黄蓉', '郭靖']
+        }
+    },
+    methods: {
+        tabSelect (index) {
+            switch (index) {
+                case 0:
+                    this.$router.replace({name: 'chat', query: {mode: 'push'}})
+                    break
+                default:
+            }
         }
     },
     components: {

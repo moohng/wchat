@@ -3,8 +3,8 @@
         nav-bar(slot="nav-bar")
             span(slot="title") 设置
             nav-back(slot="left", title="我",
-             @click.native="$router.replace({name: 'profile'})")
-        template(slot="content")
+             @click.native="$router.replace({name: 'profile', query: {mode: 'pop'}})")
+        template(slot="main")
             tab-group
                 tab-cell(title="账号与安全", disclosure)
             tab-group
@@ -16,7 +16,7 @@
                 tab-cell(title="关于微信", disclosure)
             tab-group
                 tab-cell(title="退出登录", center,
-                @click.native="$router.replace({name: 'login'})")
+                @click.native="$router.replace({name: 'login', query: {mode: 'dismiss'}})")
 </template>
 
 <script>

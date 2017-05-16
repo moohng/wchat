@@ -1,8 +1,8 @@
 <template lang="pug">
     .page
         slot(name="nav-bar")
-        section.content(:class="inset")
-            slot(name="content")
+        section.main(:class="inset")
+            slot(name="main")
         slot(name="tab-bar")
 </template>
 
@@ -25,13 +25,15 @@ export default {
 
 .page {
     @include abs(0, 0, 0, 0)
+    width: 100%;
+    height: 100%;
 
-    background-color: #efeff4;
-
-    .content {
+    .main {
         height: 100%;
         box-sizing: border-box;
         padding-top: 64px;
+        background-color: #efefef;
+
         &.margin-top {
             padding-top: 76px;
         }

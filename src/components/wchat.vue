@@ -1,13 +1,13 @@
 <template lang="pug">
     page.wchat(margin-bottom)
         nav-bar(slot="nav-bar")
-            .title(slot="title") {{ titleList[pageIndex] }}
+            span(slot="title") {{ titleList[pageIndex] }}
             .add(slot="right", v-if="pageIndex === 0",
              @click="add") 添加
             .add-friend(slot="right", v-if="pageIndex === 1",
              @click="addFriend") 添加朋友
         //- tab bar 切换在这里   (嵌套路由)
-        template(slot="content")
+        template(slot="main")
             transition(name="fade", mode="out-in")
                 router-view
         tab-bar(slot="tab-bar")
@@ -18,16 +18,12 @@ import Page from '@/components/common/page'
 import NavBar from '@/components/common/nav-bar'
 import TabBar from '@/components/common/tab-bar'
 
-import { mapState } from 'vuex'
-
 export default {
     data () {
         return {
-            pageIndex: 0
+            pageIndex: 0,
+            titleList: ['微信', '通讯录', '发现', '我']
         }
-    },
-    computed: {
-        ...mapState(['titleList'])
     },
     components: {
         Page,
@@ -38,7 +34,7 @@ export default {
         $route (to, from) {
             // 设置导航
             this.pageIndex = ['message', 'contact', 'explore', 'profile']
-            .findIndex(value => value === to.name)
+                            .findIndex(value => value === to.name)
         }
     },
     methods: {
@@ -56,18 +52,14 @@ export default {
 @import '../assets/mixin';
 
 .wchat {
-
-    .content {
-
-        // 动画效果 平缓切换
-        .fade-enter,
-        .fade-leave-active {
-            opacity: 0;
-        }
-        .fade-enter-active,
-        .fade-leave-active {
-            transition: opacity .12s ease-out;
-        }
+    // 动画效果 平缓切换
+    .fade-enter,
+    .fade-leave-active {
+        opacity: 0;
+    }
+    .fade-enter-active,
+    .fade-leave-active {
+        transition: opacity .12s ease-out;
     }
 }
 </style>

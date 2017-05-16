@@ -2,9 +2,9 @@
     page.me(margin-top)
         nav-bar(slot="nav-bar")
             nav-back(slot="left", title="我",
-             @click.native="$router.replace({name: 'profile'})")
+             @click.native="$router.replace({name: 'profile', query: {mode: 'pop'}})")
             span(slot="title") 个人信息
-        template(slot="content")
+        template(slot="main")
             tab-group
                 tab-cell(title="头像", more, disclosure, large)
                 tab-cell(title="名字", detail="Kevin", disclosure)

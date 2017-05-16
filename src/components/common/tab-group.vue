@@ -13,8 +13,10 @@ export default {
     border-top: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
 
-    &:not(:nth-of-type(1)) {
-        margin: 18px 0 4px;
+    margin: 18px 0 4px;
+
+    &:nth-of-type(1) {
+        margin-top: auto;
     }
 }
 </style>

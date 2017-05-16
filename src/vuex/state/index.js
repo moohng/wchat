@@ -50,7 +50,6 @@ let chatLog = [
 ]
 
 let state = {
-    titleList: ['微信', '通讯录', '发现', '我'],
     // 聊天记录
     chatLog,
     // 当前聊天 索引

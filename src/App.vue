@@ -16,38 +16,35 @@ export default {
         }
     },
     watch: {
-        $route (to, from) {
+        $route (to) {
             /**
              * 通过路由路径来判断转场动画的类型
              * 要求路由路径 满足 一定的规则
              */
-            const toPath = to.path
-            const fromPath = from.path
-            if (toPath.startsWith(fromPath)) {
-                // push
-                console.log('push')
-                this.transName = 'push'
-                this.transMode = ''
+            const mode = to.query.mode
+            switch (mode) {
+                case 'push':
+                    console.log('push')
+                    this.transName = 'push'
+                    this.transMode = ''
+                    break
+                case 'pop':
+                    console.log('pop')
+                    this.transName = 'pop'
+                    this.transMode = ''
+                    break
+                case 'modal':
+                    console.log('modal')
+                    this.transName = 'modal'
+                    this.transMode = 'in-out'
+                    break
+                case 'dismiss':
+                    console.log('dismiss')
+                    this.transName = 'dismiss'
+                    this.transMode = 'in-out'
+                    break
+                default:
             }
-            else if (fromPath.startsWith(toPath)) {
-                // pop
-                console.log('pop')
-                this.transName = 'pop'
-                this.transMode = ''
-            }
-            else if (toPath.includes('wchat')) {
-                // dismiss
-                console.log('dismiss')
-                this.transName = 'dismiss'
-                this.transMode = 'in-out'
-            }
-            else if (fromPath.includes('wchat')) {
-                // modal
-                console.log('modal')
-                this.transName = 'modal'
-                this.transMode = 'in-out'
-            }
-            console.log(toPath, fromPath)
         }
     },
     created () {
@@ -67,7 +64,6 @@ export default {
     position: relative;
     width: 100%;
     height: 100%;
-    background-color: #efefef;
 
     // 转场动画
     // -------------------
@@ -89,7 +85,7 @@ export default {
     }
     .push-leave-active,
     .pop-enter {
-        opacity: 0;
+        opacity: 0.6;
         transform: translateX(-25%);
     }
     // modal dismiss
