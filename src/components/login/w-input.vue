@@ -1,5 +1,5 @@
 <template lang="pug">
-    .ui-input(@click="focus")
+    .input(@click="focus")
         label {{ name }}
         input(:type="type", :placeholder="placeholder",
         ref="input", @input="input($event.target)")
@@ -20,7 +20,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.ui-input {
+.input {
     position: relative;
     padding: 16px 0 8px;
 
