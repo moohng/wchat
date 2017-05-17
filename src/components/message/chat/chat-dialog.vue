@@ -32,10 +32,12 @@ export default {
         text-align: center;
 
         .date {
+            padding: 4px 8px;
+
             color: #fff;
             font-size: 70%;
+
             background: #bfbfbf;
-            padding: 4px 8px;
             border-radius: 4px;
         }
 
@@ -54,31 +56,30 @@ export default {
             .context {
                 position: relative;
                 min-height: 22px;
-                max-width: 60%;
+                max-width: calc(100% - 120px);
+                padding: 8px 12px;
 
                 text-align: left;
-                padding: 8px;
-                border: 1px solid $lineColor;
-                border-radius: 4px;
                 word-break: break-all;
 
-                background: $tintColor;
+                border: 1px solid $lineColor;
+                border-radius: 4px;
+                background: #fff;
 
                 @include flex(flex-start)
 
                 // 指向
                 &::after {
-                    position: absolute;
+                    @include abs(14px, auto, auto, -4px)
                     content: '';
                     width: 8px;
                     height: 8px;
-                    top: 15px;
-                    left: -5px;
 
                     border: 1px solid $lineColor;
-                    border-top: 0;
-                    border-right: 0;
-                    background-color: $tintColor;
+                    border-top-color: transparent;
+                    border-right-color: transparent;
+
+                    background: #fff;
                     transform: rotate(45deg);
                 }
             }
@@ -87,13 +88,19 @@ export default {
         &.reverse {
             justify-content: flex-end;
 
+            .context {
+                background: $tintColor;
+            }
+
             .icon {
                 order: 1;
+                margin-right: 0;
                 margin-left: 8px;
             }
             .context::after {
                 left: auto;
                 right: -5px;
+                background: $tintColor;
                 transform: rotate(-135deg);
             }
         }

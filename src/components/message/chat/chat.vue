@@ -42,6 +42,7 @@ export default {
         }
     },
     directives: {
+        // todo ...
         scroll: {
             bind (el) {
                 console.log(el.scrollHeight, el.scrollTop)
