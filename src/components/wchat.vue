@@ -31,7 +31,7 @@ export default {
         TabBar
     },
     watch: {
-        $route (to, from) {
+        $route (to) {
             // 设置导航
             this.pageIndex = ['message', 'contact', 'explore', 'profile']
                             .findIndex(value => value === to.name)

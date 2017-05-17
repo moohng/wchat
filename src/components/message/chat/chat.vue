@@ -5,11 +5,11 @@
             nav-back(slot="left", title="微信",
             @click.native="$router.replace({name: 'message', query: {mode: 'pop'}})")
             span(slot="right") 占位
-        template(slot="main")
+        ul(slot="main", v-scroll="messages")
             chat-dialog(v-for="(message, index) in messages", :date="date(index)",
             :message="message", :key="'dialog' + index",
             :ref="index === messages.length - 1 ? 'last' : null")
-        chat-input(slot="tab-bar")
+        chat-bar(slot="tab-bar")
 </template>
 
 <script>
@@ -17,7 +17,7 @@ import Page from '@/components/common/page'
 import NavBar from '@/components/common/nav-bar'
 import NavBack from '@/components/common/nav-back'
 import ChatDialog from './chat-dialog'
-import ChatInput from './chat-input'
+import ChatBar from './chat-bar'
 
 export default {
     computed: {
@@ -41,12 +41,27 @@ export default {
             return false
         }
     },
+    directives: {
+        scroll: {
+            bind (el) {
+                console.log(el.scrollHeight, el.scrollTop)
+                el.scrollTop = el.scrollHeight - 375 + 'px'
+            },
+            update (el) {
+                console.log(el.scrollHeight, el.scrollTop)
+                setTimeout(() => {
+                    console.log(el.scrollHeight, el.scrollTop)
+                }, 100)
+                el.scrollTop = el.scrollHeight - 375 + 'px'
+            }
+        }
+    },
     components: {
         Page,
         NavBar,
         NavBack,
         ChatDialog,
-        ChatInput
+        ChatBar
     }
 }
 </script>

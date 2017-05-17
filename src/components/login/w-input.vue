@@ -20,22 +20,23 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../../assets/mixin';
+
 .input {
     position: relative;
-    padding: 16px 0 8px;
+    padding: 18px 0 12px;
 
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid $lineColor;
 
     label {
-        font-size: 15px;
         margin-right: 48px;
     }
 
     input {
         border: 0;
-        font-size: 15px;
+        font-size: 100%;
         outline: 0;
-        background-color: transparent;
+        background: transparent;
     }
 }
 </style>

@@ -9,14 +9,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../../assets/mixin';
+
 .group {
-    border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
+    border: 1px solid $lineColor;
+    border-left: 0;
+    border-right: 0;
 
-    margin: 18px 0 4px;
-
-    &:nth-of-type(1) {
-        margin-top: auto;
-    }
+    margin: 18px 0 8px;
 }
 </style>

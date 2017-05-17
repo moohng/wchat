@@ -53,7 +53,6 @@ export default {
 
 <style lang="scss" scoped>
 .profile {
-    padding-top: 12px;
 
     .head img {
         width: 28px;

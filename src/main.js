@@ -12,8 +12,8 @@ import store from './vuex/store'
 import './assets/common.scss'
 
 import Modal from './plugins/modal'
-
 Vue.use(Modal)
+
 Vue.config.productionTip = false
 
 

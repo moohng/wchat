@@ -50,10 +50,10 @@ export default {
 
 .tab-bar {
     @include abs(auto, 0, 0, 0)
-    height: 48px;
+    height: 58px;
 
-    border-top: 1px solid #ccc;
-    background: rgba(225, 225, 225, .95);
+    border-top: 1px solid $lineColor;
+    background: rgba(235, 235, 235, .95);
 
     z-index: 100;
 
@@ -64,19 +64,20 @@ export default {
 
         font-size: 70%;
         // 未选中颜色
-        color: #999;
+        color: $lightColor;
 
         @include flex(center, center, column)
 
         .icon {
             height: 28px;
             width: 28px;
+            margin-bottom: 4px;
         }
     }
 
     .router-link-active {
         // 选中颜色
-        color: #1aad19;
+        color: $tintColor;
     }
 }
 </style>

@@ -9,11 +9,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../../assets/mixin.scss';
+
 .search {
-    height: 25px;
-    border: 1px solid #ccc;
+    height: 32px;
+    border: 1px solid $lineColor;
     border-radius: 4px;
-    background-color: #fff;
+    background: #fff;
     margin: 8px 12px;
 
     display: flex;

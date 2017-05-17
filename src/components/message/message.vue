@@ -1,7 +1,7 @@
 <template lang="pug">
     .message
         search
-        tab-group
+        tab-group.group
             //- 消息列表数 取决于聊天记录数组的长度
             message-list(v-for="n in chatLog.length",
             :key="'message-list-' + n", :index="n - 1",
@@ -34,5 +34,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.message {
 
+    .group:nth-child(2) {
+        margin-top: auto;
+    }
+    .group:last-child {
+        margin-bottom: auto;
+    }
+}
 </style>

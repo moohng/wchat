@@ -25,10 +25,10 @@ export default {
 
 .tab-cell {
     position: relative;
-    height: 41px;
+    height: 46px;
     padding: 0 12px;
 
-    background-color: #fff;
+    background: #fff;
 
     @include flex(flex-start)
 
@@ -42,7 +42,7 @@ export default {
     .content {
         width: 100%;
         margin: auto 8px;
-        line-height: 1.6;
+        line-height: 1.8;
         // 默认
         @include flex(flex-start)
         // 上下子标题
@@ -58,12 +58,9 @@ export default {
             @include flex()
         }
 
-        .title {
-            font-size: 94%;
-        }
         .subtitle {
-            font-size: 80%;
-            color: #999;
+            font-size: 88%;
+            color: $lightColor;
         }
     }
 
@@ -74,12 +71,14 @@ export default {
             margin-right: 8px;
         }
 
+        // 向右 图标
         .disclosure {
             width: 8px;
             height: 8px;
 
-            border-right: 2px solid #999;
-            border-bottom: 2px solid #999;
+            border: 2px solid $lightColor;
+            border-top: transparent;
+            border-left: transparent;
 
             transform: rotate(-45deg);
         }
@@ -87,12 +86,12 @@ export default {
 
     // 大 cell
     &.large {
-        height: 68px;
+        height: 78px;
 
         .header {
             img {
-                width: 56px;
-                height: 56px;
+                width: 58px;
+                height: 58px;
 
                 border-radius: 4px;
             }
@@ -100,7 +99,7 @@ export default {
     }
     // 联系人 高度不同
     &.contact {
-        height: 54px;
+        height: 58px;
     }
 
     // cell 下划线 除了最后一个
@@ -109,11 +108,11 @@ export default {
         @include abs(auto, 0, 0, 12px)
         height: 1px;
 
-        background-color: #ccc;
+        background: $lineColor;
     }
     // cell 选中变暗
     &:active {
-        background-color: #d9d9d9;
+        background: $lineColor;
     }
 }
 </style>

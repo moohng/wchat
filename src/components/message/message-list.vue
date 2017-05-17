@@ -43,7 +43,7 @@ export default {
 
 .message-list {
     position: relative;
-    height: 68px;
+    height: 72px;
     padding: 0 12px;
 
     background-color: #fff;
@@ -53,12 +53,12 @@ export default {
         margin-right: 8px;
 
         img {
-            width: 48px;
-            height: 48px;
+            width: 54px;
+            height: 54px;
         }
     }
     .content {
-        height: 48px;
+        height: 54px;
         // 将父容器撑满
         width: 100%;
 
@@ -69,12 +69,11 @@ export default {
             @include flex(space-between)
 
             .title {
-                font-size: 15px;
                 font-weight: bold;
             }
             .time {
                 font-size: 70%;
-                color: #999;
+                color: $lightColor;
             }
         }
         .bottom {
@@ -85,8 +84,8 @@ export default {
             .context {
                 // 限制死了最大宽度, 防止内容超出父容器
                 // max-width: 230px;
-                font-size: 75%;
-                color: #666;
+                font-size: 90%;
+                color: $lightColor;
 
                 white-space: nowrap;
                 text-overflow: ellipsis;
@@ -115,7 +114,7 @@ export default {
                 width: 10px;
                 height: 10px;
 
-                background-color: #98ea12;
+                background: #98ea12;
             }
         }
 
@@ -127,11 +126,11 @@ export default {
         @include abs(auto, 0, 0, 12px)
         height: 1px;
 
-        background-color: #ccc;
+        background: $lineColor;
     }
     // 点击变暗效果
     &:active {
-        background-color: #d9d9d9;
+        background: $lineColor;
     }
 }
 </style>

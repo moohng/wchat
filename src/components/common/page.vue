@@ -8,11 +8,10 @@
 
 <script>
 export default {
-    props: ['marginTop', 'marginBottom'],
+    props: ['marginBottom'],
     data () {
         return {
             inset: {
-                'margin-top': this.marginTop,
                 'margin-bottom': this.marginBottom
             }
         }
@@ -32,13 +31,10 @@ export default {
         height: 100%;
         box-sizing: border-box;
         padding-top: 64px;
-        background-color: #efefef;
+        background: $bgColor;
 
-        &.margin-top {
-            padding-top: 76px;
-        }
         &.margin-bottom {
-            padding-bottom: 49px;
+            padding-bottom: 59px;
         }
 
         overflow-y: scroll;

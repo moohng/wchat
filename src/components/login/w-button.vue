@@ -10,22 +10,22 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../../assets/mixin';
+
 .w-button {
     width: 100%;
-    height: 36px;
+    height: 42px;
+    padding: 0;
 
     color: #fff;
-    font-size: 15px;
+    font-size: 100%;
     outline: 0;
-    border: 1px solid #ccc;
-    background-color: #00fe50;
+    border: 1px solid $lineColor;
+    background: $tintColor;
     border-radius: 4px;
 
-    &:active {
-        background-color: #00de40;
-    }
     &:disabled {
-        background-color: #30fe88;
+        box-shadow: inset 0 100px hsla(0, 0%, 100%, .6);
     }
 }
 </style>

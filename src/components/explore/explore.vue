@@ -46,7 +46,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.explore {
-    padding-top: 12px;
-}
+
 </style>

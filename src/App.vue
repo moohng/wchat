@@ -22,22 +22,18 @@ export default {
             const mode = to.query.mode
             switch (mode) {
                 case 'push':
-                    console.log('push')
                     this.transName = 'push'
                     this.transMode = ''
                     break
                 case 'pop':
-                    console.log('pop')
                     this.transName = 'pop'
                     this.transMode = ''
                     break
                 case 'modal':
-                    console.log('modal')
                     this.transName = 'modal'
                     this.transMode = 'in-out'
                     break
                 case 'dismiss':
-                    console.log('dismiss')
                     this.transName = 'dismiss'
                     this.transMode = 'in-out'
                     break
@@ -67,7 +63,6 @@ export default {
     font-family: "Microsoft YaHei", Helvetica, Arial, sans-serif;
 
     overflow: hidden;
-    user-select: none;
     cursor: default;
 
     // 转场动画
