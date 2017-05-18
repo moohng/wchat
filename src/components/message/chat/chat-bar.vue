@@ -5,7 +5,7 @@
                 .icon
                     icon-voice
             .wrap.text-area
-                p.edit-box(contenteditable="true",
+                p.edit-box(contenteditable,
                 @keydown.enter.prevent="send($event.target)")
             .wrap
                 .icon
@@ -36,7 +36,7 @@ export default {
                 time: time.getHours() + ':' + time.getMinutes(),
                 text: el.innerText
             }
-            this.$store.dispatch('sendText', message)
+            this.$store.dispatch('send', message)
             el.innerText = ''
         }
     },

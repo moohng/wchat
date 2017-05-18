@@ -26,10 +26,18 @@ const close = function (text) {
 import Vue from 'vue'
 Vue.use(WSocket)
 
-export default new WSocket({
+const ws = new WSocket({
     host,
     message,
     open,
     error,
     close
 })
+
+export default ws
+const sendText = ws.sendText
+const init = ws.init
+export {
+    init,
+    sendText
+}

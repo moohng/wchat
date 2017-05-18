@@ -5,7 +5,7 @@
             nav-back(slot="left", title="微信",
             @click.native="$router.replace({name: 'message', query: {mode: 'pop'}})")
             span(slot="right") 占位
-        ul.mm(slot="main", v-scroll="messages")
+        ul(slot="main", v-scroll="messages")
             chat-dialog(v-for="(message, index) in messages", :date="date(index)",
             :message="message", :key="'dialog' + index",
             :ref="index === messages.length - 1 ? 'last' : null")
@@ -19,15 +19,17 @@ import NavBack from '@/components/common/nav-back'
 import ChatDialog from './chat-dialog'
 import ChatBar from './chat-bar'
 
+import { mapState } from 'vuex'
+
 export default {
+    data () {
+        return {
+            name: '',
+            messages: []
+        }
+    },
     computed: {
-        name () {
-            return this.$store.state.chatLog[0].name
-        },
-        messages () {
-            // 始终获取第一条消息列表
-            return this.$store.state.chatLog[0].messages
-        },
+        ...mapState (['chatList'])
 
     },
     methods: {
@@ -41,8 +43,21 @@ export default {
             return false
         }
     },
+    mounted () {
+        const key = this.$route.query.session
+        const list = this.chatList[key]
+        if (list) {
+            this.name = list.name
+            this.messages = list.messages
+        }
+        else {
+            this.name = key
+            this.$store.commit('addList', key)
+        }
+
+    },
     directives: {
-        // todo ...
+        // 自动滚动
         scroll: {
             bind (el) {
                 setTimeout(() => {
@@ -66,8 +81,3 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-@import '../../../assets/mixin';
-
-
-</style>

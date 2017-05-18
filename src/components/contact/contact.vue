@@ -4,7 +4,7 @@
         tab-group.group
             tab-cell(v-for="title, index in titles",
             img="", :title="title", contact,
-            @click.native.stop="tabSelect(index)")
+            @click.native.stop="tabSelect(title)")
         tab-group.group
             tab-cell(img="", :title="friends[0]", contact)
             tab-cell(img="", :title="friends[1]", contact)
@@ -34,13 +34,14 @@ export default {
         }
     },
     methods: {
-        tabSelect (index) {
-            switch (index) {
-                case 0:
-                    this.$router.replace({name: 'chat', query: {mode: 'push'}})
-                    break
-                default:
-            }
+        tabSelect (title) {
+            this.$router.replace({
+                name: 'chat',
+                query: {
+                    mode: 'push',
+                    session: title
+                }
+            })
         }
     },
     components: {

@@ -4,36 +4,43 @@
             img
         section.content
             .top
-                span.title {{ name }}
-                span.time {{ time }}
+                span.title {{ name || '默认' }}
+                span.time {{ time || '12:23' }}
             .bottom
-                p.context {{ text }}
+                p.context {{ text || '默认消息。。。' }}
                 i.icon(v-if="disturb")
 </template>
 
 <script>
 export default {
-    props: ['index'],
+    props: ['data'],
     computed: {
         disturb () {
             return false
         },
         name () {
             // 聊天列表的名字
-            return this.$store.state.chatLog[this.index].name
+            return this.data.name
         },
         time () {
             // 最后一条消息 时间
-            const messages = this.$store.state.chatLog[this.index].messages
-            const last = messages.length
-            return messages[last - 1].time
+            const len = this.data.messages.length
+            if (len > 0) {
+                return this.data.messages[len - 1].time
+            }
+            return false
         },
         text () {
             // 最后一条消息 内容
-            const messages = this.$store.state.chatLog[this.index].messages
-            const last = messages.length
-            return messages[last - 1].text
+            const len = this.data.messages.length
+            if (len > 0) {
+                return this.data.messages[len - 1].text
+            }
+            return false
         }
+    },
+    mounted () {
+        // console.log(this.data)
     }
 }
 </script>
