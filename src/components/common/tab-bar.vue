@@ -50,7 +50,7 @@ export default {
 
 .tab-bar {
     @include abs(auto, 0, 0, 0)
-    height: 58px;
+    height: 52px;
 
     border-top: 1px solid $lineColor;
     background: rgba(235, 235, 235, .95);
@@ -71,7 +71,7 @@ export default {
         .icon {
             height: 28px;
             width: 28px;
-            margin-bottom: 4px;
+            margin-bottom: 2px;
         }
     }
 

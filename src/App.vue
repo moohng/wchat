@@ -62,7 +62,7 @@ export default {
     // 字体
     font-family: "Microsoft YaHei", Helvetica, Arial, sans-serif;
 
-    overflow: hidden;
+    // overflow: hidden;
     cursor: default;
 
     // 转场动画

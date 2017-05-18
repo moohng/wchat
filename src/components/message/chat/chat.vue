@@ -5,7 +5,7 @@
             nav-back(slot="left", title="微信",
             @click.native="$router.replace({name: 'message', query: {mode: 'pop'}})")
             span(slot="right") 占位
-        ul(slot="main", v-scroll="messages")
+        ul.mm(slot="main", v-scroll="messages")
             chat-dialog(v-for="(message, index) in messages", :date="date(index)",
             :message="message", :key="'dialog' + index",
             :ref="index === messages.length - 1 ? 'last' : null")
@@ -45,15 +45,14 @@ export default {
         // todo ...
         scroll: {
             bind (el) {
-                console.log(el.scrollHeight, el.scrollTop)
-                el.scrollTop = el.scrollHeight - 375 + 'px'
+                setTimeout(() => {
+                    el.parentNode.scrollTop = el.scrollHeight
+                }, 1)
             },
             update (el) {
-                console.log(el.scrollHeight, el.scrollTop)
                 setTimeout(() => {
-                    console.log(el.scrollHeight, el.scrollTop)
-                }, 100)
-                el.scrollTop = el.scrollHeight - 375 + 'px'
+                    el.parentNode.scrollTop = el.scrollHeight
+                }, 1)
             }
         }
     },
@@ -68,5 +67,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../../../assets/mixin';
+
 
 </style>

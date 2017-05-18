@@ -23,6 +23,9 @@ export default {
 <style lang="scss" scoped>
 @import '../../../assets/mixin';
 
+$myColor: #a6ef5d;
+$otherColor: #fff;
+
 .chat-dialog {
     min-height: 42px;
     margin: 12px 8px;
@@ -37,7 +40,7 @@ export default {
             color: #fff;
             font-size: 70%;
 
-            background: #bfbfbf;
+            background: #cecece;
             border-radius: 4px;
         }
 
@@ -62,9 +65,10 @@ export default {
                 text-align: left;
                 word-break: break-all;
 
+                // 其他人 对话框背景
                 border: 1px solid $lineColor;
                 border-radius: 4px;
-                background: #fff;
+                background: $otherColor;
 
                 @include flex(flex-start)
 
@@ -79,17 +83,17 @@ export default {
                     border-top-color: transparent;
                     border-right-color: transparent;
 
-                    background: #fff;
+                    background: $otherColor;
                     transform: rotate(45deg);
                 }
             }
         }
-        // 反向
+        // 反向   我的对话框
         &.reverse {
             justify-content: flex-end;
 
             .context {
-                background: $tintColor;
+                background: $myColor;
             }
 
             .icon {
@@ -100,7 +104,7 @@ export default {
             .context::after {
                 left: auto;
                 right: -5px;
-                background: $tintColor;
+                background: $myColor;
                 transform: rotate(-135deg);
             }
         }
