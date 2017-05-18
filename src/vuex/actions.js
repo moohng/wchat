@@ -1,4 +1,5 @@
 import { send } from '@/plugins/w-request'
+import ws from '@/websocket'
 
 const actions = {
     send ({ commit }, message) {
@@ -21,8 +22,20 @@ const actions = {
             }
         })
         .catch(err => {
+
             console.log('response error: ', err)
         })
+    },
+
+    sendText ({ commit }, message) {
+
+        if (ws.sendText(message.text)) {
+            commit('addMessage', message)
+        }
+        else {
+            ws.init()
+        }
+
     }
 }
 

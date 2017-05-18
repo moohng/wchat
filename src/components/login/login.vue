@@ -16,6 +16,7 @@
 <script>
 import WInput from './w-input'
 import WButton from './w-button'
+import ws from '@/websocket'
 
 export default {
     data () {
@@ -55,19 +56,7 @@ export default {
             }, 1000)
 
             // 连接WebSocket
-            // const sock = new WebSocket('ws://192.168.16.106:8083/websocket?request=e2lkOjE7cmlkOjI2O3Rva2VuOiI0MzYwNjgxMWM3MzA1Y2NjNmFiYjJiZTExNjU3OWJmZCJ9')
-            // sock.onmessage = (e) => {
-            //     const data = e.data
-            //     const message = JSON.parse(data)
-            //     console.log('on message: ', message)
-            // }
-            // sock.onopen = (e) => {
-            //     console.log('on open: ', e)
-            // }
-            // sock.onclose = (e) => {
-            //     console.log('on close: ', e)
-            // }
-
+            ws.init()
         }
     },
     components: {

@@ -14,8 +14,11 @@ import './assets/common.scss'
 import Modal from './plugins/modal'
 Vue.use(Modal)
 
-Vue.config.productionTip = false
+// web socket
+import ws from '@/websocket'
+ws.init()
 
+Vue.config.productionTip = false
 
 /* eslint-disable no-new */
 new Vue({

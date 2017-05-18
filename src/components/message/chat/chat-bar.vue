@@ -36,7 +36,7 @@ export default {
                 time: time.getHours() + ':' + time.getMinutes(),
                 text: el.innerText
             }
-            this.$store.dispatch('send', message)
+            this.$store.dispatch('sendText', message)
             el.innerText = ''
         }
     },
