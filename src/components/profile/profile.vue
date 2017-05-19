@@ -1,7 +1,7 @@
 <template lang="pug">
     .profile
         tab-group
-            tab-cell.head(title="Kevin", subtitle="微信号: mohong668",
+            tab-cell.head(:title="account", subtitle="微信号: 2b2b2b2b",
             :img="icons[0]", more, disclosure, large,
             @click.native="push('me')")
                 img(slot="button", :src="icons[1]")
@@ -32,12 +32,17 @@ import vip from '@/assets/profile/w-profile-vip.svg'
 import emoj from '@/assets/profile/w-profile-emoj.svg'
 import setting from '@/assets/profile/w-profile-setting.svg'
 
+import { mapGetters } from 'vuex'
+
 export default {
     data () {
         return {
             icons: [head, qrcode ,album, collection, wallet, vip, emoj, setting],
             titles: ['相册', '收藏', '钱包', '卡包', '表情', '设置']
         }
+    },
+    computed: {
+        ...mapGetters(['account'])
     },
     methods: {
         push (to) {

@@ -22,14 +22,30 @@ import ChatBar from './chat-bar'
 import { mapState } from 'vuex'
 
 export default {
-    data () {
-        return {
-            name: '',
-            messages: []
-        }
-    },
     computed: {
-        ...mapState (['chatList'])
+        ...mapState (['chatList']),
+        name () {
+            const key = this.$route.query.session
+            const list = this.chatList[key]
+            if (list) {
+                return list.name
+            }
+            else {
+                this.$store.commit('addList', key)
+                return key
+            }
+        },
+        messages () {
+            const key = this.$route.query.session
+            const list = this.chatList[key]
+            if (list) {
+                return list.messages
+            }
+            else {
+                this.$store.commit('addList', key)
+                return null
+            }
+        }
 
     },
     methods: {
@@ -42,19 +58,6 @@ export default {
             }
             return false
         }
-    },
-    mounted () {
-        const key = this.$route.query.session
-        const list = this.chatList[key]
-        if (list) {
-            this.name = list.name
-            this.messages = list.messages
-        }
-        else {
-            this.name = key
-            this.$store.commit('addList', key)
-        }
-
     },
     directives: {
         // 自动滚动

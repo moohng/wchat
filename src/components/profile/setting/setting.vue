@@ -16,7 +16,7 @@
                 tab-cell(title="关于微信", disclosure)
             tab-group
                 tab-cell(title="退出登录", center,
-                @click.native="$router.replace({name: 'login', query: {mode: 'dismiss'}})")
+                @click.native="logout")
 </template>
 
 <script>
@@ -28,6 +28,15 @@ import TabCell from '@/components/common/tab-cell'
 
 export default {
     methods: {
+        logout () {
+            sessionStorage.removeItem('account')
+            this.$router.replace({
+                name: 'login',
+                query: {
+                    mode: 'dismiss'
+                }
+            })
+        }
     },
     components: {
         Page,

@@ -28,7 +28,8 @@ Modal.install = function (Vue, options) {
 
     Vue.prototype.$close = function () {
         // 关闭所有 Modal
-        modal.el.remove()
+        modal.el.parentNode.removeChild(modal.el)
+        // modal.el.remove()
     }
 }
 

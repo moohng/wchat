@@ -29,7 +29,7 @@ export default {
         }
     },
     mounted () {
-        console.log(this.chatList)
+        // console.log(this.chatList)
     },
     components: {
         TabGroup,

@@ -17,6 +17,8 @@
 import WInput from './w-input'
 import WButton from './w-button'
 
+import { mapGetters } from 'vuex'
+
 export default {
     data () {
         return {
@@ -25,6 +27,7 @@ export default {
         }
     },
     computed: {
+        ...mapGetters(['account']),
         loginDisbled () {
 
             return this.username.length === 0 || this.password.length === 0
@@ -32,7 +35,7 @@ export default {
     },
     methods: {
         login () {
-            console.log('login')
+            console.log('login...')
             console.log('username: ', this.username)
             console.log('password: ', this.password)
 
@@ -43,16 +46,27 @@ export default {
                 // 跳转
                 this.$router.replace({
                     name: 'message',
-                    // 假装传递用户信息
-                    params: {
-                        username: this.username,
-                        password: this.password
-                    },
                     query: {
                         mode: 'modal'
                     }
                 })
             }, 1000)
+
+            // 本地保存账户
+            sessionStorage.setItem('account', this.username)
+        }
+    },
+    mounted () {
+        console.log(this.account)
+        // 判断用户是否已经登录
+        if (this.account) {
+            // 直接跳转
+            this.$router.replace({
+                name: 'message',
+                query: {
+                    mode: 'modal'
+                }
+            })
         }
     },
     components: {

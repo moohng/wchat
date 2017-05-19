@@ -21,10 +21,15 @@ import IconVoice from './icon/voice'
 import IconEmoji from './icon/emoji'
 import IconMore from './icon/more'
 
+import { mapGetters } from 'vuex'
+
 export default {
     data () {
         return {
         }
+    },
+    computed: {
+        ...mapGetters(['account'])
     },
     methods: {
         send (el) {
@@ -32,6 +37,7 @@ export default {
             // 封装消息
             const time = new Date()
             const message = {
+                from: this.account,
                 type: 'send',
                 time: time.getHours() + ':' + time.getMinutes(),
                 text: el.innerText

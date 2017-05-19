@@ -1,16 +1,16 @@
 import { EventEmitter } from 'events'
 
 class WSocket extends EventEmitter {
-    constructor (host) {
+    constructor (url) {
         super()
 
-        this.host = host
+        this.url = url
     }
 
     // 初始化 连接
-    init (host = this.host) {
+    init (url = this.url) {
 
-        this.socket = new WebSocket(host)
+        this.socket = new WebSocket(url)
         this.socket.onopen = this.onopen.bind(this)
         this.socket.onmessage = this.onmessage.bind(this)
         this.socket.onerror = this.onerror.bind(this)

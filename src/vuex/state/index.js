@@ -24,6 +24,8 @@ let chatList = {
 }
 
 let state = {
+    // 登录账户
+    account: sessionStorage.getItem('account'),
     // 聊天记录
     chatList
 }
