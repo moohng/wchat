@@ -15,8 +15,11 @@ import Modal from './plugins/modal'
 Vue.use(Modal)
 
 // web socket
-import ws from '@/websocket'
-ws.init()
+// import ws from '@/websocket'
+// ws.init()
+//
+// socket.io
+import '@/websocket/ws.io'
 
 Vue.config.productionTip = false
 

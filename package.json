@@ -11,6 +11,7 @@
   "dependencies": {
     "babel-polyfill": "^6.23.0",
     "jquery": "^3.2.1",
+    "socket.io-client": "^2.0.1",
     "vue": "^2.2.2",
     "vue-router": "^2.2.0",
     "vuex": "^2.2.1"

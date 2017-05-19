@@ -1,5 +1,6 @@
 import { send } from '@/plugins/w-request'
-import ws from '@/websocket'
+// import ws from '@/websocket'
+import io from '@/websocket/ws.io'
 
 const actions = {
     send ({ commit }, message) {
