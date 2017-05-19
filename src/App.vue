@@ -42,13 +42,13 @@ export default {
         }
     },
     created () {
-        console.log('App created')
+        // console.log('App created')
     },
     beforeMount () {
-        console.log('App beforeMount')
+        // console.log('App beforeMount')
     },
     mounted () {
-        console.log('App mounted')
+        // console.log('App mounted')
     }
 }
 </script>

@@ -16,7 +16,6 @@
 <script>
 import WInput from './w-input'
 import WButton from './w-button'
-import ws from '@/websocket'
 
 export default {
     data () {
@@ -54,9 +53,6 @@ export default {
                     }
                 })
             }, 1000)
-
-            // 连接WebSocket
-            ws.init()
         }
     },
     components: {

@@ -3,9 +3,8 @@
         search
         tab-group.group
             //- 消息列表数 取决于聊天记录数组的长度
-            message-list(v-for="n in chatLog.length",
-            :key="'message-list-' + n", :index="n - 1",
-            @click.native="push('chat', n - 1)")
+            message-list(v-for="list, key in chatList", :data="list", :key="key",
+            @click.native="push(key)")
 </template>
 
 <script>
@@ -16,14 +15,21 @@ import Search from '@/components/common/search'
 import { mapState } from 'vuex'
 
 export default {
-    computed: mapState(['chatLog']),
+    computed: mapState(['chatList']),
     methods: {
-        push (to, index) {
-            // 改变当前 列表到最前端
-            this.$store.commit('updateChatLog', index)
+        push (key) {
             // 切换到聊天窗口
-            this.$router.replace({ name: to, query: {mode: 'push'} })
+            this.$router.replace({
+                name: 'chat',
+                query: {
+                    mode: 'push',
+                    session: key
+                }
+            })
         }
+    },
+    mounted () {
+        console.log(this.chatList)
     },
     components: {
         TabGroup,

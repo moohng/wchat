@@ -15,11 +15,9 @@ import Modal from './plugins/modal'
 Vue.use(Modal)
 
 // web socket
-// import ws from '@/websocket'
-// ws.init()
-//
-// socket.io
-import '@/websocket/ws.io'
+import ws from '@/websocket'
+ws.init()
+
 
 Vue.config.productionTip = false
 
@@ -28,6 +26,7 @@ new Vue({
     el: '#app',
     router,
     store,
+    ws,
     template: '<App />',
     components: { App }
 })

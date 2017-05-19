@@ -18,7 +18,7 @@ export default {
 
 .nav-bar {
     @include abs(0, 0, auto, 0)
-    // height: 44px;
+    height: 44px;
     padding: 20px 12px 0;
 
     color: #fff;

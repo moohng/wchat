@@ -1,16 +1,33 @@
-import router from '../router'
 import Vue from 'vue'
 
 let mutations = {
     // update chat log
-    updateChatLog ({ chatLog }, index) {
+    updateChatLog ({ chatList }, index) {
         // 移动当前聊天列表 到最前端
-        const current = chatLog.splice(index, 1)
-        chatLog.unshift(current[0])
+        const current = chatList.splice(index, 1)
+        chatList.unshift(current[0])
     },
     // add message
-    addMessage ({ chatLog }, message) {
-        chatLog[0].messages.push(message)
+    addMessage ({ chatList }, message) {
+
+        if (chatList['聊天室']) {
+            chatList['聊天室'].messages.push(message)
+        }
+        else {
+            const list = {
+                name: "聊天室",
+                messages: [message]
+            }
+            Vue.set(chatList, '聊天室', list)
+        }
+    },
+    // add chat list
+    addList ({ chatList }, key) {
+        const list = {
+            name: key,
+            messages: []
+        }
+        Vue.set(chatList, key, list)
     }
 }
 

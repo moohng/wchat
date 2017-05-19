@@ -1,18 +1,10 @@
+import { EventEmitter } from 'events'
 
-class WSocket {
-    constructor ({
-        host,
-        open,
-        message,
-        error,
-        close
-    } = {}) {
+class WSocket extends EventEmitter {
+    constructor (host) {
+        super()
 
         this.host = host
-        this.open = open
-        this.message = message
-        this.error = error
-        this.close = close
     }
 
     // 初始化 连接
@@ -25,10 +17,10 @@ class WSocket {
         this.socket.onclose = this.onclose.bind(this)
     }
 
-    sendText (text) {
+    send (data) {
         if (this.socket.readyState != WebSocket.OPEN) return false
 
-        this.socket.send(text)
+        this.socket.send(data)
         return true
     }
 
@@ -39,19 +31,19 @@ class WSocket {
     // 默认方法
     onopen (e) {
 
-        this.open && this.open('已连接')
+        this.emit('open', '已连接')
     }
-    onmessage (mEvent) {
+    onmessage (e) {
 
-        this.message && this.message(mEvent.data)
+        this.emit('message', e.data)
     }
     onerror (e) {
 
-        this.error && this.error(e)
+        this.emit('error', '连接错误')
     }
-    onclose (cEvent) {
+    onclose (e) {
 
-        this.close && this.close('连接已断开')
+        this.emit('close', '连接已断开')
     }
 }
 
