@@ -4,43 +4,40 @@
             img
         section.content
             .top
-                span.title {{ name || '默认' }}
-                span.time {{ time || '12:23' }}
+                span.title {{ title }}
+                span.time {{ time }}
             .bottom
-                p.context {{ text || '默认消息。。。' }}
+                p.context {{ text }}
                 i.icon(v-if="disturb")
 </template>
 
 <script>
 export default {
-    props: ['data'],
+    props: ['session'],
     computed: {
         disturb () {
             return false
         },
-        name () {
+        title () {
             // 聊天列表的名字
-            return this.data.name
+            return this.session.title
         },
         time () {
             // 最后一条消息 时间
-            const len = this.data.messages.length
+            const len = this.session.messages.length
             if (len > 0) {
-                return this.data.messages[len - 1].time
+                return this.session.messages[len - 1].time
             }
             return false
         },
         text () {
             // 最后一条消息 内容
-            const len = this.data.messages.length
+            const len = this.session.messages.length
             if (len > 0) {
-                return this.data.messages[len - 1].text
+                return this.session.messages[len - 1].content.text
             }
             return false
         }
-    },
-    mounted () {
-        // console.log(this.data)
     }
 }
 </script>

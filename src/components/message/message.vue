@@ -2,9 +2,9 @@
     .message
         search
         tab-group.group
-            //- 消息列表数 取决于聊天记录数组的长度
-            message-list(v-for="list, key in chatList", :data="list", :key="key",
-            @click.native="push(key)")
+            //- 会话列表
+            message-list(v-for="session in sessionList", :session="session",
+            @click.native.top="push(session.title)")
 </template>
 
 <script>
@@ -15,15 +15,15 @@ import Search from '@/components/common/search'
 import { mapState } from 'vuex'
 
 export default {
-    computed: mapState(['chatList']),
+    computed: mapState(['sessionList']),
     methods: {
-        push (key) {
+        push (title) {
             // 切换到聊天窗口
             this.$router.replace({
                 name: 'chat',
                 query: {
                     mode: 'push',
-                    session: key
+                    title
                 }
             })
         }

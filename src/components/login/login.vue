@@ -6,7 +6,7 @@
                 w-input(name="账号", placeholder="请填写用户名", type="text", v-model="username")
                 w-input(name="密码", placeholder="请填写密码", type="password", v-model="password")
             .wrap
-                // 阻止表单默认行为
+                //- 阻止表单默认行为
                 w-button(name="登录", :disabled="loginDisbled", type="submit",
                 @click.native.prevent="login")
         .wrap
@@ -17,7 +17,7 @@
 import WInput from './w-input'
 import WButton from './w-button'
 
-import { mapGetters } from 'vuex'
+import ws from '@/websocket'
 
 export default {
     data () {
@@ -27,7 +27,6 @@ export default {
         }
     },
     computed: {
-        ...mapGetters(['account']),
         loginDisbled () {
 
             return this.username.length === 0 || this.password.length === 0
@@ -52,21 +51,10 @@ export default {
                 })
             }, 1000)
 
+            const url = 'ws://localhost:3000/ws?username=' + this.username
+            ws.init(url)
             // 本地保存账户
             sessionStorage.setItem('account', this.username)
-        }
-    },
-    mounted () {
-        console.log(this.account)
-        // 判断用户是否已经登录
-        if (this.account) {
-            // 直接跳转
-            this.$router.replace({
-                name: 'message',
-                query: {
-                    mode: 'modal'
-                }
-            })
         }
     },
     components: {

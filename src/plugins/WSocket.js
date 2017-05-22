@@ -1,7 +1,7 @@
 import { EventEmitter } from 'events'
 
 class WSocket extends EventEmitter {
-    constructor (url) {
+    constructor (url = null) {
         super()
 
         this.url = url

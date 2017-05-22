@@ -21,8 +21,9 @@ export default new Router({
     routes: [
         {
             path: '/',
-            redirect: {name: 'login'}
+            redirect: {name: 'message'}
         },
+        // 登录
         {
             path: '/wellcome/login',
             name: 'login',

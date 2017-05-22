@@ -1,33 +1,46 @@
 
-// 聊天记录列表
-let chatList = {
-    "示例1": {
-        name: '示例1',
+// 会话列表
+let sessionList = [
+    {
+        title: '聊天室',
         messages: [
             {
-                type: 'send',
-                time: '14:32',
-                text: '这可能是条假的聊天记录'
-            }
-        ]
-    },
-    "示例2": {
-        name: '示例2',
-        messages: [
+                from: '小三',
+                to: '聊天室',
+                content: {
+                    text: '现在方便吗？'
+                },
+                time: '12:00'
+            },
             {
-                type: '',
-                time: '14:32',
-                text: '这可能是条假的聊天记录'
+                from: '老王',
+                to: '聊天室',
+                content: {
+                    text: '你不要来烦我'
+                },
+                time: '12:04'
             }
         ]
     }
-}
+]
+// 好友列表
+let friendList = [
+    'a',
+    'b',
+    'cd',
+    'c',
+    'b3ew',
+    'adf',
+    'hgf',
+    'cdsa'
+]
+
 
 let state = {
-    // 登录账户
-    account: sessionStorage.getItem('account'),
     // 聊天记录
-    chatList
+    sessionList,
+
+    friendList
 }
 
 export default state

@@ -24,23 +24,25 @@ import IconMore from './icon/more'
 import { mapGetters } from 'vuex'
 
 export default {
-    data () {
-        return {
-        }
-    },
+    props: ['to'],
     computed: {
         ...mapGetters(['account'])
     },
     methods: {
         send (el) {
-            console.log(el.innerText)
+            const text = el.innerText
+            if (text.length === 0) return
+
+            console.log(text)
             // 封装消息
             const time = new Date()
             const message = {
                 from: this.account,
-                type: 'send',
-                time: time.getHours() + ':' + time.getMinutes(),
-                text: el.innerText
+                to: this.to,
+                content: {
+                    text
+                },
+                time: time.getHours() + ':' + time.getMinutes()
             }
             this.$store.dispatch('vx_send', message)
             el.innerText = ''

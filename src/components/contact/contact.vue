@@ -5,18 +5,10 @@
             tab-cell(v-for="title, index in titles",
             img="", :title="title", contact,
             @click.native.stop="tabSelect(title)")
-        tab-group.group
-            tab-cell(img="", :title="friends[0]", contact)
-            tab-cell(img="", :title="friends[1]", contact)
-        tab-group.group
-            tab-cell(img="", :title="friends[2]", contact)
-            tab-cell(img="", :title="friends[3]", contact)
-            tab-cell(img="", :title="friends[4]", contact)
-        tab-group.group
-            tab-cell(img="", :title="friends[5]", contact)
-        tab-group.group
-            tab-cell(img="", :title="friends[6]", contact)
-            tab-cell(img="", :title="friends[7]", contact)
+        tab-group.group(v-for="group, g in friendList")
+            tab-cell(v-for="friend, f in group",
+            img="", :title="friend", contact,
+            @click.native.stop="tabSelect(friend)")
 </template>
 
 <script>
@@ -24,14 +16,17 @@ import TabGroup from '@/components/common/tab-group'
 import TabCell from '@/components/common/tab-cell'
 import Search from '@/components/common/search'
 
+import { mapGetters } from 'vuex'
+
 export default {
     data () {
         return {
             // 固定组件
-            titles: ['聊天室', '群聊', '标签', '公众号'],
-            // 朋友列表 服务器获取
-            friends: ['张三', '小明', '小黄', '小黑', '阿兰', '明月心', '黄蓉', '郭靖']
+            titles: ['聊天室', '群聊'],
         }
+    },
+    computed: {
+        ...mapGetters(['friendList'])
     },
     methods: {
         tabSelect (title) {
@@ -39,7 +34,7 @@ export default {
                 name: 'chat',
                 query: {
                     mode: 'push',
-                    session: title
+                    title
                 }
             })
         }

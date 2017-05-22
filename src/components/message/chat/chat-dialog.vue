@@ -6,15 +6,18 @@
             .icon
                 img
             .context
-                p {{ message.text }}
+                p {{ message.content.text }}
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
     props: ['message', 'date'],
     computed: {
+        ...mapGetters(['account']),
         reverse () {
-            return this.message.type === 'send'
+            return this.message.from === this.account
         }
     },
 }

@@ -1,15 +1,14 @@
 <template lang="pug">
     page.chat(margin-bottom)
         nav-bar(slot="nav-bar")
-            span.title(slot="title") {{ name }}
+            span.title(slot="title") {{ title }}
             nav-back(slot="left", title="微信",
             @click.native="$router.replace({name: 'message', query: {mode: 'pop'}})")
             span(slot="right") 占位
         ul(slot="main", v-scroll="messages")
-            chat-dialog(v-for="(message, index) in messages", :date="date(index)",
-            :message="message", :key="'dialog' + index",
-            :ref="index === messages.length - 1 ? 'last' : null")
-        chat-bar(slot="tab-bar")
+            chat-dialog(v-for="(message, index) in messages",
+            :date="date(message, index)", :message="message")
+        chat-bar(slot="tab-bar", :to="title")
 </template>
 
 <script>
@@ -23,36 +22,36 @@ import { mapState } from 'vuex'
 
 export default {
     computed: {
-        ...mapState (['chatList']),
-        name () {
-            const key = this.$route.query.session
-            const list = this.chatList[key]
-            if (list) {
-                return list.name
-            }
-            else {
-                this.$store.commit('addList', key)
-                return key
-            }
+        ...mapState (['sessionList']),
+        title () {
+            return this.$route.query.title
+        },
+        index () {
+            // 遍历会话列表，看会话是否存在
+            let _index = false
+            this.sessionList.forEach((session, index) => {
+                if (session.title === this.title) {
+                    // 存在   记录索引
+                    _index = index
+                    return
+                }
+            })
+            return _index
         },
         messages () {
-            const key = this.$route.query.session
-            const list = this.chatList[key]
-            if (list) {
-                return list.messages
+            if (this.index !== false) {
+                return this.sessionList[this.index].messages
             }
             else {
-                this.$store.commit('addList', key)
-                return null
+                return []
             }
         }
-
     },
     methods: {
-        date (index) {
+        date (message, index) {
             if (index >= 1) {
                 // 判断是否显示时间 先将就着用吧
-                const time = this.messages[index].time.substr(3, 2)
+                const time = message.time.substr(3, 2)
                 const lastTime = this.messages[index - 1].time.substr(3, 2)
                 return time - lastTime > 0
             }

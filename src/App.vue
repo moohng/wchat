@@ -6,12 +6,20 @@
 </template>
 
 <script>
+// web socket
+import ws from '@/websocket'
+
+import { mapGetters } from 'vuex'
+
 export default {
     data () {
         return {
             transName: 'push',
             transMode: ''
         }
+    },
+    computed: {
+        ...mapGetters(['account'])
     },
     watch: {
         $route (to) {
@@ -48,7 +56,22 @@ export default {
         // console.log('App beforeMount')
     },
     mounted () {
-        // console.log('App mounted')
+        // 重新加载时，判断用户是否存在
+        if (this.account) {
+            // 存在   连接socket
+            const url = 'ws://localhost:3000/ws?username=' + this.account
+            ws.init(url)
+        }
+        else {
+            // 不存在  转到登录界面
+            this.$router.replace({
+                name: 'login',
+                query: {
+                    mode: 'dismiss'
+                }
+            })
+        }
+
     }
 }
 </script>
@@ -62,7 +85,7 @@ export default {
     // 字体
     font-family: "Microsoft YaHei", Helvetica, Arial, sans-serif;
 
-    // overflow: hidden;
+    overflow: hidden;
     cursor: default;
 
     // 转场动画
