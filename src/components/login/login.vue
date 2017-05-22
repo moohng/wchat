@@ -51,7 +51,7 @@ export default {
                 })
             }, 1000)
 
-            const url = 'ws://localhost:3000/ws?username=' + this.username
+            const url = 'ws://23.105.193.214:3000/ws?username=' + this.username
             ws.init(url)
             // 本地保存账户
             sessionStorage.setItem('account', this.username)

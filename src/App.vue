@@ -59,7 +59,7 @@ export default {
         // 重新加载时，判断用户是否存在
         if (this.account) {
             // 存在   连接socket
-            const url = 'ws://localhost:3000/ws?username=' + this.account
+            const url = 'ws://23.105.193.214:3000/ws?username=' + this.account
             ws.init(url)
         }
         else {
@@ -85,6 +85,7 @@ export default {
     // 字体
     font-family: "Microsoft YaHei", Helvetica, Arial, sans-serif;
 
+    // 防止某些浏览器 切换界面时出现滚动条
     overflow: hidden;
     cursor: default;
 
