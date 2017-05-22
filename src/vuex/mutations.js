@@ -1,13 +1,8 @@
 import Vue from 'vue'
+import store from './store'
 
 let mutations = {
-    // 将当前会话移动到最前端
-    moveToFirst ({ sessionList }, index) {
-        if (!index) return
 
-        const currentSession = sessionList.splice(index, 1)
-        sessionList.unshift(currentSession)
-    },
     // add message
     addMessage ({ sessionList }, { message, type}) {
 
@@ -40,7 +35,8 @@ let mutations = {
             sessionList[_index].messages.push(message)
             // 移动到最前端
             if (_index > 0) {
-                this.moveToFirst({ sessionList }, _index)
+                // const currentSession = sessionList.splice(_index, 1)
+                // sessionList.unshift(currentSession)
             }
         }
         else {

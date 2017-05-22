@@ -20,7 +20,7 @@ const actions = {
             commit('addMessage', { message, type: 'send' })
         }
         else {
-            const url = 'ws://localhost:3000/ws?username=' + getters.account
+            const url = 'ws://23.105.193.214:3000/ws?username=' + getters.account
             ws.init(url)
         }
 
