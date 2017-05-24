@@ -1,36 +1,43 @@
 import { ajax } from 'jquery'
+import ws from '../websocket'
 
-const request = (() => {
+const request = function(Vue) {
 
-    const _url = 'http://www.tuling123.com/openapi/api'
-    const _key = 'b7879aed88cd4368818f705a59c20de7'
+    const _baseURL = 'http://localhost:3000'
 
-    return {
-        // 发送文本
-        send (text) {
+    // 登录
+    Vue.prototype.$login = function (data, cb) {
 
-            return new Promise((resolve, reject) => {
+        const url = _baseURL + '/signin'
+        ajax(url, {
+            method: 'POST',
+            data,
+            xhrFields: {
+                withCredentials: true
+            },
+            success (res) {
+                // 判断是否登录成功
+                //
+                //
+                // 成功
 
-                ajax(_url, {
-                    type: 'POST',
-                    data: {
-                        key: _key,
-                        info: text
-                    },
-                    dataType: 'json',
-                    success (res) {
-                        resolve(res)
-                    },
-                    error (err) {
-                        reject(err)
-                    }
-                })
+                cb(false, res)
 
-            })
-        }
+                // 用户名或密码错误
+            },
+            error (err) {
+                cb(err, null)
+            }
+        })
+    },
+    // 连接socket
+    Vue.prototype.$connect = function (cb) {
+
+        // 从本地cookie中获取token
+        // window.cookie
+        const url = 'ws://localhost:8080/ws'
+        ws.init(url, cb)
     }
-})()
+}
 
 export default request
-const send = request.send
-export { send }

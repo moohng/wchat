@@ -23,10 +23,7 @@ export default {
     },
     watch: {
         $route (to) {
-            /**
-             * 通过路由路径来判断转场动画的类型
-             * 要求路由路径 满足 一定的规则
-             */
+
             const mode = to.query.mode
             switch (mode) {
                 case 'push':
@@ -46,6 +43,8 @@ export default {
                     this.transMode = 'in-out'
                     break
                 default:
+                    this.transName = 'fade',
+                    this.transMode = ''
             }
         }
     },
@@ -112,7 +111,7 @@ export default {
         opacity: 0.6;
         transform: translateX(-25%);
     }
-    // modal dismiss
+    // 2. modal dismiss
     .modal-enter,
     .dismiss-leave-active {
         transform: translateY(100%);
@@ -127,6 +126,15 @@ export default {
     .dismiss-enter-active {
         // 位于最底层
         z-index: -1;
+    }
+    // 3. fade
+    .fade-enter,
+    .fade-leave-active {
+        opacity: 0;
+    }
+    .fade-enter-active,
+    .fade-leave-active {
+        transition: opacity .12s ease-out;
     }
 }
 </style>

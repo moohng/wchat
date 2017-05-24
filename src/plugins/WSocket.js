@@ -1,14 +1,16 @@
 import { EventEmitter } from 'events'
 
 class WSocket extends EventEmitter {
-    constructor (url = null) {
+    constructor (url = null, cb = null) {
         super()
 
         this.url = url
+        this.cb = cb
     }
 
     // 初始化 连接
-    init (url = this.url) {
+    init (url = this.url, cb = this.cb) {
+        this.cb = cb
 
         this.socket = new WebSocket(url)
         this.socket.onopen = this.onopen.bind(this)
@@ -32,6 +34,7 @@ class WSocket extends EventEmitter {
     onopen (e) {
 
         this.emit('open', '已连接')
+        this.cb && this.cb()
     }
     onmessage (e) {
 
@@ -40,6 +43,7 @@ class WSocket extends EventEmitter {
     onerror (e) {
 
         this.emit('error', '连接错误')
+        this.cb && this.cb('连接错误')
     }
     onclose (e) {
 

@@ -14,8 +14,10 @@ export default {
 
 .w-button {
     width: 100%;
+    max-width: 414px;
     height: 42px;
     padding: 0;
+    margin: auto;
 
     color: #fff;
     font-size: 100%;

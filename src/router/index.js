@@ -14,6 +14,8 @@ import Chat from '@/components/message/chat/chat'
 
 // Login
 import Login from '@/components/login/login'
+// Register
+import Register from '@/components/login/register'
 
 Vue.use(Router)
 
@@ -28,6 +30,12 @@ export default new Router({
             path: '/wellcome/login',
             name: 'login',
             component: Login
+        },
+        // 注册
+        {
+            path: '/wellcome/register',
+            name: 'register',
+            component: Register
         },
         // 主界面
         {

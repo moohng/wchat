@@ -8,7 +8,6 @@ const ws = new WSocket()
 
 // 监听
 ws.on('open', () => {
-    console.log('已连接')
 
     // 发送初始化信息
     // const data = {
@@ -21,6 +20,7 @@ ws.on('open', () => {
     // ws.send(JSON.stringify(data))
 })
 ws.on('message', data => {
+    // 接收到消息
     console.log(data)
     // 解析消息
     try {

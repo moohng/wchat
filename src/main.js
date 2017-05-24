@@ -14,6 +14,8 @@ import './assets/common.scss'
 import Modal from './plugins/modal'
 Vue.use(Modal)
 
+import WRequest from './plugins/WRequest'
+Vue.use(WRequest)
 
 Vue.config.productionTip = false
 
