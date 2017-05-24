@@ -7,15 +7,17 @@ import Profile from '@/components/profile/profile'
 import Contact from '@/components/contact/contact'
 import Message from '@/components/message/message'
 // Profile
-import Me from '@/components/profile/me/me'
-import Setting from '@/components/profile/setting/setting'
+import Me from '@/components/profile/me'
+import Setting from '@/components/profile/setting'
 // Chat
 import Chat from '@/components/message/chat/chat'
+// Contact
+import AddFriend from '@/components/contact/add-friend'
 
 // Login
-import Login from '@/components/login/login'
+import Login from '@/components/wellcome/login'
 // Register
-import Register from '@/components/login/register'
+import Register from '@/components/wellcome/register'
 
 Vue.use(Router)
 
@@ -65,6 +67,7 @@ export default new Router({
             }
             ]
         },
+        // Profile
         {
             path: '/wchat/profile/me',
             name: 'me',
@@ -75,11 +78,17 @@ export default new Router({
             name: 'setting',
             component: Setting
         },
-
+        // Message
         {
             path: '/wchat/message/chat',
             name: 'chat',
             component: Chat
+        },
+        // Contact
+        {
+            path: '/wchat/contact/add',
+            name: 'add',
+            component: AddFriend
         }
     ]
 })

@@ -21,7 +21,7 @@ const request = function(Vue) {
                 //
                 // 成功
 
-                cb(false, res)
+                cb(null, res)
 
                 // 用户名或密码错误
             },
@@ -37,6 +37,25 @@ const request = function(Vue) {
         // window.cookie
         const url = 'ws://localhost:8080/ws'
         ws.init(url, cb)
+    },
+    // 注册
+    Vue.prototype.$register = function (data, cb) {
+        const url = _baseURL + '/signup'
+        ajax(url, {
+            method: 'POST',
+            data,
+            xhrFields: {
+                withCredentials: true
+            },
+            success (res) {
+                // 判断是否成功
+
+                cb(null, res)
+            },
+            error (err) {
+                cb(err, null)
+            }
+        })
     }
 }
 

@@ -2,10 +2,7 @@
     page.wchat(margin-bottom)
         nav-bar(slot="nav-bar")
             span(slot="title") {{ titleList[pageIndex] }}
-            .add(slot="right", v-if="pageIndex === 0",
-             @click="add") 添加
-            .add-friend(slot="right", v-if="pageIndex === 1",
-             @click="addFriend") 添加朋友
+            .add(slot="right", @click="add", v-if="pageIndex < 2") 添加
         //- tab bar 切换在这里   (嵌套路由)
         template(slot="main")
             transition(name="fade", mode="out-in")
@@ -25,25 +22,30 @@ export default {
             titleList: ['微信', '通讯录', '发现', '我']
         }
     },
+    mounted () {
+        // 设置导航
+        this.pageIndex = ['message', 'contact', 'explore', 'profile']
+                        .findIndex(value => value === this.$route.name)
+    },
+    updated () {
+        // 设置导航
+        this.pageIndex = ['message', 'contact', 'explore', 'profile']
+                        .findIndex(value => value === this.$route.name)
+    },
+    methods: {
+        add () {
+            this.$router.replace({
+                name: 'add',
+                query: {
+                    mode: 'push'
+                }
+            })
+        }
+    },
     components: {
         Page,
         NavBar,
         TabBar
-    },
-    watch: {
-        $route (to) {
-            // 设置导航
-            this.pageIndex = ['message', 'contact', 'explore', 'profile']
-                            .findIndex(value => value === to.name)
-        }
-    },
-    methods: {
-        add () {
-            console.log('add')
-        },
-        addFriend () {
-            console.log('addFriend')
-        }
     }
 }
 </script>
@@ -52,6 +54,7 @@ export default {
 @import '../assets/mixin';
 
 .wchat {
+
     // 动画效果 平缓切换
     .fade-enter,
     .fade-leave-active {

@@ -1,6 +1,6 @@
 <template lang="pug">
     .login
-        router-link.register(:to="{name: 'register'}", replace) 注册
+        router-link.register(:to="{name: 'register', query: {mode: 'turn'}}", replace) 注册
         h3 使用账号和密码登录
         form
             .wrap

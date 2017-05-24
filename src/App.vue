@@ -42,9 +42,13 @@ export default {
                     this.transName = 'dismiss'
                     this.transMode = 'in-out'
                     break
+                case 'turn':
+                    this.transName = 'turn'
+                    this.transMode = 'out-in'
+                    break
                 default:
-                    this.transName = 'fade',
-                    this.transMode = ''
+                    this.transName = 'fade'
+                    this.transMode = 'out-in'
             }
         }
     },
@@ -84,6 +88,8 @@ export default {
     // 字体
     font-family: "Microsoft YaHei", Helvetica, Arial, sans-serif;
 
+    background: #000;
+
     // 防止某些浏览器 切换界面时出现滚动条
     overflow: hidden;
     cursor: default;
@@ -108,7 +114,7 @@ export default {
     }
     .push-leave-active,
     .pop-enter {
-        opacity: 0.6;
+        opacity: 0.8;
         transform: translateX(-25%);
     }
     // 2. modal dismiss
@@ -127,7 +133,7 @@ export default {
         // 位于最底层
         z-index: -1;
     }
-    // 3. fade
+    // 3. fade 淡入淡出
     .fade-enter,
     .fade-leave-active {
         opacity: 0;
@@ -135,6 +141,15 @@ export default {
     .fade-enter-active,
     .fade-leave-active {
         transition: opacity .12s ease-out;
+    }
+    // 4. turn 翻转
+    .turn-enter,
+    .turn-leave-active {
+        transform: rotateY(-90deg) scale(.9);
+    }
+    .turn-enter-active,
+    .turn-leave-active {
+        transition: transform .3s ease-out;
     }
 }
 </style>

@@ -29,7 +29,7 @@ import TabCell from '@/components/common/tab-cell'
 export default {
     methods: {
         logout () {
-            sessionStorage.removeItem('account')
+            // sessionStorage.removeItem('account')
             this.$router.replace({
                 name: 'login',
                 query: {
