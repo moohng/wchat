@@ -8,10 +8,22 @@ const request = function(Vue) {
     // 登录
     Vue.prototype.$login = function (data, cb) {
 
-        const url = _baseURL + '/signin'
+        let options = {}
+        if (data) {
+            options = {
+                method: 'POST',
+                data
+            }
+        }
+        else {
+            options = {
+                method: 'GET'
+            }
+        }
+
+        const url = _baseURL + '/user/login'
         ajax(url, {
-            method: 'POST',
-            data,
+            ...options,
             xhrFields: {
                 withCredentials: true
             },
@@ -40,10 +52,28 @@ const request = function(Vue) {
     },
     // 注册
     Vue.prototype.$register = function (data, cb) {
-        const url = _baseURL + '/signup'
+        const url = _baseURL + '/user/register'
         ajax(url, {
             method: 'POST',
             data,
+            xhrFields: {
+                withCredentials: true
+            },
+            success (res) {
+                // 判断是否成功
+
+                cb(null, res)
+            },
+            error (err) {
+                cb(err, null)
+            }
+        })
+    },
+    // 注销
+    Vue.prototype.$logout = function (cb) {
+        const url = _baseURL + '/user/logout'
+        ajax(url, {
+            method: 'Get',
             xhrFields: {
                 withCredentials: true
             },

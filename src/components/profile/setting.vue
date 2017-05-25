@@ -29,13 +29,28 @@ import TabCell from '@/components/common/tab-cell'
 export default {
     methods: {
         logout () {
-            // sessionStorage.removeItem('account')
-            this.$router.replace({
-                name: 'login',
-                query: {
-                    mode: 'dismiss'
+
+            this.$loading('注销中...')
+
+            this.$logout((err, res) => {
+                this.$close()
+                if (err) {
+                    console.log('请求错误')
+                    return
+                }
+
+                if (res && res.status === 'success') {
+                    console.log('注销成功')
+
+                    this.$router.replace({
+                        name: 'login',
+                        query: {
+                            mode: 'dismiss'
+                        }
+                    })
                 }
             })
+
         }
     },
     components: {

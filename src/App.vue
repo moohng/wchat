@@ -60,20 +60,31 @@ export default {
     },
     mounted () {
         // 重新加载时，判断用户是否存在
-        if (this.account) {
-            // 存在   连接socket
-            const url = 'ws://23.105.193.214:3000/ws?username=' + this.account
-            ws.init(url)
-        }
-        else {
-            // 不存在  转到登录界面
-            this.$router.replace({
-                name: 'login',
-                query: {
-                    mode: 'dismiss'
-                }
-            })
-        }
+        this.$login(null, (err, res) => {
+
+            if (res && res.status === 'success') {
+                // 连接socket
+                this.$connect((err) => {
+                    if (err) {
+                        // 连接失败
+                        console.log('连接失败')
+                    }
+                    else {
+                        // 连接成功
+                        console.log('连接成功')
+                    }
+                })
+            }
+            else {
+                // 不存在  转到登录界面
+                this.$router.replace({
+                    name: 'login',
+                    query: {
+                        mode: 'dismiss'
+                    }
+                })
+            }
+        })
 
     }
 }
