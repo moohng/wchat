@@ -55,36 +55,33 @@ export default {
             this.$register({
                 username: this.username,
                 password: this.password
-            }, (err, res) => {
-                this.$close()
+            }, (err, ws_key) => {
 
+                this.$close()
                 if (err) {
-                    console.log('注册出错')
+                    console.log(err)
                     return
                 }
 
-                if (res && res.status === 'success') {
-                    console.log('注册成功')
-                    // 连接socket
-                    this.$connect(err => {
-                        if (err) {
-                            console.log('连接出错')
-                            return
-                        }
-                        console.log('连接成功')
-                    })
+                // 跳转
+                this.$router.replace({
+                    name: 'message',
+                    query: {
+                        mode: 'modal'
+                    }
+                })
 
-                    // 跳转
-                    this.$router.replace({
-                        name: 'message',
-                        query: {
-                            mode: 'modal'
-                        }
-                    })
-                }
-                else {
-                    console.log('用户名已存在')
-                }
+                // 连接socket
+                this.$connect(ws_key, (err) => {
+                    if (err) {
+                        // 连接失败
+                        console.log('连接失败')
+                    }
+                    else {
+                        // 连接成功
+                        console.log('连接成功')
+                    }
+                })
 
             })
         }

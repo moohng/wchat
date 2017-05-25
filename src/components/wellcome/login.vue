@@ -41,42 +41,34 @@ export default {
             this.$login({
                 username: this.username,
                 password: this.password
-            }, (err, res) => {
+            }, (err, ws_key) => {
+
+                this.$close()
                 if (err) {
-                    console.log('登录失败')
-                    this.$close()
+                    console.log(err)
                     return
                 }
 
-                if (res && res.status === 'success') {
+                // 跳转
+                this.$router.replace({
+                    name: 'message',
+                    query: {
+                        mode: 'modal'
+                    }
+                })
 
-                    console.log('登录成功', res.status)
-                    this.$close()
-                    // 跳转
-                    this.$router.replace({
-                        name: 'message',
-                        query: {
-                            mode: 'modal'
-                        }
-                    })
+                // 连接socket
+                this.$connect(ws_key, (err) => {
+                    if (err) {
+                        // 连接失败
+                        console.log('连接失败')
+                    }
+                    else {
+                        // 连接成功
+                        console.log('连接成功')
+                    }
+                })
 
-                    // 连接socket
-                    this.$connect((err) => {
-                        if (err) {
-                            // 连接失败
-                            console.log('连接失败')
-                        }
-                        else {
-                            // 连接成功
-                            console.log('连接成功')
-                        }
-                    })
-                }
-                else {
-                    // 用户名或密码错误
-                    console.log('用户名或密码错误')
-                    this.$close()
-                }
             })
         }
     },

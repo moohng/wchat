@@ -29,25 +29,25 @@ const request = function(Vue) {
             },
             success (res) {
                 // 判断是否登录成功
-                //
-                //
-                // 成功
+                if (res.code === 10000) {
+                    cb(null, res.ws_key)
+                }
+                else {
+                    cb('用户名或密码错误')
+                }
 
-                cb(null, res)
-
-                // 用户名或密码错误
             },
             error (err) {
-                cb(err, null)
+                cb('请求错误')
             }
         })
     },
     // 连接socket
-    Vue.prototype.$connect = function (cb) {
+    Vue.prototype.$connect = function (ws_key, cb) {
 
         // 从本地cookie中获取token
         // window.cookie
-        const url = 'ws://localhost:8080/ws'
+        const url = 'ws://localhost:8080/ws?ws_key=' + ws_key
         ws.init(url, cb)
     },
     // 注册
@@ -60,12 +60,16 @@ const request = function(Vue) {
                 withCredentials: true
             },
             success (res) {
-                // 判断是否成功
-
-                cb(null, res)
+                // 判断是否登录成功
+                if (res.code === 10000) {
+                    cb(null, res.ws_key)
+                }
+                else {
+                    cb('用户名或密码错误')
+                }
             },
             error (err) {
-                cb(err, null)
+                cb('请求错误')
             }
         })
     },
@@ -79,11 +83,15 @@ const request = function(Vue) {
             },
             success (res) {
                 // 判断是否成功
-
-                cb(null, res)
+                if (res.code === 10000) {
+                    cb(null, res.ws_key)
+                }
+                else {
+                    cb('用户名或密码错误')
+                }
             },
             error (err) {
-                cb(err, null)
+                cb('请求错误')
             }
         })
     }

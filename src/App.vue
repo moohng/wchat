@@ -60,22 +60,11 @@ export default {
     },
     mounted () {
         // 重新加载时，判断用户是否存在
-        this.$login(null, (err, res) => {
+        this.$login(null, (err, ws_key) => {
 
-            if (res && res.status === 'success') {
-                // 连接socket
-                this.$connect((err) => {
-                    if (err) {
-                        // 连接失败
-                        console.log('连接失败')
-                    }
-                    else {
-                        // 连接成功
-                        console.log('连接成功')
-                    }
-                })
-            }
-            else {
+            if (err) {
+                console.log(err)
+
                 // 不存在  转到登录界面
                 this.$router.replace({
                     name: 'login',
@@ -83,7 +72,21 @@ export default {
                         mode: 'dismiss'
                     }
                 })
+
+                return
             }
+
+            // 连接socket
+            this.$connect(ws_key, (err) => {
+                if (err) {
+                    // 连接失败
+                    console.log('连接失败')
+                }
+                else {
+                    // 连接成功
+                    console.log('连接成功')
+                }
+            })
         })
 
     }

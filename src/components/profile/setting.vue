@@ -35,20 +35,18 @@ export default {
             this.$logout((err, res) => {
                 this.$close()
                 if (err) {
-                    console.log('请求错误')
+                    console.log(err)
                     return
                 }
 
-                if (res && res.status === 'success') {
-                    console.log('注销成功')
+                console.log('注销成功')
 
-                    this.$router.replace({
-                        name: 'login',
-                        query: {
-                            mode: 'dismiss'
-                        }
-                    })
-                }
+                this.$router.replace({
+                    name: 'login',
+                    query: {
+                        mode: 'dismiss'
+                    }
+                })
             })
 
         }
