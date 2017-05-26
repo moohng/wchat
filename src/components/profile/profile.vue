@@ -1,7 +1,7 @@
 <template lang="pug">
     .profile
         tab-group
-            tab-cell.head(:title="account", subtitle="微信号: 2b2b2b2b",
+            tab-cell.head(:title="user.name", :subtitle="'微信号: ' + user.id",
             :img="icons[0]", more, disclosure, large,
             @click.native="push('me')")
                 img(slot="button", :src="icons[1]")
@@ -38,7 +38,12 @@ export default {
     data () {
         return {
             icons: [head, qrcode ,album, collection, wallet, vip, emoj, setting],
-            titles: ['相册', '收藏', '钱包', '卡包', '表情', '设置']
+            titles: ['相册', '收藏', '钱包', '卡包', '表情', '设置'],
+
+            user: {
+                name: '小莫',
+                id: '2b2b2b2b'
+            }
         }
     },
     computed: {
@@ -48,6 +53,12 @@ export default {
         push (to) {
             this.$router.replace({name: to, query: {mode: 'push'}})
         }
+    },
+    mounted () {
+        // 获取当前用户信息
+        this.$getSelf(user => {
+            this.user = user
+        })
     },
     components: {
         TabGroup,
