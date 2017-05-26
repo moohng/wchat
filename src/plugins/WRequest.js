@@ -3,7 +3,7 @@ import ws from '../websocket'
 
 const request = function(Vue) {
 
-    const _baseURL = 'http://localhost:3000'
+    const host = '123.207.33.107:3000'
 
     // 登录
     Vue.prototype.$login = function (data, cb) {
@@ -21,7 +21,7 @@ const request = function(Vue) {
             }
         }
 
-        const url = _baseURL + '/user/login'
+        const url = 'http://' + host + '/user/login'
         ajax(url, {
             ...options,
             xhrFields: {
@@ -45,7 +45,7 @@ const request = function(Vue) {
     // 连接socket
     Vue.prototype.$connect = function (cb) {
 
-        const url = 'ws://localhost:3000/ws'
+        const url = 'ws://' + host + '/ws'
         ws.init(url, cb)
     },
     Vue.prototype.$disconnect = function () {
@@ -54,7 +54,7 @@ const request = function(Vue) {
     },
     // 注册
     Vue.prototype.$register = function (data, cb) {
-        const url = _baseURL + '/user/register'
+        const url = 'http://' + host + '/user/register'
         ajax(url, {
             method: 'POST',
             data,
@@ -77,7 +77,7 @@ const request = function(Vue) {
     },
     // 注销
     Vue.prototype.$logout = function (cb) {
-        const url = _baseURL + '/user/logout'
+        const url = 'http://' + host + '/user/logout'
         ajax(url, {
             method: 'Get',
             xhrFields: {
@@ -101,7 +101,7 @@ const request = function(Vue) {
     // 获取在线用户
     Vue.prototype.$getOnline = function (cb) {
 
-        const url = _baseURL + '/user'
+        const url = 'http://' + host + '/user'
         ajax(url, {
             method: 'Get',
             xhrFields: {
