@@ -2,7 +2,7 @@ import ws from '@/websocket'
 
 const actions = {
 
-    vx_send ({ commit, getters }, message) {
+    vx_send ({ commit }, message) {
 
         // 配置格式
         // const data = {
@@ -14,15 +14,21 @@ const actions = {
         //     ms_type: 'CN00010'
         // }
         //
-
-
-        if (ws.send(JSON.stringify(message))) {
-            commit('addMessage', { message, type: 'send' })
+        let type
+        if (message.to === 'all') {
+            type = 'all'
         }
         else {
-            const url = 'ws://23.105.193.214:3000/ws?username=' + getters.account
-            ws.init(url)
+            type = 'send'
         }
+
+        if (ws.send(JSON.stringify(message))) {
+            commit('addMessage', { message, type })
+        }
+
+    },
+
+    get_online ({ commit }) {
 
     }
 

@@ -13,6 +13,7 @@ import Setting from '@/components/profile/setting'
 import Chat from '@/components/message/chat/chat'
 // Contact
 import AddFriend from '@/components/contact/add-friend'
+import Online from '@/components/contact/online'
 
 // Login
 import Login from '@/components/wellcome/login'
@@ -89,6 +90,12 @@ export default new Router({
             path: '/wchat/contact/add',
             name: 'add',
             component: AddFriend
+        },
+        // Online
+        {
+            path: '/wchat/contact/online',
+            name: 'online',
+            component: Online
         }
     ]
 })

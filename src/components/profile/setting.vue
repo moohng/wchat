@@ -32,7 +32,7 @@ export default {
 
             this.$loading('注销中...')
 
-            this.$logout((err, res) => {
+            this.$logout(err => {
                 this.$close()
                 if (err) {
                     console.log(err)
@@ -40,13 +40,15 @@ export default {
                 }
 
                 console.log('注销成功')
-
                 this.$router.replace({
                     name: 'login',
                     query: {
                         mode: 'dismiss'
                     }
                 })
+
+                // 关闭连接
+                this.$disconnect()
             })
 
         }

@@ -25,22 +25,20 @@ let sessionList = [
 ]
 // 好友列表
 let friendList = [
-    'a',
+    'moohng',
     'b',
-    'cd',
-    'c',
-    'b3ew',
-    'adf',
-    'hgf',
-    'cdsa'
+    'bbbbbb'
 ]
 
 
 let state = {
+    user: {},
     // 聊天记录
     sessionList,
 
-    friendList
+    friendList,
+
+    onlineList: []
 }
 
 export default state

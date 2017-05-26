@@ -1,18 +1,13 @@
 import { EventEmitter } from 'events'
 
 class WSocket extends EventEmitter {
-    constructor (url = null, cb = null) {
-        super()
-
-        this.url = url
-        this.cb = cb
-    }
 
     // 初始化 连接
-    init (url = this.url, cb = this.cb) {
+    init (url, cb) {
         this.cb = cb
+        this.url = url
 
-        this.socket = new WebSocket(url)
+        this.socket = new WebSocket(this.url)
         this.socket.onopen = this.onopen.bind(this)
         this.socket.onmessage = this.onmessage.bind(this)
         this.socket.onerror = this.onerror.bind(this)
@@ -20,7 +15,10 @@ class WSocket extends EventEmitter {
     }
 
     send (data) {
-        if (this.socket.readyState != WebSocket.OPEN) return false
+        if (this.socket.readyState != WebSocket.OPEN) {
+            this.init(this.url);
+            return false
+        }
 
         this.socket.send(data)
         return true

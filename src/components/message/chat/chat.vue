@@ -8,7 +8,7 @@
         ul(slot="main", v-scroll="messages")
             chat-dialog(v-for="(message, index) in messages",
             :date="date(message, index)", :message="message")
-        chat-bar(slot="tab-bar", :to="title")
+        chat-bar(slot="tab-bar", :to="title === '聊天室' ? 'all' : title")
 </template>
 
 <script>

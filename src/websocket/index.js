@@ -19,28 +19,25 @@ ws.on('open', () => {
     // }
     // ws.send(JSON.stringify(data))
 })
-ws.on('message', data => {
+ws.on('message', message => {
     // 接收到消息
-    console.log(data)
+    console.log(message)
     // 解析消息
     try {
-        let message = JSON.parse(data)
-
-        if (message.from === store.getters.account) {
-            console.log('发送成功！')
-        }
-        else {
-
-            let type = 'receive'
-            if (message.to === "聊天室") {
-                type = 'all'
-            }
-            store.commit('addMessage', { message, type })
-        }
+        message = JSON.parse(message)
     }
     catch(err) {
-        const message = data
-        console.log('发送失败！')
+        console.log('错误消息')
+        return
+    }
+
+    if (message.to && message.to === 'all') {
+        // 聊天室
+        store.commit('addMessage', { message, type: 'all' })
+    }
+    else if (message.from) {
+        // 个人消息
+        store.commit('addMessage', { message, type: 'receive' })
     }
 
 })

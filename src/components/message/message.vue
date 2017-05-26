@@ -4,7 +4,7 @@
         tab-group.group
             //- 会话列表
             message-list(v-for="session in sessionList", :session="session",
-            @click.native.top="push(session.title)")
+            @click.native.stop="push(session.title)")
 </template>
 
 <script>

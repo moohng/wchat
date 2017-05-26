@@ -10,14 +10,16 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-
 export default {
     props: ['message', 'date'],
     computed: {
-        ...mapGetters(['account']),
         reverse () {
-            return this.message.from === this.account
+            if (this.message.from) {
+                return false
+            }
+            else {
+                return true
+            }
         }
     },
 }

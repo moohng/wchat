@@ -37,7 +37,6 @@ export default {
             // 封装消息
             const time = new Date()
             const message = {
-                from: this.account,
                 to: this.to,
                 content: {
                     text

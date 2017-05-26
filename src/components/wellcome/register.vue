@@ -55,7 +55,7 @@ export default {
             this.$register({
                 username: this.username,
                 password: this.password
-            }, (err, ws_key) => {
+            }, err => {
 
                 this.$close()
                 if (err) {
@@ -72,7 +72,7 @@ export default {
                 })
 
                 // 连接socket
-                this.$connect(ws_key, (err) => {
+                this.$connect(err => {
                     if (err) {
                         // 连接失败
                         console.log('连接失败')
