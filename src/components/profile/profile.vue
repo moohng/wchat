@@ -1,7 +1,7 @@
 <template lang="pug">
     .profile
         tab-group
-            tab-cell.head(:title="user.name", :subtitle="'微信号: ' + user.id",
+            tab-cell.head(:title="user.name", :subtitle="'微信号: ' + user.username",
             :img="icons[0]", more, disclosure, large,
             @click.native="push('me')")
                 img(slot="button", :src="icons[1]")
@@ -42,7 +42,7 @@ export default {
 
             user: {
                 name: '小莫',
-                id: '2b2b2b2b'
+                username: '2b2b2b2b'
             }
         }
     },
@@ -56,7 +56,13 @@ export default {
     },
     mounted () {
         // 获取当前用户信息
-        this.$getSelf(user => {
+        this.$getSelf((err, user) => {
+            if (err) {
+                console.log(err)
+                return
+            }
+
+            console.log('获取用户信息成功')
             this.user = user
         })
     },

@@ -126,7 +126,7 @@ const request = function(Vue) {
     // 获取自己的信息
     Vue.prototype.$getSelf = function (cb) {
 
-        const url = 'http://' + host + 'user/self'
+        const url = 'http://' + host + '/user/self'
         ajax(url, {
             method: 'GET',
             xhrFields: {
@@ -136,6 +136,29 @@ const request = function(Vue) {
                 // 判断是否成功
                 if (res.code === 10000) {
                     cb(null, res.user)
+                }
+                else {
+                    cb('用户名或密码错误')
+                }
+            },
+            error (err) {
+                cb('请求错误')
+            }
+        })
+    },
+
+    // 获取好友列表
+    Vue.prototype.$getFriends = function (cb) {
+        const url = 'http://' + host + '/friend'
+        ajax(url, {
+            method: 'GET',
+            xhrFields: {
+                withCredentials: true
+            },
+            success (res) {
+                // 判断是否成功
+                if (res.code === 10000) {
+                    cb(null, res.friends)
                 }
                 else {
                     cb('用户名或密码错误')
