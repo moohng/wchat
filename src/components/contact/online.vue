@@ -4,7 +4,7 @@
             span(slot="title") 在线用户
             nav-back(slot="left", title="通讯录",
             @click.native="$router.replace({name: 'contact', query: {mode: 'pop'}})")
-        template(slot="main")
+        template(slot="main", v-if="onlineList.length > 0")
             tab-group
                 tab-cell(v-for="username in onlineList",
                 img="", :title="username", contact,

@@ -5,14 +5,19 @@
                 .icon
                     icon-voice
             .wrap.text-area
-                p.edit-box(contenteditable,
-                @keydown.enter.prevent="send($event.target)")
+                p.edit-box(contenteditable, ref="input",
+                @keydown.enter.prevent="send($event.target)",
+                @input.prevent="input($event.target)")
             .wrap
                 .icon
                     icon-emoji
             .wrap
-                .icon
-                    icon-more
+                transition(name="scale", mode="out-in")
+                    a.icon.send-btn(v-if="showSend",
+                    @click.stop.prevent="send($refs['input'])") 发送
+                    .icon(v-else)
+                        icon-more
+
 
 </template>
 
@@ -24,6 +29,11 @@ import IconMore from './icon/more'
 import { mapGetters } from 'vuex'
 
 export default {
+    data () {
+        return {
+            showSend: false
+        }
+    },
     props: ['to'],
     computed: {
         ...mapGetters(['account'])
@@ -45,6 +55,13 @@ export default {
             }
             this.$store.dispatch('vx_send', message)
             el.innerText = ''
+            this.showSend = false
+        },
+        input (el) {
+            const text = el.innerText
+
+            // 显示发送按钮
+            this.showSend = text.length > 0
         }
     },
     components: {
@@ -72,16 +89,50 @@ export default {
         @include flex(space-between, flex-end)
 
         .wrap {
+            position: relative;
             height: 38px;
             padding: 0 8px;
 
             @include flex()
 
             .icon {
-                width: 28px;
-                height: 28px;
+                width: 32px;
+                height: 32px;
 
-                color: $lightColor;
+                color: #444;
+            }
+
+            .send-btn {
+                position: relative;
+
+                color: #fff;
+                line-height: 32px;
+                font-size: 90%;
+
+                background: $tintColor;
+
+                &::before,
+                &::after {
+                    content: '';
+                    @include abs(0, auto, 0, auto)
+                    width: 6px;
+                    background: $tintColor;
+                }
+                &::before {
+                    left: -4px;
+                }
+                &::after {
+                    right: -3px;
+                }
+            }
+
+            // 动画
+            .scale-enter,
+            .scale-leave-active {
+                transform: scale(0.2);
+            }
+            .scale-enter-active {
+                transition: transform .3s ease-out;
             }
         }
 

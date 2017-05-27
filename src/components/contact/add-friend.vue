@@ -62,7 +62,7 @@ export default {
     },
     methods: {
         search () {
-            // 搜索好友
+            this.$search()
         }
     },
     components: {
