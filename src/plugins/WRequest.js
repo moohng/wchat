@@ -3,8 +3,8 @@ import ws from '../websocket'
 
 const request = function(Vue) {
 
-    const host = '123.207.33.107:3000'
-    // const host = 'localhost:3000'
+    // const host = '123.207.33.107:3000'
+    const host = 'localhost:3000'
 
     // 登录
     Vue.prototype.$login = function (data, cb) {
@@ -123,30 +123,6 @@ const request = function(Vue) {
         })
     },
 
-    // 获取自己的信息
-    Vue.prototype.$getSelf = function (cb) {
-
-        const url = 'http://' + host + '/user/self'
-        ajax(url, {
-            method: 'GET',
-            xhrFields: {
-                withCredentials: true
-            },
-            success (res) {
-                // 判断是否成功
-                if (res.code === 10000) {
-                    cb(null, res.user)
-                }
-                else {
-                    cb('用户名或密码错误')
-                }
-            },
-            error (err) {
-                cb('请求错误')
-            }
-        })
-    },
-
     // 获取好友列表
     Vue.prototype.$getFriends = function (cb) {
         const url = 'http://' + host + '/friend'
@@ -168,6 +144,47 @@ const request = function(Vue) {
                 cb('请求错误')
             }
         })
+    },
+
+    /**
+     * 获取用户信息
+     * @param  {String}   username 要搜索的用户，为空时获取自己的用户信息
+     * @param  {Function} cb       获取结果回调
+     */
+    Vue.prototype.$search = function (username, cb) {
+
+        let url
+        if (typeof username === 'string') {
+            url = 'http://' + host + '/user?username=' + username
+        }
+        else {
+            if (typeof username === 'function') {
+                cb = username
+            }
+            url = 'http://' + host + '/user/self'
+        }
+
+
+        ajax(url, {
+            method: 'GET',
+            xhrFields: {
+                withCredentials: true
+            },
+            success (res) {
+                // 判断是否成功
+                if (res.code === 10000) {
+                    cb(null, res.user)
+                }
+                else {
+                    cb('用户名或密码错误')
+                }
+            },
+            error (err) {
+                cb('请求错误')
+            }
+        })
+
+
     }
 }
 

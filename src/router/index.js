@@ -14,11 +14,13 @@ import Chat from '@/components/message/chat/chat'
 // Contact
 import AddFriend from '@/components/contact/add-friend'
 import Online from '@/components/contact/online'
+import Detail from '@/components/contact/detail'
 
 // Login
 import Login from '@/components/wellcome/login'
 // Register
 import Register from '@/components/wellcome/register'
+
 
 Vue.use(Router)
 
@@ -96,6 +98,12 @@ export default new Router({
             path: '/wchat/contact/online',
             name: 'online',
             component: Online
+        },
+        // Detail
+        {
+            path: '/wchat/contact/detail',
+            name: 'detail',
+            component: Detail
         }
     ]
 })

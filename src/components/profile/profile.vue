@@ -56,7 +56,7 @@ export default {
     },
     mounted () {
         // 获取当前用户信息
-        this.$getSelf((err, user) => {
+        this.$search((err, user) => {
             if (err) {
                 console.log(err)
                 return

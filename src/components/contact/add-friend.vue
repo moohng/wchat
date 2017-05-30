@@ -62,7 +62,14 @@ export default {
     },
     methods: {
         search () {
-            this.$search()
+            // 跳转
+            this.$router.replace({
+                name: 'detail',
+                query: {
+                    mode: 'push',
+                    username: this.username
+                }
+            })
         }
     },
     components: {
