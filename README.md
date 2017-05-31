@@ -2,17 +2,17 @@
 
 个人作品，已开源，希望和大家一起学习和进步。
 
-> WChat是一款模仿iOS端微信的 Web App，前端实现基于Vue 2.0框架，聊天功能通过Websocket实现。它是一个具有真实聊天功能的项目，目前已实现**聊天室**群聊，更多功能在不断的完善中。。。
+> WChat 是一款模仿iOS端微信的 Web App，具有真实的聊天等功能，并采用前后端分离的方式来实现。前端基于 Vue 2.0 框架，[后端](https://github.com/moohng/wchat-sv)基于 Node.js + Express + MongoDB，聊天功能和添加好友功能通过 Websocket 实现。
 
 > 前端技术栈: vue 2.0、vue-cli、vuex、vue-router、webpack 2.x、pug、sass、babel等；
 
-> 后端技术栈：Node.js、Express、WebSocket(ws)、Gulp、ES6等。
+> 后端技术栈：Node.js、Express、express-session、WebSocket(ws)、MongoDB、mongoose、ES6等。
 
 ## 在线预览
 
-[点击这里在线查看效果](http://mohng.com/wchat-vue)，建议使用谷歌浏览器，并开启手机调试模式（由于项目仍在开发中，很多功能可能不是最新、或暂不可用）。
+[点击这里在线查看效果](http://mohng.com/wchat-vue)，建议使用谷歌浏览器，并开启手机调试模式（由于项目仍在开发中，部分功能可能不是最新、或暂不可用）。
 
-（目前）输入任意**用户名**跟**密码**即可进入到主界面。
+新用户必须通过注册账号进入，已注册用户可直接登录进入。目前占不支持离线消息，也不支持添加离线用户为好友（即时通信相关功能必须保证对方在线）
 
 ## 本地使用
 
@@ -33,24 +33,32 @@ npm run dev
 
 ## 效果演示
 
-无图暂留空。。。
-
 ### 登陆
+
+![Login](http://moohng.oss-cn-shenzhen.aliyuncs.com/wchat/login.gif)
 
 ### 注销
 
+![Logout](http://moohng.oss-cn-shenzhen.aliyuncs.com/wchat/logout.gif)
+
 ### 聊天
+
+![Chat](http://moohng.oss-cn-shenzhen.aliyuncs.com/wchat/chat.gif)
+
+### 添加好友
+
+![add friend](http://moohng.oss-cn-shenzhen.aliyuncs.com/wchat/add-friend.gif)
 
 ## 功能说明
 
-该项目已实现后端服务器的支持，具有真实的聊天功能。目前服务端尚未实现数据库支持，用户信息和聊天记录等数据都在本地缓存（后期会不断完善）。
+该项目已实现后端服务器的支持，具有真实的聊天功能。后端部分请转移[这里](https://github.com/moohng/wchat-sv)
 
 - 高仿iOS端的界面设计风格，具有push、pop、modal、dismiss等转场动画；
-- 登陆和注销功能，可本地缓存用户信息，避免多次登录的烦恼；
+- 注册、登陆和注销功能，可记住登录状态，避免多次登录；
 - 聊天室功能，所有在线用户可进行群聊；
-- 添加好友，目前尚在开发中；
-- 好友聊天，目前尚在开发中；
-- 目前只支持文本聊天。
+- 添加好友，目前必须保证对方在线才能正确添加；
+- 用户私聊，目前必须保证对方在线方可正常聊天；
+- 目前只支持纯文本聊天。
 
 更多功能请待续...
 

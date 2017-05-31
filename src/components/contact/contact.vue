@@ -8,7 +8,7 @@
         tab-group.group(v-for="group in friendList")
             tab-cell(v-for="friend in group",
             img="", :title="friend", contact,
-            @click.native.stop="toChat(friend)")
+            @click.native.stop="detail(friend)")
 </template>
 
 <script>
@@ -81,6 +81,16 @@ export default {
                 default:
             }
 
+        },
+
+        detail (username) {
+            this.$router.replace({
+                name: 'detail',
+                query: {
+                    mode: 'push',
+                    username
+                }
+            })
         }
     },
     mounted () {

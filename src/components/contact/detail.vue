@@ -4,7 +4,7 @@
             span(slot="title") 详细资料
             nav-back(slot="left", title="返回",
             @click.native="$router.replace({name: 'contact', query: {mode: 'pop'}})")
-        template(slot="main")
+        template(slot="main", v-if="user.username")
             tab-group
                 tab-cell(img="", :title="user.name", :subtitle="'微信号：' + user.username", large)
             tab-group
@@ -16,7 +16,10 @@
             //- 按钮
             .wrap
                 w-button(:name="user.friendly ? '发消息' : '加好友'", type="button"
-                @click="user.friendly ? chat : add")
+                @click="click")
+        template(slot="main", v-else)
+            .view
+                span 用户不存在
 </template>
 
 <script>
@@ -34,11 +37,29 @@ export default {
         }
     },
     methods: {
-        chat () {
+        click () {
+            if (this.user.friendly) {
+                // 跳转到chat界面
+                this.$router.replace({
+                    name: 'chat',
+                    query: {
+                        mode: 'push',
+                        title: this.user.username
+                    }
+                })
+            }
+            else {
+                this.$addFriend(this.user.username, err => {
+                    if (err) {
+                        console.log(err)
+                        return
+                    }
 
-        },
-
-        add () {
+                    // 发送请求成功
+                    console.log('发送请求成功')
+                    this.$completed('已发送添加好友请求')
+                })
+            }
 
         }
     },
@@ -66,11 +87,21 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../../assets/mixin';
+
 .detail {
 
     .wrap {
         padding: 0 12px;
         margin-top: 20px;
+    }
+
+    .view {
+        height: 100%;
+
+        color: $lightColor;
+
+        @include flex()
     }
 }
 </style>

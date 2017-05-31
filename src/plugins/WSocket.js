@@ -49,12 +49,4 @@ class WSocket extends EventEmitter {
     }
 }
 
-WSocket.installed = false
-WSocket.install = function (Vue, options) {
-    if (this.installed) return
-
-
-    this.installed = true
-}
-
 export default WSocket

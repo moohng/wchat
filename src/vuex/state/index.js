@@ -38,7 +38,8 @@ let state = {
 
     friendList,
 
-    onlineList: []
+    newFriendList: [],
+
 }
 
 export default state

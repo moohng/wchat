@@ -1,23 +1,16 @@
-import UIModal from '@/components/common/modal'
+import UIModal from '@/components/modal/modal'
+import UIConfirm from '@/components/modal/confirm'
 
-class Modal {
-    constructor () {
-    }
-}
+// Vue 插件
+const modal = function (Vue) {
 
-Modal.installed = false
-Modal.install = function (Vue, options) {
-
-    const modal = new Modal()
-
-    Vue.prototype.$loading = function (text = 'you are right!') {
-
-        // 弹窗组件未完成
+    const create = function (type, text) {
         const Loading = Vue.extend({
-            template: '<UIModal :text="text"/>',
+            template: '<UIModal :text="text" :type="type"/>',
             data () {
                 return {
-                    text
+                    text,
+                    type
                 }
             },
             components: { UIModal }
@@ -26,11 +19,68 @@ Modal.install = function (Vue, options) {
         document.body.appendChild(modal.el)
     }
 
-    Vue.prototype.$close = function () {
-        // 关闭所有 Modal
+    // 等待弹框
+    Vue.prototype.$loading = modal.loading = function (text = 'you are right!') {
+
+        create('loading', text)
+    }
+    // 完成提示
+    Vue.prototype.$completed = modal.completed = function (text, delay) {
+
+        create('completed', text)
+        // 默认 3s 后自动关闭
+        setTimeout(() => modal.close(), delay || 3000)
+    }
+    // 错误提示
+    Vue.prototype.$error = modal.error = function (text, delay) {
+
+        create('error', text)
+        // 默认 3s 后自动关闭
+        setTimeout(() => modal.close(), delay || 3000)
+    }
+
+    // 关闭当前弹框
+    Vue.prototype.$close = modal.close = function () {
+
         modal.el.parentNode.removeChild(modal.el)
-        // modal.el.remove()
+    }
+
+    // 确认框
+    Vue.prototype.$confirm = modal.confirm = function (text, cb) {
+
+        let title, ok, cancel
+        if (typeof text === 'object') {
+            title = text.title
+            ok = text.ok
+            cancel = text.cancel
+            text = text.text
+        }
+
+        const Confirm = Vue.extend({
+            template: '<UIConfirm :text="text" :title="title"\
+                        :ok="ok" :cancel="cancel"\
+                        @confirm="confirm"/>',
+            data () {
+                return {
+                    text,
+                    title,
+                    ok,
+                    cancel
+                }
+            },
+            methods: {
+                confirm (value) {
+                    // 关闭框口
+                    modal.close()
+                    // 执行回调
+                    cb(value)
+                }
+            },
+            components: { UIConfirm }
+        })
+        modal.el = new Confirm().$mount().$el
+        document.body.appendChild(modal.el)
     }
 }
 
-export default Modal
+export default modal

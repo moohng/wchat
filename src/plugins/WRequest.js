@@ -7,7 +7,7 @@ const request = function(Vue) {
     const host = 'localhost:3000'
 
     // 登录
-    Vue.prototype.$login = function (data, cb) {
+    Vue.prototype.$login = request.login = function (data, cb) {
 
         let options = {}
         if (data) {
@@ -34,7 +34,7 @@ const request = function(Vue) {
                     cb(null)
                 }
                 else {
-                    cb('用户名或密码错误')
+                    cb(res.status)
                 }
 
             },
@@ -42,19 +42,19 @@ const request = function(Vue) {
                 cb('请求错误')
             }
         })
-    },
+    }
     // 连接socket
-    Vue.prototype.$connect = function (cb) {
+    Vue.prototype.$connect = request.connect = function (cb) {
 
         const url = 'ws://' + host + '/ws'
         ws.init(url, cb)
-    },
-    Vue.prototype.$disconnect = function () {
+    }
+    Vue.prototype.$disconnect = request.disconnect = function () {
 
         ws.close()
-    },
+    }
     // 注册
-    Vue.prototype.$register = function (data, cb) {
+    Vue.prototype.$register = request.register = function (data, cb) {
         const url = 'http://' + host + '/user/register'
         ajax(url, {
             method: 'POST',
@@ -68,16 +68,16 @@ const request = function(Vue) {
                     cb(null)
                 }
                 else {
-                    cb('用户名或密码错误')
+                    cb(res.status)
                 }
             },
             error (err) {
                 cb('请求错误')
             }
         })
-    },
+    }
     // 注销
-    Vue.prototype.$logout = function (cb) {
+    Vue.prototype.$logout = request.logout = function (cb) {
         const url = 'http://' + host + '/user/logout'
         ajax(url, {
             method: 'GET',
@@ -90,17 +90,17 @@ const request = function(Vue) {
                     cb(null)
                 }
                 else {
-                    cb('用户名或密码错误')
+                    cb(res.status)
                 }
             },
             error (err) {
                 cb('请求错误')
             }
         })
-    },
+    }
 
     // 获取在线用户
-    Vue.prototype.$getOnline = function (cb) {
+    Vue.prototype.$getOnline = request.getOnline = function (cb) {
 
         const url = 'http://' + host + '/user'
         ajax(url, {
@@ -114,17 +114,17 @@ const request = function(Vue) {
                     cb(null, res.users)
                 }
                 else {
-                    cb('用户名或密码错误')
+                    cb(res.status)
                 }
             },
             error (err) {
                 cb('请求错误')
             }
         })
-    },
+    }
 
     // 获取好友列表
-    Vue.prototype.$getFriends = function (cb) {
+    Vue.prototype.$getFriends = request.getFriends = function (cb) {
         const url = 'http://' + host + '/friend'
         ajax(url, {
             method: 'GET',
@@ -137,21 +137,21 @@ const request = function(Vue) {
                     cb(null, res.friends)
                 }
                 else {
-                    cb('用户名或密码错误')
+                    cb(res.status)
                 }
             },
             error (err) {
                 cb('请求错误')
             }
         })
-    },
+    }
 
     /**
      * 获取用户信息
      * @param  {String}   username 要搜索的用户，为空时获取自己的用户信息
      * @param  {Function} cb       获取结果回调
      */
-    Vue.prototype.$search = function (username, cb) {
+    Vue.prototype.$search = request.search = function (username, cb) {
 
         let url
         if (typeof username === 'string') {
@@ -176,15 +176,60 @@ const request = function(Vue) {
                     cb(null, res.user)
                 }
                 else {
-                    cb('用户名或密码错误')
+                    cb(res.status)
                 }
             },
             error (err) {
                 cb('请求错误')
             }
         })
+    }
 
+    // 添加好友
+    Vue.prototype.$addFriend = request.addFriend = function (username, cb) {
+        const url = 'http://' + host + '/friend/add?username=' + username
+        ajax(url, {
+            method: 'GET',
+            xhrFields: {
+                withCredentials: true
+            },
+            success (res) {
+                // 判断是否成功
+                if (res.code === 10000) {
+                    cb(null, res.user)
+                }
+                else {
+                    cb(res.status)
+                }
+            },
+            error (err) {
+                cb('请求错误')
+            }
+        })
+    }
 
+    // 同意添加好友请求
+    Vue.prototype.$acceptFriend = request.acceptFriend = function (username, cb) {
+
+        const url = 'http://' + host + '/friend/accept?username=' + username
+        ajax(url, {
+            method: 'GET',
+            xhrFields: {
+                withCredentials: true
+            },
+            success (res) {
+                // 判断是否成功
+                if (res.code === 10000) {
+                    cb(null)
+                }
+                else {
+                    cb(res.status)
+                }
+            },
+            error (err) {
+                cb('请求错误')
+            }
+        })
     }
 }
 
