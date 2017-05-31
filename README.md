@@ -43,7 +43,7 @@ npm run dev
 
 ### 聊天
 
-![Chat](http://moohng.oss-cn-shenzhen.aliyuncs.com/wchat/chat.gif)
+![Chat](http://moohng.oss-cn-shenzhen.aliyuncs.com/wchat/chatroom.gif)
 
 ### 添加好友
 
