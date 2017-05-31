@@ -3,8 +3,8 @@ import ws from '../websocket'
 
 const request = function(Vue) {
 
-    // const host = '123.207.33.107:3000'
-    const host = 'localhost:3000'
+    const host = '123.207.33.107:3000'
+    // const host = 'localhost:3000'
 
     // 登录
     Vue.prototype.$login = request.login = function (data, cb) {
