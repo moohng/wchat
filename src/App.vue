@@ -2,7 +2,8 @@
     #app
         //- 全屏切换
         transition(:name="transName", :mode="transMode")
-            router-view
+            keep-alive
+                router-view
 </template>
 
 <script>
