@@ -6,6 +6,7 @@
         //- tab bar 切换在这里   (嵌套路由)
         template(slot="main")
             transition(name="fade", mode="out-in")
+                //- keep-alive
                 router-view
         tab-bar(slot="tab-bar")
 </template>
