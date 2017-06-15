@@ -4,7 +4,7 @@ import ws from '../websocket'
 const request = function(Vue) {
 
     const env = process.env.NODE_ENV === 'production'
-    const host = env ? '39.108.137.234:28332' : 'localhost:3000'
+    const host = env ? '39.108.137.234:30334' : 'localhost:3000'
 
     // 登录
     Vue.prototype.$login = request.login = function (data, cb) {
