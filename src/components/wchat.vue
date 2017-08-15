@@ -4,11 +4,9 @@
       <span slot="default">{{ titleList[pageIndex] }}</span>
       <div slot="right" @click="add" v-if="pageIndex < 2">添加</div>
     </x-header>
-    <!-- <template slot="default"> -->
-      <transition name="fade" mode="out-in">
-        <router-view></router-view>
-      </transition>
-    <!-- </template> -->
+    <transition name="fade" mode="out-in">
+      <router-view></router-view>
+    </transition>
     <tabbar slot="bottom" v-model="pageIndex">
       <tabbar-item v-for="tab in tabbar" :link="tab.to">
         <component :is="tab.icon" slot="icon"></component>
@@ -91,8 +89,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/mixin';
-
 .wchat {
   // 动画效果 平缓切换
   .fade-enter,

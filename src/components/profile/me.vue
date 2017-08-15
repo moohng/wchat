@@ -1,39 +1,36 @@
-<template lang="pug">
-    page.me(margin-top)
-        nav-bar(slot="nav-bar")
-            nav-back(slot="left", title="我",
-             @click.native="$router.replace({name: 'profile', query: {mode: 'pop'}})")
-            span(slot="title") 个人信息
-        template(slot="main")
-            tab-group
-                tab-cell(title="头像", more, disclosure, large)
-                tab-cell(title="名字", detail="Kevin", disclosure)
-                tab-cell(title="微信号", detail="moohng123", disclosure)
-                tab-cell(title="我的二维码", more, disclosure)
-                tab-cell(title="我的地址", disclosure)
-            tab-group
-                tab-cell(title="性别", detail="男", disclosure)
-                tab-cell(title="地区", detail="广东 深圳", disclosure)
-                tab-cell(title="个性签名", detai="我没有个性签名", disclosure)
+<template>
+  <view-box class="me">
+    <x-header slot="header" :left-options="{backText: '我', preventGoBack: true}"
+    @on-click-back="$router.replace({name: 'profile', query: {mode: 'pop'}})">
+      <span slot="default">个人信息</span>
+    </x-header>
+    <template slot="default">
+      <group>
+        <cell :is-link="true" title="头像"></cell>
+        <cell :is-link="true" title="名字">Kevin</cell>
+        <cell :is-link="true" title="微信号">moohng123</cell>
+        <cell :is-link="true" title="我的二维码"></cell>
+        <cell :is-link="true" title="我的地址"></cell>
+      </group>
+      <group>
+        <cell :is-link="true" title="性别">男</cell>
+        <cell :is-link="true" title="地区">广东 深圳</cell>
+        <cell :is-link="true" title="个性签名">我没有签名怎么办</cell>
+      </group>
+    </template>
+  </view-box>
 </template>
 
 <script>
-import Page from '@/components/common/page'
-import NavBar from '@/components/common/nav-bar'
-import NavBack from '@/components/common/nav-back'
-import TabGroup from '@/components/common/tab-group'
-import TabCell from '@/components/common/tab-cell'
+import { ViewBox, XHeader, Group, Cell } from 'vux'
 
 export default {
-    components: {
-        Page,
-        NavBar,
-        NavBack,
-        TabGroup,
-        TabCell
-    },
-    methods: {
-    }
+  components: {
+    ViewBox,
+    XHeader,
+    Group,
+    Cell
+  }
 }
 </script>
 

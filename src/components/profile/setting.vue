@@ -6,19 +6,19 @@
     </x-header>
     <template slot="default">
       <group>
-        <cell :is-link="true" value-align="left" title="账号与安全"></cell>
+        <cell :is-link="true" title="账号与安全"></cell>
       </group>
       <group>
-        <cell :is-link="true" value-align="left" title="新消息通知"></cell>
-        <cell :is-link="true" value-align="left" title="隐私"></cell>
-        <cell :is-link="true" value-align="left" title="通用"></cell>
+        <cell :is-link="true" title="新消息通知"></cell>
+        <cell :is-link="true" title="隐私"></cell>
+        <cell :is-link="true" title="通用"></cell>
       </group>
       <group>
-        <cell :is-link="true" value-align="left" title="帮助与反馈"></cell>
-        <cell :is-link="true" value-align="left" title="关于微信"></cell>
+        <cell :is-link="true" title="帮助与反馈"></cell>
+        <cell :is-link="true" title="关于微信"></cell>
       </group>
       <group>
-        <cell title="退出登录" @click.native="logout"></cell>
+        <cell id="logout" title="退出"  @click.native="logout"></cell>
       </group>
     </template>
   </view-box>
@@ -28,41 +28,41 @@
 import { ViewBox, XHeader, Group, Cell } from 'vux'
 
 export default {
-    methods: {
-        logout () {
+  methods: {
+    logout () {
+      this.$loading('注销中...')
 
-            this.$loading('注销中...')
-
-            this.$logout(err => {
-                this.$close()
-                if (err) {
-                    console.log(err)
-                    return
-                }
-
-                console.log('注销成功')
-                this.$router.replace({
-                    name: 'login',
-                    query: {
-                        mode: 'dismiss'
-                    }
-                })
-
-                // 关闭连接
-                this.$disconnect()
-            })
-
+      this.$logout(err => {
+        this.$close()
+        if (err) {
+          console.log(err)
+          return
         }
-    },
-    components: {
-        ViewBox,
-        XHeader,
-        Group,
-        Cell
+
+        console.log('注销成功')
+        this.$router.replace({
+          name: 'login',
+          query: {
+            mode: 'dismiss'
+          }
+        })
+
+        // 关闭连接
+        this.$disconnect()
+      })
     }
+  },
+  components: {
+    ViewBox,
+    XHeader,
+    Group,
+    Cell
+  }
 }
 </script>
 
-<style lang="scss" scoped>
-
+<style lang="scss">
+#logout .vux-label {
+  text-align: center;
+}
 </style>

@@ -17,18 +17,37 @@ a {
     text-decoration: none;
 }
 
+@import './mixin';
 
-// vux 组件样式
+// view-box
+.weui-tab {
+  position: absolute;
+  width: 100%;
+
+  background: $bgColor;
+}
+
+// x-header
 .vux-header {
   background: #000;
 }
 
-.weui-cells .weui-cell__hd {
-  margin-right: 5px;
-  width: 28px;
-  height: 28px;
+// cell
+.weui-cell {
+  .weui-cell__hd {
+    margin-right: 5px;
+    width: 28px;
+    height: 28px;
 
-  img {
-    width: 100%;
+    img {
+      width: 100%;
+    }
+  }
+  .weui-cell__ft {
+    font-size: 15px;
+  }
+  .vux-label {
+    text-align: left;
   }
 }
+

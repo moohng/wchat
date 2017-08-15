@@ -73,8 +73,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import './assets/mixin';
-
 #app {
   position: relative;
   width: 100vw;
@@ -83,7 +81,7 @@ export default {
   // 字体
   font-family: "Microsoft YaHei", Helvetica, Arial, sans-serif;
 
-  background: $bgColor;
+  background: #000;
 
   // 防止某些浏览器 切换界面时出现滚动条
   overflow: hidden;

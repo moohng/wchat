@@ -2,12 +2,12 @@
   <div class="contact">
     <search></search>
     <group :gutter="0">
-      <cell v-for="title, index in titles" value-align="left" @click.native.stop="tabSelect(index)">
+      <cell v-for="title, index in titles" @click.native.stop="tabSelect(index)">
         <span slot="title">{{ title }}</span>
       </cell>
     </group>
     <group v-for="group in friendList">
-      <cell v-for="friend in group" value-align="left" @click.native.stop="detail(friend)">
+      <cell v-for="friend in group" @click.native.stop="detail(friend)">
         <span slot="title">{{ friend }}</span>
       </cell>
     </group>

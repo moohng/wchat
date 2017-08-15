@@ -1,37 +1,37 @@
 <template>
   <div class="profile">
     <group>
-      <cell :is-link="true" value-align="left">
+      <cell :is-link="true" :link="{name: 'me', query: {mode: 'push'}}">
         <span slot="title">{{ titles[0] }}</span>
         <img slot="icon" :src="icons[1]" alt="">
       </cell>
     </group>
     <group>
-      <cell :is-link="true" value-align="left">
+      <cell :is-link="true">
         <span slot="title">{{ titles[0] }}</span>
         <img slot="icon" :src="icons[2]" alt="">
       </cell>
-      <cell :is-link="true" value-align="left">
+      <cell :is-link="true">
         <span slot="title">{{ titles[1] }}</span>
         <img slot="icon" :src="icons[3]" alt="">
       </cell>
-      <cell :is-link="true" value-align="left">
+      <cell :is-link="true">
         <span slot="title">{{ titles[2] }}</span>
         <img slot="icon" :src="icons[4]" alt="">
       </cell>
-      <cell :is-link="true" value-align="left">
+      <cell :is-link="true">
         <span slot="title">{{ titles[3] }}</span>
         <img slot="icon" :src="icons[5]" alt="">
       </cell>
     </group>
     <group>
-      <cell :is-link="true" value-align="left">
+      <cell :is-link="true">
         <span slot="title">{{ titles[4] }}</span>
         <img slot="icon" :src="icons[6]" alt="">
       </cell>
     </group>
     <group>
-      <cell :is-link="true" value-align="left" :link="{name: 'setting', query: {mode: 'push'}}">
+      <cell :is-link="true" :link="{name: 'setting', query: {mode: 'push'}}">
         <span slot="title">{{ titles[5] }}</span>
         <img slot="icon" :src="icons[7]" alt="">
       </cell>
