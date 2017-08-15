@@ -4,20 +4,25 @@
     top: $top; right: $right; bottom: $bottom; left: $left;
 }
 
+@mixin absSize($x: 0, $y: 0, $width: 100%, $height: 100%) {
+    position: absolute;
+    top: $y; left: $x; width: $width; height: $height;
+}
+
 @mixin fixed($top: 0, $right: 0, $bottom: 0, $left: 0) {
     position: fixed;
     top: $top; right: $right; bottom: $bottom; left: $left;
 }
 
-@mixin flex($z: center, $v: center, $dir: row) {
+@mixin flex($h: center, $v: center, $dir: row) {
     display: flex;
-    justify-content: $z;
+    justify-content: $h;
     align-items: $v;
     flex-direction: $dir;
 }
 
 // 界面背景颜色
-$bgColor: #efefef;
+$bgColor: #f2f2f2;
 // 线条颜色
 $lineColor: #dfdfdf;
 // 渲染颜色 选中颜色

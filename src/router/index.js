@@ -25,85 +25,85 @@ import Register from '@/components/wellcome/register'
 Vue.use(Router)
 
 export default new Router({
-    routes: [
-        {
-            path: '/',
-            redirect: {name: 'message'}
-        },
-        // 登录
-        {
-            path: '/wellcome/login',
-            name: 'login',
-            component: Login
-        },
-        // 注册
-        {
-            path: '/wellcome/register',
-            name: 'register',
-            component: Register
-        },
-        // 主界面
-        {
-            path: '/wchat',
-            name: 'wchat',
-            component: Wchat,
-            children: [
-            {
-                path: 'message',
-                name: 'message',
-                component: Message
-            },
-            {
-                path: 'contact',
-                name: 'contact',
-                component: Contact
-            },
-            {
-                path: 'explore',
-                name: 'explore',
-                component: Explore
-            },
-            {
-                path: 'profile',
-                name: 'profile',
-                component: Profile
-            }
-            ]
-        },
-        // Profile
-        {
-            path: '/wchat/profile/me',
-            name: 'me',
-            component: Me
-        },
-        {
-            path: '/wchat/profile/setting',
-            name: 'setting',
-            component: Setting
-        },
-        // Message
-        {
-            path: '/wchat/message/chat',
-            name: 'chat',
-            component: Chat
-        },
-        // Contact
-        {
-            path: '/wchat/contact/add',
-            name: 'add',
-            component: AddFriend
-        },
-        // Online
-        {
-            path: '/wchat/contact/online',
-            name: 'online',
-            component: Online
-        },
-        // Detail
-        {
-            path: '/wchat/contact/detail',
-            name: 'detail',
-            component: Detail
-        }
-    ]
+  routes: [
+    {
+      path: '/',
+      redirect: {name: 'message'}
+    },
+    // 登录
+    {
+      path: '/wellcome/login',
+      name: 'login',
+      component: Login
+    },
+    // 注册
+    {
+      path: '/wellcome/register',
+      name: 'register',
+      component: Register
+    },
+    // 主界面
+    {
+      path: '/wchat',
+      name: 'wchat',
+      component: Wchat,
+      children: [
+      {
+        path: 'message',
+        name: 'message',
+        component: Message
+      },
+      {
+        path: 'contact',
+        name: 'contact',
+        component: Contact
+      },
+      {
+        path: 'explore',
+        name: 'explore',
+        component: Explore
+      },
+      {
+        path: 'profile',
+        name: 'profile',
+        component: Profile
+      }
+      ]
+    },
+    // Profile
+    {
+      path: '/wchat/profile/me',
+      name: 'me',
+      component: Me
+    },
+    {
+      path: '/wchat/profile/setting',
+      name: 'setting',
+      component: Setting
+    },
+    // Message
+    {
+      path: '/wchat/message/chat',
+      name: 'chat',
+      component: Chat
+    },
+    // Contact
+    {
+      path: '/wchat/contact/add',
+      name: 'add',
+      component: AddFriend
+    },
+    // Online
+    {
+      path: '/wchat/contact/online',
+      name: 'online',
+      component: Online
+    },
+    // Detail
+    {
+      path: '/wchat/contact/detail',
+      name: 'detail',
+      component: Detail
+    }
+  ]
 })

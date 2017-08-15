@@ -15,7 +15,7 @@
                 tab-cell(title="更多", disclosure)
             //- 按钮
             .wrap
-                w-button(:name="user.friendly ? '发消息' : '加好友'", type="button"
+                x-button(:name="user.friendly ? '发消息' : '加好友'", type="button"
                 @click="click")
         template(slot="main", v-else)
             .view
@@ -23,12 +23,12 @@
 </template>
 
 <script>
+import { XButton } from 'vux'
 import Page from '@/components/common/page'
 import NavBar from '@/components/common/nav-bar'
 import NavBack from '@/components/common/nav-back'
 import TabGroup from '@/components/common/tab-group'
 import TabCell from '@/components/common/tab-cell'
-import WButton from '@/components/wellcome/w-button'
 
 export default {
     data () {
@@ -81,7 +81,7 @@ export default {
         NavBack,
         TabGroup,
         TabCell,
-        WButton
+        XButton
     }
 }
 </script>

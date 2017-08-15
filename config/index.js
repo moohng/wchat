@@ -2,8 +2,10 @@
 var path = require('path')
 
 module.exports = {
+  env: {
+    NODE_ENV: JSON.stringify(process.env.NODE_ENV)
+  },
   build: {
-    env: require('./prod.env'),
     index: path.resolve(__dirname, '../dist/index.html'),
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
@@ -22,12 +24,18 @@ module.exports = {
     bundleAnalyzerReport: process.env.npm_config_report
   },
   dev: {
-    env: require('./dev.env'),
     port: 8808,
     autoOpenBrowser: true,
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: {
+      api: {
+        filter: '/api',
+        pathRewrite: { '^/api': '/' },
+        target: 'http://39.108.137.234:30334',
+        changeOrigin: true
+      }
+    },
     // CSS Sourcemaps off by default because relative paths are "buggy"
     // with this option, according to the CSS-Loader README
     // (https://github.com/webpack/css-loader#sourcemaps)

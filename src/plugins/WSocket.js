@@ -46,6 +46,8 @@ class WSocket extends EventEmitter {
     onclose (e) {
 
         this.emit('close', '连接已断开')
+        this.socket.close('关闭')
+        console.log('连接已断开')
     }
 }
 

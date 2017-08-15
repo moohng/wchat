@@ -1,25 +1,51 @@
-<template lang="pug">
-    .profile
-        tab-group
+<template>
+  <div class="profile">
+    <group>
+      <cell :is-link="true" value-align="left">
+        <span slot="title">{{ titles[0] }}</span>
+        <img slot="icon" :src="icons[1]" alt="">
+      </cell>
+    </group>
+    <group>
+      <cell :is-link="true" value-align="left">
+        <span slot="title">{{ titles[0] }}</span>
+        <img slot="icon" :src="icons[2]" alt="">
+      </cell>
+      <cell :is-link="true" value-align="left">
+        <span slot="title">{{ titles[1] }}</span>
+        <img slot="icon" :src="icons[3]" alt="">
+      </cell>
+      <cell :is-link="true" value-align="left">
+        <span slot="title">{{ titles[2] }}</span>
+        <img slot="icon" :src="icons[4]" alt="">
+      </cell>
+      <cell :is-link="true" value-align="left">
+        <span slot="title">{{ titles[3] }}</span>
+        <img slot="icon" :src="icons[5]" alt="">
+      </cell>
+    </group>
+    <group>
+      <cell :is-link="true" value-align="left">
+        <span slot="title">{{ titles[4] }}</span>
+        <img slot="icon" :src="icons[6]" alt="">
+      </cell>
+    </group>
+    <group>
+      <cell :is-link="true" value-align="left" :link="{name: 'setting', query: {mode: 'push'}}">
+        <span slot="title">{{ titles[5] }}</span>
+        <img slot="icon" :src="icons[7]" alt="">
+      </cell>
+    </group>
+  </div>
+        <!-- tab-group
             tab-cell.head(:title="user.name", :subtitle="'微信号: ' + user.username",
             :img="icons[0]", more, disclosure, large,
             @click.native="push('me')")
-                img(slot="button", :src="icons[1]")
-        tab-group
-            tab-cell(:img="icons[2]", :title="titles[0]", disclosure)
-            tab-cell(:img="icons[3]", :title="titles[1]", disclosure)
-            tab-cell(:img="icons[4]", :title="titles[2]", disclosure)
-            tab-cell(:img="icons[5]", :title="titles[3]", disclosure)
-        tab-group
-            tab-cell(:img="icons[6]", :title="titles[4]", disclosure)
-        tab-group
-            tab-cell(:img="icons[7]", :title="titles[5]", disclosure,
-            @click.native="push('setting')")
+                img(slot="button", :src="icons[1]") -->
 </template>
 
 <script>
-import TabGroup from '@/components/common/tab-group'
-import TabCell from '@/components/common/tab-cell'
+import { Group, Cell } from 'vux'
 
 // 资源文件
 import qrcode from '@/assets/profile/w-profile-qr.svg'
@@ -35,50 +61,46 @@ import setting from '@/assets/profile/w-profile-setting.svg'
 import { mapGetters } from 'vuex'
 
 export default {
-    data () {
-        return {
-            icons: [head, qrcode ,album, collection, wallet, vip, emoj, setting],
-            titles: ['相册', '收藏', '钱包', '卡包', '表情', '设置'],
+  data () {
+    return {
+      icons: [head, qrcode ,album, collection, wallet, vip, emoj, setting],
+      titles: ['相册', '收藏', '钱包', '卡包', '表情', '设置'],
 
-            user: {
-                name: '小莫',
-                username: '2b2b2b2b'
-            }
-        }
-    },
-    computed: {
-        ...mapGetters(['account'])
-    },
-    methods: {
-        push (to) {
-            this.$router.replace({name: to, query: {mode: 'push'}})
-        }
-    },
-    mounted () {
-        // 获取当前用户信息
-        this.$search((err, user) => {
-            if (err) {
-                console.log(err)
-                return
-            }
-
-            console.log('获取用户信息成功')
-            this.user = user
-        })
-    },
-    components: {
-        TabGroup,
-        TabCell,
+      user: {
+        name: '小莫',
+        username: '2b2b2b2b'
+      }
     }
+  },
+  computed: {
+    ...mapGetters(['account'])
+  },
+  methods: {
+    push (to) {
+      this.$router.replace({name: to, query: {mode: 'push'}})
+    }
+  },
+  mounted () {
+    // 获取当前用户信息
+    this.$search((err, user) => {
+      if (err) {
+        console.log(err)
+        return
+      }
+
+      console.log('获取用户信息成功')
+      this.user = user
+    })
+  },
+  components: {
+    Group,
+    Cell,
+  }
 }
 </script>
 
 <style lang="scss" scoped>
 .profile {
 
-    .head img {
-        width: 28px;
-        height: 28px;
-    }
 }
 </style>

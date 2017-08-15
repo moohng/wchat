@@ -1,8 +1,4 @@
-html,
 body {
-    width: 100%;
-    height: 100%;
-
     text-align: center;
 }
 
@@ -19,4 +15,20 @@ li {
 }
 a {
     text-decoration: none;
+}
+
+
+// vux 组件样式
+.vux-header {
+  background: #000;
+}
+
+.weui-cells .weui-cell__hd {
+  margin-right: 5px;
+  width: 28px;
+  height: 28px;
+
+  img {
+    width: 100%;
+  }
 }

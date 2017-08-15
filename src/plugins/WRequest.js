@@ -1,103 +1,74 @@
-import { ajax } from 'jquery'
+import axios from 'axios'
 import ws from '../websocket'
+import router from '../router'
 
-const request = function(Vue) {
+const baseURL = process.env.NODE_ENV === 'production' ? 'http://39.108.137.234:30334' : 'http://localhost:3000'
 
-    const env = process.env.NODE_ENV === 'production'
-    const host = env ? '39.108.137.234:30334' : 'localhost:3000'
+const ax = axios.create({
+  baseURL,
+  timeout: 10000,
+  headers: {
+    // ...
+  },
+  withCredentials: true
+})
 
-    // 登录
-    Vue.prototype.$login = request.login = function (data, cb) {
-
-        let options = {}
-        if (data) {
-            options = {
-                method: 'POST',
-                data
-            }
-        }
-        else {
-            options = {
-                method: 'GET'
-            }
-        }
-
-        const url = 'http://' + host + '/user/login'
-        ajax(url, {
-            ...options,
-            xhrFields: {
-                withCredentials: true
-            },
-            success (res) {
-                // 判断是否登录成功
-                if (res.code === 10000) {
-                    cb(null)
-                }
-                else {
-                    cb(res.status)
-                }
-
-            },
-            error (err) {
-                cb('请求错误')
-            }
+const request = options => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const res = await ax.request(options)
+      console.log('response: ', res)
+      if (res.code === 10001) {
+        // 未登录，跳转到登陆页面
+        router.replace({
+          name: 'login',
+          query: { mode: 'dismiss' }
         })
+      } else {
+        resolve(res)
+      }
+    } catch (err) {
+      reject(err)
     }
-    // 连接socket
-    Vue.prototype.$connect = request.connect = function (cb) {
+  })
+}
 
-        const url = 'ws://' + host + '/ws'
-        ws.init(url, cb)
-    }
-    Vue.prototype.$disconnect = request.disconnect = function () {
+export default Vue => {
 
-        ws.close()
-    }
-    // 注册
-    Vue.prototype.$register = request.register = function (data, cb) {
-        const url = 'http://' + host + '/user/register'
-        ajax(url, {
-            method: 'POST',
-            data,
-            xhrFields: {
-                withCredentials: true
-            },
-            success (res) {
-                // 判断是否登录成功
-                if (res.code === 10000) {
-                    cb(null)
-                }
-                else {
-                    cb(res.status)
-                }
-            },
-            error (err) {
-                cb('请求错误')
-            }
-        })
-    }
-    // 注销
-    Vue.prototype.$logout = request.logout = function (cb) {
-        const url = 'http://' + host + '/user/logout'
-        ajax(url, {
-            method: 'GET',
-            xhrFields: {
-                withCredentials: true
-            },
-            success (res) {
-                // 判断是否成功
-                if (res.code === 10000) {
-                    cb(null)
-                }
-                else {
-                    cb(res.status)
-                }
-            },
-            error (err) {
-                cb('请求错误')
-            }
-        })
-    }
+  // 登录
+  Vue.prototype.$login = request.login = data => {
+    const url = '/user/login'
+    return request({
+      url,
+      data,
+      method: 'post'
+    })
+  }
+  // 注册
+  Vue.prototype.$register = request.register = data => {
+    const url = '/user/register'
+    return request({
+      url,
+      data,
+      method: 'post'
+    })
+  }
+  // 注销
+  Vue.prototype.$logout = request.logout = _ => {
+      const url = '/user/logout'
+      return request({ url })
+  }
+  // 连接socket
+  Vue.prototype.$connect = request.connect = function (cb) {
+
+      const url = process.env.NODE_ENV === 'production' ? 'ws://39.108.137.234:30334/ws' : 'ws://localhost:3000/ws'
+      ws.init(url, cb)
+  }
+  Vue.prototype.$disconnect = request.disconnect = function () {
+
+      ws.close()
+  }
+
 
     // 获取在线用户
     Vue.prototype.$getOnline = request.getOnline = function (cb) {
@@ -110,7 +81,7 @@ const request = function(Vue) {
             },
             success (res) {
                 // 判断是否成功
-                if (res.code === 10000) {
+                if (res.code === 0) {
                     cb(null, res.users)
                 }
                 else {
@@ -232,5 +203,3 @@ const request = function(Vue) {
         })
     }
 }
-
-export default request
