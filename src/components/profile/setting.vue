@@ -1,30 +1,31 @@
-<template lang="pug">
-    page.setting(margin-top)
-        nav-bar(slot="nav-bar")
-            span(slot="title") 设置
-            nav-back(slot="left", title="我",
-             @click.native="$router.replace({name: 'profile', query: {mode: 'pop'}})")
-        template(slot="main")
-            tab-group
-                tab-cell(title="账号与安全", disclosure)
-            tab-group
-                tab-cell(title="新消息通知", disclosure)
-                tab-cell(title="隐私", disclosure)
-                tab-cell(title="通用", disclosure)
-            tab-group
-                tab-cell(title="帮助与反馈", disclosure)
-                tab-cell(title="关于微信", disclosure)
-            tab-group
-                tab-cell(title="退出登录", center,
-                @click.native="logout")
+<template>
+  <view-box class="setting">
+    <x-header slot="header" :left-options="{backText: '我', preventGoBack: true}"
+    @on-click-back="$router.replace({name: 'profile', query: {mode: 'pop'}})">
+      <span slot="default">设置</span>
+    </x-header>
+    <template slot="default">
+      <group>
+        <cell :is-link="true" value-align="left" title="账号与安全"></cell>
+      </group>
+      <group>
+        <cell :is-link="true" value-align="left" title="新消息通知"></cell>
+        <cell :is-link="true" value-align="left" title="隐私"></cell>
+        <cell :is-link="true" value-align="left" title="通用"></cell>
+      </group>
+      <group>
+        <cell :is-link="true" value-align="left" title="帮助与反馈"></cell>
+        <cell :is-link="true" value-align="left" title="关于微信"></cell>
+      </group>
+      <group>
+        <cell title="退出登录" @click.native="logout"></cell>
+      </group>
+    </template>
+  </view-box>
 </template>
 
 <script>
-import Page from '@/components/common/page'
-import NavBar from '@/components/common/nav-bar'
-import NavBack from '@/components/common/nav-back'
-import TabGroup from '@/components/common/tab-group'
-import TabCell from '@/components/common/tab-cell'
+import { ViewBox, XHeader, Group, Cell } from 'vux'
 
 export default {
     methods: {
@@ -54,11 +55,10 @@ export default {
         }
     },
     components: {
-        Page,
-        NavBar,
-        NavBack,
-        TabGroup,
-        TabCell
+        ViewBox,
+        XHeader,
+        Group,
+        Cell
     }
 }
 </script>

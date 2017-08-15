@@ -94,8 +94,6 @@ export default {
 @import '../assets/mixin';
 
 .wchat {
-  background: $bgColor;
-
   // 动画效果 平缓切换
   .fade-enter,
   .fade-leave-active {
