@@ -1,20 +1,19 @@
-<template lang="pug">
-    page.chat(margin-bottom)
-        nav-bar(slot="nav-bar")
-            span.title(slot="title") {{ title }}
-            nav-back(slot="left", title="微信",
-            @click.native="$router.replace({name: 'message', query: {mode: 'pop'}})")
-            span(slot="right") 占位
-        ul(slot="main", v-scroll="messages")
-            chat-dialog(v-for="(message, index) in messages",
-            :date="date(message, index)", :message="message")
-        chat-bar(slot="tab-bar", :to="title === '聊天室' ? 'all' : title")
+<template>
+    <view-box class="chat">
+      <x-header slot="header"
+      @on-click-back="$router.replace({name: 'message', query: {mode: 'pop'}})">
+        <span slot="default">{{ title }}</span>
+      </x-header>
+      <ul slot="default" v-scroll="messages">
+        <chat-dialog v-for="(message, index) in messages"
+        :date="date(message, index)", :message="message"></chat-dialog>
+      </ul>
+      <chat-bar slot="bottom"></chat-bar>
+    </view-box>
 </template>
 
 <script>
-import Page from '@/components/common/page'
-import NavBar from '@/components/common/nav-bar'
-import NavBack from '@/components/common/nav-back'
+import { ViewBox, XHeader } from 'vux'
 import ChatDialog from './chat-dialog'
 import ChatBar from './chat-bar'
 
@@ -74,9 +73,8 @@ export default {
         }
     },
     components: {
-        Page,
-        NavBar,
-        NavBack,
+        ViewBox,
+        XHeader,
         ChatDialog,
         ChatBar
     }

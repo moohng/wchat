@@ -1,6 +1,6 @@
 <template>
   <div class="contact">
-    <search></search>
+    <search :autoFixed="false"></search>
     <group :gutter="0">
       <cell v-for="title, index in titles" @click.native.stop="tabSelect(index)">
         <span slot="title">{{ title }}</span>
@@ -94,17 +94,6 @@ export default {
       })
     }
   },
-  mounted () {
-    // 获取通讯录列表
-    this.$getFriends((err, friends) => {
-      if (err) {
-        console.log(err)
-        return
-      }
-
-      this.friends = friends
-    })
-  },
   components: {
     Group,
     Cell,
@@ -112,9 +101,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.contact {
-
-}
-</style>

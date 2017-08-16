@@ -1,6 +1,6 @@
 <template>
   <div class="message">
-    <search></search>
+    <search :autoFixed="false"></search>
     <group :gutter="0">
       <message-list v-for="session in sessionList" :session="session" @click.native.stop="push(session.title)"></message-list>
     </group>

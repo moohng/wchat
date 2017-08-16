@@ -18,45 +18,46 @@
         <cell :is-link="true" title="关于微信"></cell>
       </group>
       <group>
-        <cell id="logout" title="退出"  @click.native="logout"></cell>
+        <cell id="logout" title="退出"  @click.native="showActionsheet = true"></cell>
       </group>
+      <actionsheet v-model="showActionsheet"
+      :show-cancel="true" :menus="actionsheetMenus"
+      @on-click-menu-logout="logout"></actionsheet>
     </template>
   </view-box>
 </template>
 
 <script>
-import { ViewBox, XHeader, Group, Cell } from 'vux'
+import { ViewBox, XHeader, Group, Cell, Actionsheet } from 'vux'
 
 export default {
+  data () {
+    return {
+      showActionsheet: false,
+      actionsheetMenus: [
+        {
+          label: '退出当前账号？<br/><span style="color:#666;font-size:12px;">退出之后需要重新登录</span>',
+          type: 'info',
+        },
+        {
+          label: '退出',
+          type: 'warn',
+          value: 'logout'
+        }
+      ]
+    }
+  },
   methods: {
     logout () {
-      this.$loading('注销中...')
-
-      this.$logout(err => {
-        this.$close()
-        if (err) {
-          console.log(err)
-          return
-        }
-
-        console.log('注销成功')
-        this.$router.replace({
-          name: 'login',
-          query: {
-            mode: 'dismiss'
-          }
-        })
-
-        // 关闭连接
-        this.$disconnect()
-      })
+      console.log('退出登录')
     }
   },
   components: {
     ViewBox,
     XHeader,
     Group,
-    Cell
+    Cell,
+    Actionsheet
   }
 }
 </script>

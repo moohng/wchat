@@ -80,27 +80,9 @@ export default {
       this.$router.replace({name: to, query: {mode: 'push'}})
     }
   },
-  mounted () {
-    // 获取当前用户信息
-    this.$search((err, user) => {
-      if (err) {
-        console.log(err)
-        return
-      }
-
-      console.log('获取用户信息成功')
-      this.user = user
-    })
-  },
   components: {
     Group,
     Cell,
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.profile {
-
-}
-</style>

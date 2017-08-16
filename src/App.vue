@@ -10,17 +10,12 @@
 // web socket
 import ws from '@/websocket'
 
-import { mapGetters } from 'vuex'
-
 export default {
   data () {
     return {
       transName: 'push',
       transMode: ''
     }
-  },
-  computed: {
-    ...mapGetters(['account'])
   },
   watch: {
     $route (to) {
@@ -51,23 +46,6 @@ export default {
           this.transMode = 'out-in'
       }
     }
-  },
-  mounted () {
-    // 连接socket
-    this.$connect(err => {
-      if (err) {
-        // 连接失败
-        console.log('连接失败')
-        this.$router.replace({
-          name: 'login',
-          modal: 'dismiss'
-        })
-      }
-      else {
-        // 连接成功
-        console.log('连接成功')
-      }
-    })
   }
 }
 </script>

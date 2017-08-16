@@ -1,88 +1,85 @@
-<template lang="pug">
-    page.detail(margin-top)
-        nav-bar(slot="nav-bar")
-            span(slot="title") 详细资料
-            nav-back(slot="left", title="返回",
-            @click.native="$router.replace({name: 'contact', query: {mode: 'pop'}})")
-        template(slot="main", v-if="user.username")
-            tab-group
-                tab-cell(img="", :title="user.name", :subtitle="'微信号：' + user.username", large)
-            tab-group
-                tab-cell(title="设置备注和标签", disclosure)
-            tab-group
-                tab-cell(title="地区", detail="广东 深圳")
-                tab-cell(title="个人相册", detail="对不起，我还没准备好", large, disclosure)
-                tab-cell(title="更多", disclosure)
-            //- 按钮
-            .wrap
-                x-button(:name="user.friendly ? '发消息' : '加好友'", type="button"
-                @click="click")
-        template(slot="main", v-else)
-            .view
-                span 用户不存在
+<template>
+  <view-box class="detail">
+    <x-header slot="header"
+    @on-click-back="$router.replace({name: 'contact', query: {mode: 'pop'}})">
+      <span slot="title">详细资料</span>
+    </x-header>
+    <template slot="default" v-if="user.username">
+      <group>
+        <cell :title="user.title" :inline-desc="'微信号：' + user.username"></cell>
+      </group>
+      <group>
+        <cell :is-link="true" title="设置备注和标签"></cell>
+      </group>
+      <group>
+        <cell title="地区" value="广东 深圳"></cell>
+        <cell :is-link="true" title="个人相册" value="对不起，我还没准备好"></cell>
+        <cell :is-link="true" title="更多"></cell>
+      </group>
+      <div class="wrap">
+        <x-button type="primary" @click.native="click">{{ user.friendly ? '发消息' : '加好友' }}</x-button>
+      </div>
+    </template>
+    <template slot="default" v-else>
+      <div class="view"><span>用户不存在</span></div>
+    </template>
+  </view-box>
 </template>
 
 <script>
-import { XButton } from 'vux'
-import Page from '@/components/common/page'
-import NavBar from '@/components/common/nav-bar'
-import NavBack from '@/components/common/nav-back'
-import TabGroup from '@/components/common/tab-group'
-import TabCell from '@/components/common/tab-cell'
+import { ViewBox, XHeader, Group, Cell, XButton } from 'vux'
 
 export default {
-    data () {
-        return {
-            user: {}
-        }
-    },
-    methods: {
-        click () {
-            if (this.user.friendly) {
-                // 跳转到chat界面
-                this.$router.replace({
-                    name: 'chat',
-                    query: {
-                        mode: 'push',
-                        title: this.user.username
-                    }
-                })
-            }
-            else {
-                this.$addFriend(this.user.username, err => {
-                    if (err) {
-                        console.log(err)
-                        return
-                    }
-
-                    // 发送请求成功
-                    console.log('发送请求成功')
-                    this.$completed('已发送添加好友请求')
-                })
-            }
-
-        }
-    },
-    mounted () {
-        // 获取用户信息列表
-        const username = this.$route.query.username
-        this.$search(username, (err, user) => {
-            if (err) {
-                console.log(err)
-                return
-            }
-
-            this.user = user
-        })
-    },
-    components: {
-        Page,
-        NavBar,
-        NavBack,
-        TabGroup,
-        TabCell,
-        XButton
+  data () {
+    return {
+      user: {}
     }
+  },
+  methods: {
+    click () {
+      if (this.user.friendly) {
+        // 跳转到chat界面
+        this.$router.replace({
+          name: 'chat',
+          query: {
+            mode: 'push',
+            title: this.user.username
+          }
+        })
+      }
+      else {
+        this.$addFriend(this.user.username, err => {
+          if (err) {
+            console.log(err)
+            return
+          }
+
+          // 发送请求成功
+          console.log('发送请求成功')
+          this.$completed('已发送添加好友请求')
+        })
+      }
+    }
+  },
+  mounted () {
+    // 获取用户信息列表
+    const username = this.$route.query.username
+    this.$search(username, (err, user) => {
+      if (err) {
+        console.log(err)
+        return
+      }
+
+      this.user = user
+    })
+  },
+  components: {
+    ViewBox,
+    XHeader,
+    Group,
+    Cell,
+    XButton
+  }
 }
 </script>
 

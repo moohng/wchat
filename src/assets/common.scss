@@ -1,7 +1,3 @@
-body {
-    text-align: center;
-}
-
 // 统一样式
 html, body, ul, p, h1, h2, h3, h4, h5, h6 {
     margin: 0;
@@ -30,24 +26,42 @@ a {
 // x-header
 .vux-header {
   background: #000;
+
+  .vux-header-left,
+  .vux-header-right {
+    color: #fff;
+    font-size: 16px;
+  }
+
+  .vux-header-left {
+    a.vux-header-back {
+      color: #fff;
+    }
+    .left-arrow::before {
+      border-color: #fff;
+    }
+  }
 }
 
 // cell
 .weui-cell {
   .weui-cell__hd {
-    margin-right: 5px;
-    width: 28px;
-    height: 28px;
-
     img {
-      width: 100%;
+      margin-right: 8px;
+      width: 28px;
     }
   }
   .weui-cell__ft {
     font-size: 15px;
   }
-  .vux-label {
-    text-align: left;
-  }
 }
 
+// x-input
+.vux-x-input {
+  .weui-cell__hd {
+    display: flex;
+    align-items: center;
+
+    margin-right: 8px;
+  }
+}
