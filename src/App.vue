@@ -7,7 +7,6 @@
 </template>
 
 <script>
-// web socket
 import ws from '@/websocket'
 
 export default {
@@ -18,32 +17,28 @@ export default {
     }
   },
   watch: {
-    $route (to) {
+    $route (to, from) {
+      const toDepth = to.path.split('/').length
+      const fromDepth = from.path.split('/').length
       const mode = to.query.mode
-      switch (mode) {
-        case 'push':
-          this.transName = 'push'
-          this.transMode = ''
-          break
-        case 'pop':
-          this.transName = 'pop'
-          this.transMode = ''
-          break
-        case 'modal':
-          this.transName = 'modal'
-          this.transMode = 'in-out'
-          break
-        case 'dismiss':
-          this.transName = 'dismiss'
-          this.transMode = 'in-out'
-          break
-        case 'turn':
-          this.transName = 'turn'
-          this.transMode = 'out-in'
-          break
-        default:
-          this.transName = 'fade'
-          this.transMode = 'out-in'
+      if (toDepth > fromDepth || mode === 'push') {
+        this.transName = 'push'
+        this.transMode = ''
+      } else if (toDepth < fromDepth || mode === 'pop') {
+        this.transName = 'pop'
+        this.transMode = ''
+      } else if (mode === 'modal') {
+        this.transName = 'modal'
+        this.transMode = 'in-out'
+      } else if (mode === 'dismiss') {
+        this.transName = 'dismiss'
+        this.transMode = 'in-out'
+      } else if (mode === 'turn') {   // 翻转
+        this.transName = 'turn'
+        this.transMode = 'out-in'
+      } else {
+        this.transName = 'fade'
+        this.transMode = 'out-in'
       }
     }
   }

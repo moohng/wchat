@@ -1,7 +1,6 @@
 <template>
   <view-box class="add">
-    <x-header slot="header" :left-options="{preventGoBack: true}"
-    @on-click-back="$router.replace({name: 'contact', query: {mode: 'pop'}})">
+    <x-header slot="header">
       <span>添加朋友</span>
     </x-header>
     <template slot="default">

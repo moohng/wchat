@@ -63,21 +63,10 @@ export default {
     tabSelect (index) {
       switch (index) {
         case 0:
-          this.$router.replace({
-            name: 'chat',
-            query: {
-              mode: 'push',
-              title: '聊天室'
-            }
-          })
+          this.$router.push({name: 'chat'})
           break
         case 1:
-          this.$router.replace({
-            name: 'online',
-            query: {
-              mode: 'push'
-            }
-          })
+          this.$router.push({name: 'online'})
           break
         default:
       }
@@ -85,10 +74,9 @@ export default {
     },
 
     detail (username) {
-      this.$router.replace({
+      this.$router.push({
         name: 'detail',
         query: {
-          mode: 'push',
           username
         }
       })

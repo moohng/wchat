@@ -2,7 +2,7 @@
   <view-box class="wchat">
     <x-header slot="header" :left-options="{showBack: false}">
       <span slot="default">{{ titleList[pageIndex] }}</span>
-      <div slot="right" @click="add" v-if="pageIndex < 2">添加</div>
+      <div slot="right" @click="$router.push({name: 'add'})" v-if="pageIndex < 2">添加</div>
     </x-header>
     <transition name="fade" mode="out-in">
       <router-view></router-view>
@@ -20,10 +20,10 @@
 import { ViewBox, XHeader, Tabbar, TabbarItem } from 'vux'
 
 // SVG 图标
-import IconWchat from '@/components/icon/wchat'
-import IconContact from '@/components/icon/contact'
-import IconExplore from '@/components/icon/explore'
-import IconProfile from '@/components/icon/profile'
+import IconWchat from './icons/wchat'
+import IconContact from './icons/contact'
+import IconExplore from './icons/explore'
+import IconProfile from './icons/profile'
 
 export default {
   data () {
@@ -63,16 +63,6 @@ export default {
     // 设置导航
     this.pageIndex = ['message', 'contact', 'explore', 'profile']
                     .findIndex(value => value === this.$route.name)
-  },
-  methods: {
-    add () {
-      this.$router.replace({
-        name: 'add',
-        query: {
-          mode: 'push'
-        }
-      })
-    }
   },
   components: {
     ViewBox,

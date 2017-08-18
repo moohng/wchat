@@ -48,14 +48,14 @@
 <script>
 import { Group, Cell } from 'vux'
 
-import friend from '@/assets/explore/w-explore-friend.svg'
-import sao from '@/assets/explore/w-explore-sao.svg'
-import shake from '@/assets/explore/w-explore-shake.svg'
-import nearby from '@/assets/explore/w-explore-nearby.svg'
-import bottle from '@/assets/explore/w-explore-bottle.svg'
-import shop from '@/assets/explore/w-explore-shop.svg'
-import game from '@/assets/explore/w-explore-game.svg'
-import app from '@/assets/explore/w-explore-app.svg'
+import friend from './icons/w-explore-friend.svg'
+import sao from './icons/w-explore-sao.svg'
+import shake from './icons/w-explore-shake.svg'
+import nearby from './icons/w-explore-nearby.svg'
+import bottle from './icons/w-explore-bottle.svg'
+import shop from './icons/w-explore-shop.svg'
+import game from './icons/w-explore-game.svg'
+import app from './icons/w-explore-app.svg'
 
 export default {
   name: 'explore',

@@ -1,7 +1,7 @@
 <template>
   <view-box class="setting">
     <x-header slot="header" :left-options="{backText: '我', preventGoBack: true}"
-    @on-click-back="$router.replace({name: 'profile', query: {mode: 'pop'}})">
+    @on-click-back="$router.replace({name: 'profile'})">
       <span slot="default">设置</span>
     </x-header>
     <template slot="default">
