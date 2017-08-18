@@ -6,8 +6,10 @@
     </x-header>
     <template slot="default">
       <group>
-        <cell :is-link="true" title="头像"></cell>
-        <cell :is-link="true" title="名字">Kevin</cell>
+        <cell :is-link="true" title="头像">
+          <img slot="default" class="icon-bd" src="./icons/head-portrait.jpg">
+        </cell>
+        <cell :is-link="true" title="昵称">Kevin</cell>
         <cell :is-link="true" title="微信号">moohng123</cell>
         <cell :is-link="true" title="我的二维码"></cell>
         <cell :is-link="true" title="我的地址"></cell>
@@ -35,5 +37,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.me {
+  .icon-bd {
+    width: 48px;
+    height: 48px;
+  }
+}
 </style>
