@@ -1,7 +1,6 @@
 <template>
   <view-box class="me">
-    <x-header slot="header" :left-options="{backText: '我', preventGoBack: true}"
-    @on-click-back="$router.replace({name: 'profile'})">
+    <x-header slot="header" :left-options="{backText: '我'}">
       <span slot="default">个人信息</span>
     </x-header>
     <template slot="default">

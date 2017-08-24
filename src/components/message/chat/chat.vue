@@ -1,7 +1,6 @@
 <template>
     <view-box class="chat">
-      <x-header slot="header"
-      @on-click-back="$router.replace({name: 'message', query: {mode: 'pop'}})">
+      <x-header slot="header">
         <span slot="default">{{ title }}</span>
       </x-header>
       <ul slot="default" v-scroll="messages">

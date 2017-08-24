@@ -1,7 +1,6 @@
 <template>
   <view-box class="detail">
-    <x-header slot="header"
-    @on-click-back="$router.replace({name: 'contact', query: {mode: 'pop'}})">
+    <x-header slot="header">
       <span slot="title">详细资料</span>
     </x-header>
     <template slot="default" v-if="user.username">

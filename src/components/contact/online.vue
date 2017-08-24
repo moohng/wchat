@@ -1,12 +1,12 @@
 <template>
   <view-box class="online">
-    <x-header slot="header"
-    @on-click-back="$router.replace({name: 'contact', query: {mode: 'pop'}})">
+    <x-header slot="header">
       <span slot="title">在线用户</span>
     </x-header>
-    <template slot="default" v-if="onlineList.length > 0">
+    <template slot="default" v-if="onlineList.length">
       <group>
-        <cell v-for="username in onlineList" @click.native.stop="select(username)">
+        <cell v-for="username in onlineList"
+        @click.native.stop="select(username)">
           <span slot="title">{{ username }}</span>
         </cell>
       </group>
