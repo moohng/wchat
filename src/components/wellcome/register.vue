@@ -48,43 +48,18 @@ export default {
     }
   },
   methods: {
-    register () {
-      console.log('注册用户')
-
-      this.$loading('注册用户中...')
-
-      this.$register({
+    async register () {
+      this.$vux.loading.show('注册用户中...')
+      const res = await this.$register({
         username: this.username,
         password: this.password
-      }, err => {
-
-        this.$close()
-        if (err) {
-          console.log(err)
-          return
-        }
-
-        // 跳转
-        this.$router.replace({
-          name: 'message',
-          query: {
-            mode: 'modal'
-          }
-        })
-
-        // 连接socket
-        this.$connect(err => {
-          if (err) {
-            // 连接失败
-            console.log('连接失败')
-          }
-          else {
-            // 连接成功
-            console.log('连接成功')
-        }
-        })
-
       })
+      this.$vux.loading.hide()
+      if (res.code === 0) {
+        this.$router.replace({ name: 'message', query: { mode: 'modal' } })
+      } else {
+        this.$vux.toast.text(res.message, 'bottom')
+      }
     }
   },
   components: {
@@ -98,23 +73,25 @@ export default {
 @import '../../assets/mixin';
 
 .register {
-    @include abs(0, 0, 0, 0)
-    padding: 64px 18px 0;
+  @include abs(0, 0, 0, 0);
+  padding: 64px 18px 0;
 
-    background-color: #efefef;
+  text-align: center;
+  background: #efefef;
 
-    h3 {
-        margin: 20px auto;
-    }
-    .wrap {
-        margin-top: 28px;
-    }
-    .login {
-        position: absolute;
-        top: 32px;
-        right: 28px;
+  h2 {
+    margin: 20px auto;
+    font-size: 22px;
+  }
+  .wrap {
+    margin-top: 28px;
+  }
+  .login {
+    position: absolute;
+    top: 32px;
+    right: 28px;
 
-        color: #00729f;
-    }
+    color: #00729f;
+  }
 }
 </style>

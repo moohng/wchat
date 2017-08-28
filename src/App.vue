@@ -21,13 +21,7 @@ export default {
       const toDepth = to.path.split('/').length
       const fromDepth = from.path.split('/').length
       const mode = to.query.mode
-      if (toDepth > fromDepth || mode === 'push') {
-        this.transName = 'push'
-        this.transMode = ''
-      } else if (toDepth < fromDepth || mode === 'pop') {
-        this.transName = 'pop'
-        this.transMode = ''
-      } else if (mode === 'modal') {
+      if (mode === 'modal') {
         this.transName = 'modal'
         this.transMode = 'in-out'
       } else if (mode === 'dismiss') {
@@ -36,11 +30,21 @@ export default {
       } else if (mode === 'turn') {   // 翻转
         this.transName = 'turn'
         this.transMode = 'out-in'
+      } else if (toDepth > fromDepth || mode === 'push') {
+        this.transName = 'push'
+        this.transMode = ''
+      } else if (toDepth < fromDepth || mode === 'pop') {
+        this.transName = 'pop'
+        this.transMode = ''
       } else {
         this.transName = 'fade'
         this.transMode = 'out-in'
       }
     }
+  },
+  mounted () {
+    // 检查登陆态
+    this.$check()
   }
 }
 </script>

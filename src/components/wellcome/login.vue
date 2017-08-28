@@ -37,41 +37,23 @@ export default {
     }
   },
   methods: {
-    login () {
+    async login () {
 
-      this.$loading('登录中...')
+      this.$vux.loading.show('登录中...')
       // 登录
-      this.$login({
+      const res = await this.$login({
         username: this.username,
         password: this.password
-      }, (err) => {
-
-        this.$close()
-        if (err) {
-          console.log(err)
-          return
-        }
-
-        // 跳转
+      })
+      this.$vux.loading.hide()
+      if (res.code === 0) {
         this.$router.replace({
           name: 'message',
-          query: {
-            mode: 'modal'
-          }
+          query: { mode: 'modal' }
         })
-
-        // 连接socket
-        this.$connect(err => {
-          if (err) {
-            // 连接失败
-            console.log('连接失败')
-          }
-          else {
-            // 连接成功
-            console.log('连接成功')
-          }
-        })
-      })
+      } else {
+        this.$vux.toast.text(res.message, 'bottom')
+      }
     }
   },
   components: {
@@ -88,10 +70,13 @@ export default {
   @include abs(0, 0, 0, 0)
   padding: 64px 18px 0;
 
+  text-align: center;
   background-color: #efefef;
 
   h2 {
     margin: 20px auto;
+    font-size: 22px;
+    text-align: center;
   }
   .wrap {
     margin-top: 28px;

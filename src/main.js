@@ -9,7 +9,11 @@ import store from './vuex/store'
 // 全局样式
 import './assets/common.scss'
 
+import { LoadingPlugin, ToastPlugin } from 'vux'
 import WRequest from './plugins/WRequest'
+
+Vue.use(LoadingPlugin)
+Vue.use(ToastPlugin)
 Vue.use(WRequest)
 
 Vue.config.productionTip = false

@@ -13,6 +13,7 @@
     "axios": "^0.16.2",
     "babel-polyfill": "^6.23.0",
     "js-base64": "^2.1.9",
+    "qs": "^6.5.0",
     "socket.io-client": "^2.0.3",
     "vue": "^2.2.2",
     "vue-router": "^2.2.0",

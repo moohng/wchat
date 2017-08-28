@@ -47,8 +47,13 @@ export default {
     }
   },
   methods: {
-    logout () {
-      console.log('退出登录')
+    async logout () {
+      const res = await this.$logout()
+      if (res.code === 0) {
+        this.$router.push({ name: 'login', query: { mode: 'dismiss' } })
+      } else {
+        this.$vux.toast.text(res.message, 'bottom')
+      }
     }
   },
   components: {

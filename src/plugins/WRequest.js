@@ -1,8 +1,9 @@
 import axios from 'axios'
+import qs from 'qs'
 import ws from '../websocket'
 import router from '../router'
 
-const baseURL = process.env.NODE_ENV === 'production' ? 'http://39.108.137.234:30334' : 'http://localhost:3000'
+const baseURL = process.env.NODE_ENV === 'production' ? 'http://39.108.137.234:30334/api/' : 'http://localhost:30600/api/'
 
 const ax = axios.create({
   baseURL,
@@ -10,22 +11,29 @@ const ax = axios.create({
   headers: {
     // ...
   },
-  withCredentials: true
+  withCredentials: true,
+  transformRequest: [function (data, headers) {
+    return qs.stringify(data)
+  }]
 })
+
+window.ax = ax
 
 const request = options => {
   return new Promise(async (resolve, reject) => {
     try {
       const res = await ax.request(options)
-      console.log('response: ', res)
-      if (res.code === 10001) {
+      const data = res.data
+      console.log(data, options)
+      if (data.code === 10001) {
         // 未登录，跳转到登陆页面
         router.replace({
           name: 'login',
           query: { mode: 'dismiss' }
         })
+        reject('未登录')
       } else {
-        resolve(res)
+        resolve(data)
       }
     } catch (err) {
       reject(err)
@@ -37,7 +45,7 @@ export default Vue => {
 
   // 登录
   Vue.prototype.$login = request.login = data => {
-    const url = '/user/login'
+    const url = '/auth/login'
     return request({
       url,
       data,
@@ -46,7 +54,7 @@ export default Vue => {
   }
   // 注册
   Vue.prototype.$register = request.register = data => {
-    const url = '/user/register'
+    const url = '/auth/register'
     return request({
       url,
       data,
@@ -55,8 +63,13 @@ export default Vue => {
   }
   // 注销
   Vue.prototype.$logout = request.logout = _ => {
-      const url = '/user/logout'
-      return request({ url })
+    const url = '/auth/logout'
+    return request({ url })
+  }
+  // 登陆态
+  Vue.prototype.$check = request.check = _ => {
+    const url = '/auth/check'
+    return request({ url })
   }
   // 连接socket
   Vue.prototype.$connect = request.connect = function (cb) {
