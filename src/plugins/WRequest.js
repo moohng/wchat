@@ -1,6 +1,5 @@
 import axios from 'axios'
 import qs from 'qs'
-import ws from '../websocket'
 import router from '../router'
 
 const baseURL = process.env.NODE_ENV === 'production' ? 'http://39.108.137.234:30334/api/' : 'http://localhost:30600/api/'

@@ -21,8 +21,6 @@
 import WInput from './w-input'
 import { XButton } from 'vux'
 
-import ws from '@/websocket'
-
 export default {
   data () {
     return {
@@ -38,13 +36,14 @@ export default {
   },
   methods: {
     async login () {
-
       this.$vux.loading.show('登录中...')
       // 登录
       const res = await this.$login({
         username: this.username,
         password: this.password
       })
+      // 连接socket
+      await this.$connect()
       this.$vux.loading.hide()
       if (res.code === 0) {
         this.$router.replace({

@@ -11,10 +11,12 @@ import './assets/common.scss'
 
 import { LoadingPlugin, ToastPlugin } from 'vux'
 import WRequest from './plugins/WRequest'
+import WSocket from './plugins/WSocket'
 
 Vue.use(LoadingPlugin)
 Vue.use(ToastPlugin)
 Vue.use(WRequest)
+Vue.use(WSocket)
 
 Vue.config.productionTip = false
 

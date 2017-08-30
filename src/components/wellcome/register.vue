@@ -54,6 +54,8 @@ export default {
         username: this.username,
         password: this.password
       })
+      // 连接socket
+      await this.$connect()
       this.$vux.loading.hide()
       if (res.code === 0) {
         this.$router.replace({ name: 'message', query: { mode: 'modal' } })

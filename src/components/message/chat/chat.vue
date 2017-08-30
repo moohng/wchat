@@ -1,13 +1,13 @@
 <template>
     <view-box class="chat">
-      <x-header slot="header">
+        <x-header slot="header">
         <span slot="default">{{ title }}</span>
-      </x-header>
-      <ul slot="default" v-scroll="messages">
+        </x-header>
+        <ul slot="default" v-scroll="messages">
         <chat-dialog v-for="(message, index) in messages"
         :date="date(message, index)", :message="message"></chat-dialog>
-      </ul>
-      <chat-bar slot="bottom"></chat-bar>
+        </ul>
+        <chat-bar slot="bottom"></chat-bar>
     </view-box>
 </template>
 

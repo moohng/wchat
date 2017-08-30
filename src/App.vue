@@ -7,8 +7,6 @@
 </template>
 
 <script>
-import ws from '@/websocket'
-
 export default {
   data () {
     return {
@@ -47,6 +45,7 @@ export default {
       // 检查登陆态
       await this.$check()
       // 连接socket
+      await this.$connect()
     } catch (err) {
       this.$vux.toast.text(err, 'bottom')
       this.$router.replace({ name: 'login', query: { mode: 'dismiss' } })

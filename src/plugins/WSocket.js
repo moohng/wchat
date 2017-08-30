@@ -1,54 +1,46 @@
-import { EventEmitter } from 'events'
+import EventEmitter from 'events'
 
-class WSocket extends EventEmitter {
+const url = process.env.NODE_ENV === 'production' ? 'ws://' : 'ws://localhost:30600'
 
-  // 初始化 连接
-  init (url, cb) {
-    this.cb = cb
-    this.url = url
-
-    this.socket = new WebSocket(this.url)
-    this.socket.onopen = this.onopen.bind(this)
-    this.socket.onmessage = this.onmessage.bind(this)
-    this.socket.onerror = this.onerror.bind(this)
-    this.socket.onclose = this.onclose.bind(this)
-  }
-
-  send (data) {
-    if (this.socket.readyState != WebSocket.OPEN) {
-      this.init(this.url);
-      return false
+export default {
+  install(Vue) {
+    if (this.installed) return
+    // 连接
+    Vue.prototype.$connect = this.connect = _ => {
+      return new Promise((resolve, reject) => {
+        this.ws = new WebSocket(url)
+        // 建立连接
+        this.ws.onopen = _ => {
+          console.log('已建立连接')
+          resolve()
+        }
+        // 连接出错
+        this.ws.onerror = _ => {
+          console.log('连接出错')
+          reject('ws连接出错')
+        }
+        // 收到消息
+        this.ws.onmessage = message => {
+          this.eventEmitter = new EventEmitter()
+          // 消息分类处理
+          this.eventEmitter.emit('chat', message)
+        }
+        // 关闭
+        this.ws.onclose = _ => {
+          console.log('ws已断开')
+          reject('ws已断开')
+        }
+      })
+    }
+    // 发送
+    Vue.prototype.$send = this.send = message => {
+      this.ws.send(message)
+    }
+    // 接收聊天消息
+    Vue.prototype.$receive = this.receive = cb => {
+      this.eventEmitter.on('chat', cb)
     }
 
-    this.socket.send(data)
-    return true
-  }
-
-  close (code, reason) {
-    this.socket.close(code, reason)
-  }
-
-  // 默认方法
-  onopen (e) {
-
-    this.emit('open', '已连接')
-    this.cb && this.cb()
-  }
-  onmessage (e) {
-
-    this.emit('message', e.data)
-  }
-  onerror (e) {
-
-    this.emit('error', '连接错误')
-    this.cb && this.cb('连接错误')
-  }
-  onclose (e) {
-
-    this.emit('close', '连接已断开')
-    this.socket.close('关闭')
-    console.log('连接已断开')
+    this.installed = true
   }
 }
-
-export default WSocket
