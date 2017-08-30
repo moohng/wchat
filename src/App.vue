@@ -42,9 +42,15 @@ export default {
       }
     }
   },
-  mounted () {
-    // 检查登陆态
-    this.$check()
+  async mounted () {
+    try {
+      // 检查登陆态
+      await this.$check()
+      // 连接socket
+    } catch (err) {
+      this.$vux.toast.text(err, 'bottom')
+      this.$router.replace({ name: 'login', query: { mode: 'dismiss' } })
+    }
   }
 }
 </script>
