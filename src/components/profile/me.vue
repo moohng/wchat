@@ -26,6 +26,7 @@
 import { ViewBox, XHeader, Group, Cell } from 'vux'
 
 export default {
+  name: 'me',
   components: {
     ViewBox,
     XHeader,

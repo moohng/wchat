@@ -26,6 +26,7 @@ import IconExplore from './icons/explore'
 import IconProfile from './icons/profile'
 
 export default {
+  name: 'wchat',
   data () {
     return {
       pageIndex: 0,

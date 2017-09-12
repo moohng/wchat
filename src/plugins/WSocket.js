@@ -1,12 +1,11 @@
 import EventEmitter from 'events'
 
-const url = process.env.NODE_ENV === 'production' ? 'ws://' : 'ws://localhost:30600'
+const url = process.env.NODE_ENV === 'production' ? 'ws://39.108.137.234:30334/' : 'ws://localhost:30600'
 
 export default {
   install(Vue) {
-    if (this.installed) return
     // 连接
-    Vue.prototype.$connect = this.connect = _ => {
+    Vue.prototype.$connect = Vue.$connect = this.connect = _ => {
       return new Promise((resolve, reject) => {
         this.ws = new WebSocket(url)
         // 建立连接
@@ -33,14 +32,12 @@ export default {
       })
     }
     // 发送
-    Vue.prototype.$send = this.send = message => {
+    Vue.prototype.$send = Vue.$send = this.send = message => {
       this.ws.send(message)
     }
     // 接收聊天消息
-    Vue.prototype.$receive = this.receive = cb => {
+    Vue.prototype.$receive = Vue.$receive = this.receive = cb => {
       this.eventEmitter.on('chat', cb)
     }
-
-    this.installed = true
   }
 }

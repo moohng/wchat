@@ -26,6 +26,7 @@
 import { ViewBox, XHeader, XInput, Group, Cell } from 'vux'
 
 export default {
+  name: 'add-friend',
   data () {
     return {
       username: '',

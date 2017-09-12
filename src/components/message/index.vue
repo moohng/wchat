@@ -18,6 +18,7 @@ import { Search, Group, Cell } from 'vux'
 import { mapState } from 'vuex'
 
 export default {
+  name: 'message',
   computed: mapState(['sessionList']),
   components: {
     Group,

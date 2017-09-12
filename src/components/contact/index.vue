@@ -18,6 +18,7 @@
 import { Search, Group, Cell } from 'vux'
 
 export default {
+  name: 'contact',
   data () {
     return {
       // 固定组件

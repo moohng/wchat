@@ -30,6 +30,7 @@
 import { ViewBox, XHeader, Group, Cell, Actionsheet } from 'vux'
 
 export default {
+  name: 'setting',
   data () {
     return {
       showActionsheet: false,

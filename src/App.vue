@@ -8,6 +8,7 @@
 
 <script>
 export default {
+  name: 'app',
   data () {
     return {
       transName: 'push',
@@ -16,6 +17,11 @@ export default {
   },
   watch: {
     $route (to, from) {
+      if (!from.name) {
+        this.transName = 'fade'
+        this.transMode = 'out-in'
+        return
+      }
       const toDepth = to.path.split('/').length
       const fromDepth = from.path.split('/').length
       const mode = to.query.mode
@@ -38,17 +44,6 @@ export default {
         this.transName = 'fade'
         this.transMode = 'out-in'
       }
-    }
-  },
-  async mounted () {
-    try {
-      // 检查登陆态
-      await this.$check()
-      // 连接socket
-      await this.$connect()
-    } catch (err) {
-      this.$vux.toast.text(err, 'bottom')
-      this.$router.replace({ name: 'login', query: { mode: 'dismiss' } })
     }
   }
 }

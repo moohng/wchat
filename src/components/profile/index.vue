@@ -57,6 +57,7 @@ import setting from './icons/w-profile-setting.svg'
 import { mapGetters } from 'vuex'
 
 export default {
+  name: 'profile',
   data () {
     return {
       icons: [head, qrcode ,album, collection, wallet, vip, emoj, setting],

@@ -1,3 +1,4 @@
+import Vue from 'vue'
 import axios from 'axios'
 import qs from 'qs'
 import router from '../router'
@@ -16,14 +17,16 @@ const ax = axios.create({
   }]
 })
 
-window.ax = ax
+// window.ax = ax
 
 const request = options => {
   return new Promise(async (resolve, reject) => {
     try {
+      const loading = options.loading
+      loading && Vue.$loading(typeof loading === 'string' ? loading : '')
       const res = await ax.request(options)
+      loading && Vue.$hide()
       const data = res.data
-      console.log(data, options)
       if (data.code === 10001) {
         // 未登录，跳转到登陆页面
         router.replace({
@@ -35,55 +38,45 @@ const request = options => {
         resolve(data)
       }
     } catch (err) {
+      loading && Vue.$hide()
       reject(err)
     }
   })
 }
 
-export default Vue => {
-
+const plugin = Vue => {
   // 登录
-  Vue.prototype.$login = request.login = data => {
+  Vue.prototype.$login = Vue.$login = plugin.login = data => {
     const url = '/auth/login'
     return request({
       url,
       data,
-      method: 'post'
+      method: 'post',
+      loading: true
     })
   }
   // 注册
-  Vue.prototype.$register = request.register = data => {
+  Vue.prototype.$register = Vue.$register = plugin.register = data => {
     const url = '/auth/register'
     return request({
       url,
       data,
-      method: 'post'
+      method: 'post',
+      loading: true
     })
   }
   // 注销
-  Vue.prototype.$logout = request.logout = _ => {
+  Vue.prototype.$logout = Vue.$logout = plugin.logout = _ => {
     const url = '/auth/logout'
-    return request({ url })
+    return request({ url, loading: true })
   }
   // 登陆态
-  Vue.prototype.$check = request.check = _ => {
+  Vue.prototype.$check = Vue.$check = plugin.check = _ => {
     const url = '/auth/check'
-    return request({ url })
+    return request({ url, loading: true })
   }
-  // 连接socket
-  Vue.prototype.$connect = request.connect = function (cb) {
-
-      const url = process.env.NODE_ENV === 'production' ? 'ws://39.108.137.234:30334/ws' : 'ws://localhost:3000/ws'
-      ws.init(url, cb)
-  }
-  Vue.prototype.$disconnect = request.disconnect = function () {
-
-      ws.close()
-  }
-
-
-    // 获取在线用户
-    Vue.prototype.$getOnline = request.getOnline = function (cb) {
+  // 获取在线用户
+  Vue.prototype.$getOnline = plugin.getOnline = function (cb) {
 
         const url = 'http://' + host + '/user'
         ajax(url, {
@@ -107,7 +100,7 @@ export default Vue => {
     }
 
     // 获取好友列表
-    Vue.prototype.$getFriends = request.getFriends = function (cb) {
+  Vue.prototype.$getFriends = plugin.getFriends = function (cb) {
         const url = 'http://' + host + '/friend'
         ajax(url, {
             method: 'GET',
@@ -134,7 +127,7 @@ export default Vue => {
      * @param  {String}   username 要搜索的用户，为空时获取自己的用户信息
      * @param  {Function} cb       获取结果回调
      */
-    Vue.prototype.$search = request.search = function (username, cb) {
+  Vue.prototype.$search = plugin.search = function (username, cb) {
 
         let url
         if (typeof username === 'string') {
@@ -169,7 +162,7 @@ export default Vue => {
     }
 
     // 添加好友
-    Vue.prototype.$addFriend = request.addFriend = function (username, cb) {
+  Vue.prototype.$addFriend = plugin.addFriend = function (username, cb) {
         const url = 'http://' + host + '/friend/add?username=' + username
         ajax(url, {
             method: 'GET',
@@ -192,7 +185,7 @@ export default Vue => {
     }
 
     // 同意添加好友请求
-    Vue.prototype.$acceptFriend = request.acceptFriend = function (username, cb) {
+  Vue.prototype.$acceptFriend = plugin.acceptFriend = function (username, cb) {
 
         const url = 'http://' + host + '/friend/accept?username=' + username
         ajax(url, {
@@ -215,3 +208,5 @@ export default Vue => {
         })
     }
 }
+
+export default plugin

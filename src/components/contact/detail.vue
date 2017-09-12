@@ -29,6 +29,7 @@
 import { ViewBox, XHeader, Group, Cell, XButton } from 'vux'
 
 export default {
+  name: 'detail',
   data () {
     return {
       user: {}

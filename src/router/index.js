@@ -24,11 +24,11 @@ import Register from '@/components/wellcome/register'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   routes: [
     {
       path: '/',
-      redirect: {name: 'message'}
+      redirect: { name: 'message' }
     },
     // 登录
     {
@@ -107,3 +107,26 @@ export default new Router({
     }
   ]
 })
+
+router.beforeEach(async (to, from, next) => {
+  if ((to.name === 'login' || to.name === 'register')) {
+    return next()
+  }
+  if (!from.name || from.path === '/') {
+    // 检查是否登录
+    try {
+      // 检查登陆态
+      await Vue.$check()
+      // 连接socket
+      await Vue.$connect()
+      next()
+    } catch (err) {
+      Vue.$toast(err)
+      router.replace({ name: 'login', query: { mode: 'dismiss' } })
+    }
+  } else {
+    next()
+  }
+})
+
+export default router

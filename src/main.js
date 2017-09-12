@@ -9,12 +9,11 @@ import store from './vuex/store'
 // 全局样式
 import './assets/common.scss'
 
-import { LoadingPlugin, ToastPlugin } from 'vux'
+import Common from './plugins/common'
 import WRequest from './plugins/WRequest'
 import WSocket from './plugins/WSocket'
 
-Vue.use(LoadingPlugin)
-Vue.use(ToastPlugin)
+Vue.use(Common)
 Vue.use(WRequest)
 Vue.use(WSocket)
 
