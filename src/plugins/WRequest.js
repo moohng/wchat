@@ -20,10 +20,10 @@ const ax = axios.create({
 // window.ax = ax
 
 const request = options => {
-  return new Promise(async (resolve, reject) => {
+  return new Promise(async (resolve) => {
+    const loading = options.loading
+    loading && Vue.$loading(typeof loading === 'string' ? loading : null)
     try {
-      const loading = options.loading
-      loading && Vue.$loading(typeof loading === 'string' ? loading : '')
       const res = await ax.request(options)
       loading && Vue.$hide()
       const data = res.data
@@ -33,13 +33,13 @@ const request = options => {
           name: 'login',
           query: { mode: 'dismiss' }
         })
-        reject('未登录')
+        Vue.$toast(data.message || data)
       } else {
         resolve(data)
       }
     } catch (err) {
       loading && Vue.$hide()
-      reject(err)
+      Vue.$toast(err)
     }
   })
 }

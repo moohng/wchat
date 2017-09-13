@@ -56,9 +56,9 @@ export default {
   height: 100vh;
 
   // 字体
-  font-family: "Microsoft YaHei", Helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 
-  background: #000;
+  // background: #000;
 
   // 防止某些浏览器 切换界面时出现滚动条
   overflow: hidden;

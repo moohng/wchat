@@ -113,18 +113,10 @@ router.beforeEach(async (to, from, next) => {
     return next()
   }
   if (!from.name || from.path === '/') {
-    // 检查是否登录
-    try {
-      // 检查登陆态
-      await Vue.$check()
-      // 连接socket
-      await Vue.$connect()
-      next()
-    } catch (err) {
-      Vue.$toast(err)
-      router.replace({ name: 'login', query: { mode: 'dismiss' } })
-    }
-  } else {
+    // 检查登陆态
+    await Vue.$check()
+    // 连接socket
+    await Vue.$connect()
     next()
   }
 })

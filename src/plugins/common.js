@@ -5,14 +5,16 @@ const plugin = {
     // 注册
     Vue.use(LoadingPlugin)
     Vue.use(ToastPlugin)
-
     // toast
     Vue.prototype.$toast = Vue.$toast = options => {
-      if (options && options.text) {
-        Vue.$vux.toast.show(options)
-      } else {
-        Vue.$vux.toast.text(options, 'bottom')
+      if (!options.text) {
+        options = {
+          type: 'text',
+          text: options,
+          position: 'bottom'
+        }
       }
+      Vue.$vux.toast.show(options)
     }
     // loading
     Vue.prototype.$loading = Vue.$loading = options => {
