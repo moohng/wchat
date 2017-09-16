@@ -36,22 +36,22 @@ export default {
   },
   methods: {
     async login () {
-      this.$vux.loading.show('登录中...')
+      this.$loading('登录中...')
       // 登录
       const res = await this.$login({
         username: this.username,
         password: this.password
       })
-      // 连接socket
-      await this.$connect()
-      this.$vux.loading.hide()
       if (res.code === 0) {
+        // 连接socket
+        await this.$connect()
+        this.$hide()
         this.$router.replace({
           name: 'message',
           query: { mode: 'modal' }
         })
       } else {
-        this.$vux.toast.text(res.message, 'bottom')
+        this.$toast(res.message)
       }
     }
   },

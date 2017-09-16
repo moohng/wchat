@@ -1,9 +1,10 @@
 
 // 会话列表
-let sessionList = [
+const sessionList = [
   {
     id: '12345',
-    name: '聊天室',
+    name: 'qqqqqq',
+    head_icon: 'http://iph.href.lu/200x200?text=%E9%BB%98%E8%AE%A4%E5%A4%B4%E5%83%8F',
     members: ['moohng', 'qqqqqq'],
     messages: [
       {
@@ -11,28 +12,28 @@ let sessionList = [
         content: {
           text: '现在方便吗？'
         },
-        date: 8786785656
+        date: 1505485259436
       },
       {
         from: { username: 'qqqqqq' },
         content: {
           text: '你不要来烦我你不要来烦我你不要来烦我你不要来烦我你不要来烦我你不要来烦我'
         },
-        date: 232132131
+        date: 150595251136
       }
     ]
   }
 ]
 // 好友列表
-let friendList = [
+const friendList = [
   'moohng',
   'b',
   'bbbbbb'
 ]
 
 
-let state = {
-  user: {},
+const state = {
+  // user: {},
   // 聊天记录
   sessionList,
 

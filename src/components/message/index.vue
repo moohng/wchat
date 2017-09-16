@@ -2,10 +2,11 @@
   <div class="message">
     <search :autoFixed="false"></search>
     <group :gutter="0">
-      <cell v-for="session in sessionList"
-        :title="session.name"
-        @click.native.stop="$router.push({name: 'chat'})">
-        <img slot="icon" src="" class="cell-hd__icon">
+      <cell v-for="session, index in sessionList"
+      :key="session.id"
+      :title="session.name"
+      @click.native.stop="$router.push({ name: 'chat' , query: { index } })">
+        <img slot="icon" :src="session.head_icon || head_icon" class="cell-hd__icon">
         <span slot="inline-desc" class="cell-desc">{{ session | lastMessage | messageText }}</span>
         <span slot="default" class="cell-time">{{ session | lastMessage | messageTime }}</span>
       </cell>
@@ -20,6 +21,11 @@ import { format } from '../../utils'
 
 export default {
   name: 'message',
+  data () {
+    return {
+      head_icon: 'http://iph.href.lu/200x200?text=%E9%BB%98%E8%AE%A4%E5%A4%B4%E5%83%8F'
+    }
+  },
   computed: mapState(['sessionList']),
   filters: {
     lastMessage (session) {
@@ -29,21 +35,16 @@ export default {
     messageText: message => message.content.text,
     messageTime (message) {
       const date = new Date(message.date)
-      const messageDay = format(date, 'dd')
-      const nowDay = format(new Date(), 'dd')
+      const now = new Date()
+      const diff = now - date
+      const day = 24 * 60 * 60 * 1000
       let time
-      switch (nowDay - messageDay) {
-        case 0:
-          time: format(date, 'hh:mm')
-          break
-        case 1:
-          time: '昨天'
-          break
-        case 2:
-          time: '前天'
-          break
-        default:
-          time: format(date, 'MM月dd日')
+      if (diff < day && date.getDate() === now.getDate()) { // 今天
+        time = format(date, 'hh:mm')
+      } else if (diff > day && diff < 2 * day && date.getDate() === now.getDate() + 1) {  // 昨天
+        time = '昨天'
+      } else if (diff > 2 * day) {
+        time = format(date, 'MM月dd日')
       }
       return time
     }
@@ -62,7 +63,6 @@ export default {
 .message {
   .cell-hd__icon {
     width: 48px; height: 48px;
-    border: 1px solid #000;
   }
   .cell-desc { @include textHidden }
   .cell-time {

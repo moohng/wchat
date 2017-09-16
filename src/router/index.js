@@ -108,17 +108,4 @@ const router = new Router({
   ]
 })
 
-router.beforeEach(async (to, from, next) => {
-  if ((to.name === 'login' || to.name === 'register')) {
-    return next()
-  }
-  if (!from.name || from.path === '/') {
-    // 检查登陆态
-    await Vue.$check()
-    // 连接socket
-    await Vue.$connect()
-    next()
-  }
-})
-
 export default router

@@ -1,30 +1,49 @@
 <template>
   <li class="chat-dialog">
     <div class="wrap" v-if="date">
-      <span class="date">{{ message.time }}</span>
+      <span class="date">{{ date }}</span>
     </div>
     <div class="wrap content" :class="{reverse}">
       <div class="icon">
-        <img src="" alt="">
-        <div class="context">
-          <p>{{ message.content.text }}</p>
-        </div>
+        <img :src="message.from.head_icon || head_icon">
+      </div>
+      <div class="context">
+        <p>{{ message.content.text }}</p>
       </div>
     </div>
   </li>
 </template>
 
 <script>
+import { format } from '../../../utils'
+
 export default {
-  props: ['message', 'date'],
+  data () {
+    return {
+      head_icon: 'http://iph.href.lu/200x200?text=%E9%BB%98%E8%AE%A4%E5%A4%B4%E5%83%8F'
+    }
+  },
+  props: ['message'],
   computed: {
+    date () {
+      const date = new Date(this.message.date)
+      const now = new Date()
+      const diff = now - date
+      if (diff < 2 * 60 * 1000) return
+      const day = 24 * 60 * 60 * 1000
+      let time
+      if (diff < day && date.getDate() === now.getDate()) { // 今天
+        time = format(date, 'hh:mm')
+      } else if (diff > day && diff < 2 * day && date.getDate() === now.getDate() + 1) {  // 昨天
+        time = '昨天'
+      } else if (diff > 2 * day) {
+        time = format(date, 'MM月dd日')
+      }
+      return time
+    },
     reverse () {
-      if (this.message.from) {
-        return false
-      }
-      else {
-        return true
-      }
+      const username = sessionStorage.getItem('username')
+      return this.message.from.username === username
     }
   }
 }

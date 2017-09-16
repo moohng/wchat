@@ -19,6 +19,7 @@ const plugin = {
     // loading
     Vue.prototype.$loading = Vue.$loading = options => {
       if (!options || !options.text) {
+        console.log(options)
         options = { text: options || '加载中...' }
       }
       Vue.$vux.loading.show(options)

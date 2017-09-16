@@ -15,6 +15,14 @@ export default {
       transMode: ''
     }
   },
+  async mounted () {
+    // 检查登陆态
+    const data = await this.$check()
+    sessionStorage.setItem('username', data.user.username)
+    // 连接socket
+    await this.$connect()
+    this.$receive(data => console.log(data))
+  },
   watch: {
     $route (to, from) {
       if (!from.name) {

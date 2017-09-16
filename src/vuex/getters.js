@@ -1,6 +1,4 @@
 const getters = {
-    user: state => state.user,
-
     // 好友列表
     friendList: state => {
         // 排序 分组

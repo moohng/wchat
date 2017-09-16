@@ -34,34 +34,18 @@ import IconVoice from './icons/voice'
 import IconEmoji from './icons/emoji'
 import IconMore from './icons/more'
 
-import { mapGetters } from 'vuex'
-
 export default {
   data () {
     return {
       showSend: false
     }
   },
-  props: ['to'],
-  computed: {
-    ...mapGetters(['account'])
-  },
   methods: {
     send (el) {
       const text = el.innerText
       if (text.length === 0) return
-
       console.log(text)
-      // 封装消息
-      const time = new Date()
-      const message = {
-        to: this.to,
-        content: {
-            text
-        },
-        time: time.getHours() + ':' + time.getMinutes()
-      }
-      this.$store.dispatch('vx_send', message)
+      this.$emit('send', text)
       el.innerText = ''
       this.showSend = false
     },
