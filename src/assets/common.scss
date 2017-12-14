@@ -1,0 +1,67 @@
+// 统一样式
+html, body, ul, p, h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+}
+img {
+    display: block;
+}
+li {
+    list-style: none;
+}
+a {
+    text-decoration: none;
+}
+
+@import './mixin';
+
+// view-box
+.weui-tab {
+  position: absolute;
+  width: 100%;
+
+  background: $bgColor;
+}
+
+// x-header
+.vux-header {
+  background: #000;
+
+  .vux-header-left,
+  .vux-header-right {
+    color: #fff;
+    font-size: 16px;
+  }
+
+  .vux-header-left {
+    a.vux-header-back {
+      color: #fff;
+    }
+    .left-arrow::before {
+      border-color: #fff;
+    }
+  }
+}
+
+// cell
+.weui-cell {
+  .weui-cell__hd {
+    img {
+      margin-right: 8px;
+      width: 28px;
+    }
+  }
+  .weui-cell__ft {
+    font-size: 15px;
+  }
+}
+
+// x-input
+.vux-x-input {
+  .weui-cell__hd {
+    display: flex;
+    align-items: center;
+
+    margin-right: 8px;
+  }
+}
