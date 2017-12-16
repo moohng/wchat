@@ -30,7 +30,6 @@ export default {
   },
   computed: {
     disabled () {
-
       return this.username.length === 0 || this.password.length === 0
     }
   },

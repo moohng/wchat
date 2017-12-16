@@ -10,21 +10,23 @@ const ax = axios.create({
 
 // window.ax = ax
 
-const request = options => {
+const request = async options => {
   const { loading, ...opts } = options
   !!loading && store.commit(types.UPDATE_LOADING_STATUS, { loading: true })
-  return ax.request(opts).then(res => {
-    !!loading && store.commit(types.UPDATE_LOADING_STATUS, { loading: false })
-    console.log('response', res)
-    if (res.code === 0) { // 正常数据
-      return res.data
-    } else {              // 无效数据
-      store.commit(types.UPDATE_CODE_STATUS, { invalidResponse })
+  try {
+    const response = await ax.request(opts)
+    const { code, data } = response.data
+    if (code === 0) {
+      return data
+    } else {
+      store.commit(types.UPDATE_INVALID_RESPONSE, { invalidResponse: response.data })
+      return Promise.reject(response.data)
     }
-  }, err => {
+  } catch (err) {
+    return Promise.reject(err)
+  } finally {
     !!loading && store.commit(types.UPDATE_LOADING_STATUS, { loading: false })
-    console.log('error', err)
-  })
+  }
 }
 
 export const get = request.get = (url, params, loading) => {

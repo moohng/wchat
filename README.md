@@ -38,6 +38,19 @@ $ yarn
 $ yarn dev
 ```
 
+`node-sass`安装失败的解决办法：
+
+``` bash
+$ yarn add node-sass -D --sass_binary_site=https://npm.taobao.org/mirrors/node-sass
+```
+
+或
+
+``` bash
+$ yarn config set sass_binary_site https://npm.taobao.org/mirrors/node-sass
+$ yarn add node-sass -D
+```
+
 ## 效果演示
 
 ### 登陆

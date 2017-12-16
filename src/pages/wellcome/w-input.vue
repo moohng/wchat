@@ -16,11 +16,10 @@ export default {
   },
   directives: {
     type: {
-      bind(el, { value }) {
+      bind (el, { value }) {
         if (value === 'username') {
           el.type = 'text'
-        }
-        else if (value === 'password') {
+        } else if (value === 'password') {
           el.type = 'password'
         }
       }
@@ -34,7 +33,7 @@ export default {
       const isTrue = /^[0-9a-zA-Z._@]{6,16}$/.test(el.value)
 
       let value = el.value
-      if (!isTrue)  {
+      if (!isTrue) {
         value = ''
       }
       this.error = !isTrue

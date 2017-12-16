@@ -46,8 +46,7 @@ export default {
             title: this.user.username
           }
         })
-      }
-      else {
+      } else {
         this.$addFriend(this.user.username, err => {
           if (err) {
             console.log(err)

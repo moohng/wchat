@@ -32,19 +32,19 @@ export default {
   },
   computed: {
     disabled () {
-
       if (this.rePassword !== this.password) {
         this.rePassword = ''
         //
         this.error = true
-      }
-      else {
+      } else {
         this.error = false
       }
 
-      return (this.username.length === 0 ||
-             this.password.length === 0 ||
-             this.rePassword.length === 0)
+      return (
+        this.username.length === 0 ||
+        this.password.length === 0 ||
+        this.rePassword.length === 0
+      )
     }
   },
   methods: {

@@ -37,7 +37,7 @@ export default {
       actionsheetMenus: [
         {
           label: '退出当前账号？<br/><span style="color:#666;font-size:12px;">退出之后需要重新登录</span>',
-          type: 'info',
+          type: 'info'
         },
         {
           label: '退出',

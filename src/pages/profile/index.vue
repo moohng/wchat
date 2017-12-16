@@ -1,8 +1,11 @@
 <template>
   <div class="profile">
     <group>
-      <cell :is-link="true" :link="{name: 'me'}"
-      :title="'Kevin'" :inline-desc="'微信号：mohong668'">
+      <cell
+        :title="'Kevin'"
+        :inline-desc="'微信号：mohong668'"
+        :link="{ name: 'me' }"
+      >
         <img slot="icon" class="icon-hd" :src="icons[0]">
         <img slot="default" class="icon-bd" :src="icons[1]">
       </cell>
@@ -60,7 +63,7 @@ export default {
   name: 'profile',
   data () {
     return {
-      icons: [head, qrcode ,album, collection, wallet, vip, emoj, setting],
+      icons: [head, qrcode, album, collection, wallet, vip, emoj, setting],
       titles: ['相册', '收藏', '钱包', '卡包', '表情', '设置'],
 
       user: {
@@ -79,7 +82,7 @@ export default {
   },
   components: {
     Group,
-    Cell,
+    Cell
   }
 }
 </script>

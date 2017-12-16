@@ -2,12 +2,12 @@
   <div class="contact">
     <search :autoFixed="false"></search>
     <group :gutter="0">
-      <cell v-for="title, index in titles" @click.native.stop="tabSelect(index)">
+      <cell v-for="(title, index) in titles" :key="index" @click.native.stop="tabSelect(index)">
         <span slot="title">{{ title }}</span>
       </cell>
     </group>
-    <group v-for="group in friendList">
-      <cell v-for="friend in group" @click.native.stop="detail(friend)">
+    <group v-for="(group, index) in friendList" :key="index">
+      <cell v-for="friend in group" :key="friend" @click.native.stop="detail(friend)">
         <span slot="title">{{ friend }}</span>
       </cell>
     </group>
@@ -38,26 +38,20 @@ export default {
       let group = []
       let last = list[0].substr(0, 1)
       for (let i = 0; i < list.length; i++) {
-
         const current = list[i].substr(0, 1)
         if (current === last) {
           group.push(list[i])
-        }
-        else {
+        } else {
           toList.push(group)
           group = []
           group.push(list[i])
-      }
-
+        }
         if (i === list.length - 1) {
           toList.push(group)
-        }
-        else {
+        } else {
           last = current
         }
-
       }
-
       return toList
     }
   },
@@ -72,7 +66,6 @@ export default {
           break
         default:
       }
-
     },
 
     detail (username) {

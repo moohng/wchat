@@ -10,6 +10,8 @@
 <script>
 import { Loading } from 'vux'
 import { mapState } from 'vuex'
+import * as api from './services/api'
+import * as types from './store/mutation-types'
 
 export default {
   name: 'app',
@@ -26,12 +28,13 @@ export default {
     })
   },
   async mounted () {
-    // 检查登陆态
-    const data = await this.$check()
-    sessionStorage.setItem('username', data.user.username)
-    // 连接socket
-    // await this.$connect()
-    // this.$receive(data => console.log(data))
+    // 获取当前用户信息（鉴权）
+    try {
+      const data = await this.$get(api.fetchUserInfo)
+      this.$store.commit(types.SAVE_USER_INFO, { userInfo: data })
+    } catch (err) {
+      console.log('err', err)
+    }
   },
   watch: {
     invalidResponse (val, old) {
@@ -40,7 +43,7 @@ export default {
         this.$toast('未登录')
         this.$router.replace({ name: 'login' })
       }
-      console.log(msg || '数据异常');
+      console.log(msg || '数据异常')
     },
     $route (to, from) {
       if (!from.name) {

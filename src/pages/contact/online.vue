@@ -5,7 +5,7 @@
     </x-header>
     <template slot="default" v-if="onlineList.length">
       <group>
-        <cell v-for="username in onlineList"
+        <cell v-for="username in onlineList" :key="username"
         @click.native.stop="select(username)">
           <span slot="title">{{ username }}</span>
         </cell>

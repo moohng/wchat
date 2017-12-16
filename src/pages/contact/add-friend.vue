@@ -13,7 +13,7 @@
         <span>我的微信号：moohng</span>
       </div>
       <group>
-        <cell v-for="cell in cells" :is-link="true" :title="cell.title">
+        <cell v-for="cell in cells" :key="cell" is-link :title="cell.title">
           <!-- <img slot="icon" src="cell.img" alt=""> -->
           <template slot="inline-desc">{{ cell.subtitle }}</template>
         </cell>

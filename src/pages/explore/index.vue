@@ -61,10 +61,8 @@ export default {
   name: 'explore',
   data () {
     return {
-      icons: [friend, sao, shake, bottle,
-              nearby, shop, game, app],
-      titles: ['朋友圈', '扫一扫', '摇一摇', '漂流瓶',
-              '附近的人', '购物', '游戏', '小程序']
+      icons: [friend, sao, shake, bottle, nearby, shop, game, app],
+      titles: ['朋友圈', '扫一扫', '摇一摇', '漂流瓶', '附近的人', '购物', '游戏', '小程序']
     }
   },
   components: {

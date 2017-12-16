@@ -40,17 +40,17 @@ import IconProfile from './icons/profile'
 
 export default {
   name: 'wchat',
-  data() {
+  data () {
     return {
       pageIndex: 0
     }
   },
   computed: {
-    title() {
+    title () {
       return this.$route.meta.title
-    },
+    }
   },
-  created() {
+  created () {
     this.pageIndex = ['message', 'contact', 'explore', 'profile'].findIndex(value => value === this.$route.name)
   },
   components: {

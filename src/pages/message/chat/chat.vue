@@ -4,7 +4,7 @@
       <span slot="default">{{ session.name }}</span>
     </x-header>
     <ul slot="default" v-scroll>
-      <chat-dialog v-for="message in session.messages"
+      <chat-dialog v-for="message in session.messages" :key="message"
       :message="message"></chat-dialog>
     </ul>
     <chat-bar slot="bottom" @send="send"></chat-bar>
@@ -19,7 +19,7 @@ import { mapState } from 'vuex'
 
 export default {
   computed: {
-    ...mapState (['sessionList']),
+    ...mapState(['sessionList']),
     session () {
       const { index, username } = this.$route.query
       if (username) {
