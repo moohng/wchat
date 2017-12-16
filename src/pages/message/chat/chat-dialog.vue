@@ -51,6 +51,7 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../../styles/mixin';
+@import '../../../styles/theme';
 
 $myColor: #a6ef5d;
 $otherColor: #fff;

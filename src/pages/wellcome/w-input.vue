@@ -44,7 +44,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../styles/mixin';
+@import '../../styles/theme';
 
 .input {
   position: relative;

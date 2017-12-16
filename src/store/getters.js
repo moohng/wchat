@@ -1,6 +1,2 @@
-const getters = {
-  loading: state => !!state.loading,
-  invalidResponse: state => state.invalidResponse
-}
-
-export default getters
+export const loading = state => !!state.loading
+export const invalidResponse = state => state.invalidResponse

@@ -1,6 +1,6 @@
 const state = {
   loading: 0,             // 加载状态
-  invalidResponse: {}     // 请求 code
+  invalidResponse: {}     // 异常响应
 }
 
 export default state

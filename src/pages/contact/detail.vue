@@ -84,6 +84,7 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../styles/mixin';
+@import '../../styles/theme';
 
 .detail {
 

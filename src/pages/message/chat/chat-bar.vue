@@ -66,6 +66,7 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../../styles/mixin';
+@import '../../../styles/theme';
 
 .chat-bar {
   @include abs(auto, 0, 0, 0)
