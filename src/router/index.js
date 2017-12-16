@@ -14,7 +14,9 @@ router.beforeEach((to, from, next) => {
   next()
 })
 router.afterEach((to, from) => {
-  store.commit(types.UPDATE_LOADING_STATUS, { loading: false })
+  setTimeout(() => {
+    store.commit(types.UPDATE_LOADING_STATUS, { loading: false })
+  }, 500)
   document.title = to.meta.title
 })
 

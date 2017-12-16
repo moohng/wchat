@@ -16,7 +16,11 @@ const request = options => {
   return ax.request(opts).then(res => {
     !!loading && store.commit(types.UPDATE_LOADING_STATUS, { loading: false })
     console.log('response', res)
-    return res
+    if (res.code === 0) { // 正常数据
+      return res.data
+    } else {              // 无效数据
+      store.commit(types.UPDATE_CODE_STATUS, { invalidResponse })
+    }
   }, err => {
     !!loading && store.commit(types.UPDATE_LOADING_STATUS, { loading: false })
     console.log('error', err)

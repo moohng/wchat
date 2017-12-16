@@ -21,18 +21,27 @@ export default {
   },
   computed: {
     ...mapState({
-      loading: state => !!state.loading
+      loading: state => !!state.loading,
+      invalidResponse: state => state.invalidResponse
     })
   },
   async mounted () {
     // 检查登陆态
-    // const data = await this.$check()
-    // sessionStorage.setItem('username', data.user.username)
+    const data = await this.$check()
+    sessionStorage.setItem('username', data.user.username)
     // 连接socket
     // await this.$connect()
     // this.$receive(data => console.log(data))
   },
   watch: {
+    invalidResponse (val, old) {
+      const { code, msg } = val
+      if (code === 100001) {
+        this.$toast('未登录')
+        this.$router.replace({ name: 'login' })
+      }
+      console.log(msg || '数据异常');
+    },
     $route (to, from) {
       if (!from.name) {
         this.transName = 'fade'

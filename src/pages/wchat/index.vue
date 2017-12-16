@@ -1,16 +1,30 @@
 <template>
   <view-box class="wchat">
-    <x-header slot="header" :left-options="{showBack: false}">
-      <span slot="default">{{ titleList[pageIndex] }}</span>
-      <div slot="right" @click="$router.push({name: 'add'})" v-if="pageIndex < 2">添加</div>
+    <x-header slot="header" :left-options="{ showBack: false }">
+      <span>{{ title }}</span>
+      <template slot="right">
+        <router-view name="header-right"></router-view>
+      </template>
     </x-header>
     <transition name="fade" mode="out-in">
       <router-view></router-view>
     </transition>
     <tabbar slot="bottom" v-model="pageIndex">
-      <tabbar-item v-for="tab in tabbar" :key="tab.icon" :link="tab.to">
-        <component :is="tab.icon" slot="icon"></component>
-        <span slot="label">{{ tab.title }}</span>
+      <tabbar-item :link="{ name: 'message' }">
+        <icon-wchat slot="icon"></icon-wchat>
+        <span slot="label">微信</span>
+      </tabbar-item>
+      <tabbar-item :link="{ name: 'contact' }">
+        <icon-contact slot="icon"></icon-contact>
+        <span slot="label">通讯录</span>
+      </tabbar-item>
+      <tabbar-item :link="{ name: 'explore' }">
+        <icon-explore slot="icon"></icon-explore>
+        <span slot="label">发现</span>
+      </tabbar-item>
+      <tabbar-item :link="{ name: 'profile' }">
+        <icon-profile slot="icon"></icon-profile>
+        <span slot="label">我</span>
       </tabbar-item>
     </tabbar>
   </view-box>
@@ -18,7 +32,6 @@
 
 <script>
 import { ViewBox, XHeader, Tabbar, TabbarItem } from 'vux'
-
 // SVG 图标
 import IconWchat from './icons/wchat'
 import IconContact from './icons/contact'
@@ -27,43 +40,18 @@ import IconProfile from './icons/profile'
 
 export default {
   name: 'wchat',
-  data () {
+  data() {
     return {
-      pageIndex: 0,
-      titleList: ['微信', '通讯录', '发现', '我'],
-      tabbar: [
-        {
-          title: '微信',
-          icon: 'icon-wchat',
-          to: {name: 'message'}
-        },
-        {
-          title: '通讯录',
-          icon: 'icon-contact',
-          to: {name: 'contact'}
-        },
-        {
-          title: '发现',
-          icon: 'icon-explore',
-          to: {name: 'explore'}
-        },
-        {
-          title: '我',
-          icon: 'icon-profile',
-          to: {name: 'profile'}
-        }
-      ]
+      pageIndex: 0
     }
   },
-  mounted () {
-    // 设置导航
-    this.pageIndex = ['message', 'contact', 'explore', 'profile']
-                    .findIndex(value => value === this.$route.name)
+  computed: {
+    title() {
+      return this.$route.meta.title
+    },
   },
-  updated () {
-    // 设置导航
-    this.pageIndex = ['message', 'contact', 'explore', 'profile']
-                    .findIndex(value => value === this.$route.name)
+  created() {
+    this.pageIndex = ['message', 'contact', 'explore', 'profile'].findIndex(value => value === this.$route.name)
   },
   components: {
     ViewBox,

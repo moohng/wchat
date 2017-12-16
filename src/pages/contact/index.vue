@@ -16,6 +16,7 @@
 
 <script>
 import { Search, Group, Cell } from 'vux'
+import HeaderRight from './header-right'
 
 export default {
   name: 'contact',
@@ -87,6 +88,7 @@ export default {
     Group,
     Cell,
     Search
-  }
+  },
+  HeaderRight
 }
 </script>

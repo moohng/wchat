@@ -10,13 +10,14 @@ import App from './App'
 import router from './router'
 import store from './store'
 
+import './services/mock'
 // 全局样式
 import './assets/common.scss'
 
-// import Common from './plugins/common'
+import common from './plugins/common'
 import request from './plugins/request'
 
-// Vue.use(Common)
+Vue.use(common)
 Vue.use(request)
 
 Vue.config.productionTip = false

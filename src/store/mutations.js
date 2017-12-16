@@ -4,6 +4,9 @@ const mutations = {
   [types.UPDATE_LOADING_STATUS] (state, { loading }) {
     const loadingNum = state.loading
     state.loading = loading ? loadingNum + 1 : loadingNum - 1
+  },
+  [types.UPDATE_CODE_STATUS] (state, { invalidResponse }) {
+    state.invalidResponse = invalidResponse
   }
 }
 

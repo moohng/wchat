@@ -48,22 +48,40 @@ export default [
       {
         path: 'message',
         name: 'message',
-        component: Message
+        components: {
+          default: Message,
+          'header-right': Message.HeaderRight
+        },
+        meta: {
+          title: '微信'
+        }
       },
       {
         path: 'contact',
         name: 'contact',
-        component: Contact
+        components: {
+          default: Contact,
+          'header-right': Contact.HeaderRight
+        },
+        meta: {
+          title: '通讯录'
+        }
       },
       {
         path: 'explore',
         name: 'explore',
-        component: Explore
+        component: Explore,
+        meta: {
+          title: '发现'
+        }
       },
       {
         path: 'profile',
         name: 'profile',
-        component: Profile
+        component: Profile,
+        meta: {
+          title: '我'
+        }
       }
     ]
   },

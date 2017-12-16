@@ -19,6 +19,7 @@
 <script>
 import { Search, Group, Cell } from 'vux'
 import { mapState } from 'vuex'
+import HeaderRight from './header-right'
 import { format } from '../../utils'
 
 export default {
@@ -55,7 +56,8 @@ export default {
     Group,
     Search,
     Cell
-  }
+  },
+  HeaderRight
 }
 </script>
 
