@@ -1,22 +1,20 @@
 <template>
   <view-box class="me">
-    <x-header slot="header" :left-options="{backText: '我'}">
+    <x-header slot="header" :left-options="{ backText: '我' }">
       <span slot="default">个人信息</span>
     </x-header>
     <template slot="default">
       <group>
-        <cell :is-link="true" title="头像">
-          <img slot="default" class="icon-bd" src="./icons/head-portrait.jpg">
+        <cell title="头像" is-link>
+          <img slot="default" class="icon-bd" :src="headIcon">
         </cell>
-        <cell :is-link="true" title="昵称">Kevin</cell>
-        <cell :is-link="true" title="微信号">moohng123</cell>
-        <cell :is-link="true" title="我的二维码"></cell>
-        <cell :is-link="true" title="我的地址"></cell>
+        <cell title="昵称" is-link>{{ name }}</cell>
+        <cell title="微信号" is-link>{{ username }}</cell>
+        <cell title="二维码名片" is-link></cell>
+        <cell title="更多" is-link></cell>
       </group>
       <group>
-        <cell :is-link="true" title="性别">男</cell>
-        <cell :is-link="true" title="地区">广东 深圳</cell>
-        <cell :is-link="true" title="个性签名">我没有签名怎么办</cell>
+        <cell title="我的地址" is-link></cell>
       </group>
     </template>
   </view-box>
@@ -24,9 +22,13 @@
 
 <script>
 import { ViewBox, XHeader, Group, Cell } from 'vux'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'me',
+  computed: {
+    ...mapGetters('profile', ['name', 'username', 'headIcon'])
+  },
   components: {
     ViewBox,
     XHeader,

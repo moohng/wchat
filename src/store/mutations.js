@@ -7,9 +7,6 @@ const mutations = {
   },
   [types.UPDATE_INVALID_RESPONSE] (state, { invalidResponse }) {
     state.invalidResponse = invalidResponse
-  },
-  [types.SAVE_USER_INFO] (state, { userInfo }) {
-    state.userInfo = userInfo
   }
 }
 

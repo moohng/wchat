@@ -12,7 +12,7 @@ import store from './store'
 
 import './services/mock'
 // 全局样式
-import './assets/common.scss'
+import './styles/common.scss'
 
 import common from './plugins/common'
 import request from './plugins/request'

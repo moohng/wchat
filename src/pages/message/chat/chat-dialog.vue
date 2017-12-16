@@ -50,7 +50,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../../assets/mixin';
+@import '../../../styles/mixin';
 
 $myColor: #a6ef5d;
 $otherColor: #fff;

@@ -9,9 +9,7 @@
 
 <script>
 import { Loading } from 'vux'
-import { mapState } from 'vuex'
-import * as api from './services/api'
-import * as types from './store/mutation-types'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'app',
@@ -22,19 +20,11 @@ export default {
     }
   },
   computed: {
-    ...mapState({
-      loading: state => !!state.loading,
-      invalidResponse: state => state.invalidResponse
-    })
+    ...mapGetters(['loading', 'invalidResponse'])
   },
   async mounted () {
     // 获取当前用户信息（鉴权）
-    try {
-      const data = await this.$get(api.fetchUserInfo)
-      this.$store.commit(types.SAVE_USER_INFO, { userInfo: data })
-    } catch (err) {
-      console.log('err', err)
-    }
+    // TODO..
   },
   watch: {
     invalidResponse (val, old) {

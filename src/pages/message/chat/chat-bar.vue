@@ -65,7 +65,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../../assets/mixin';
+@import '../../../styles/mixin';
 
 .chat-bar {
   @include abs(auto, 0, 0, 0)

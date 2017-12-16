@@ -7,7 +7,9 @@
       </template>
     </x-header>
     <transition name="fade" mode="out-in">
-      <router-view></router-view>
+      <keep-alive>
+        <router-view></router-view>
+      </keep-alive>
     </transition>
     <tabbar slot="bottom" v-model="pageIndex">
       <tabbar-item :link="{ name: 'message' }">

@@ -1,23 +1,14 @@
-// 统一样式
-html, body, ul, p, h1, h2, h3, h4, h5, h6 {
-    margin: 0;
-    padding: 0;
-}
-img {
-    display: block;
-}
-li {
-    list-style: none;
-}
-a {
-    text-decoration: none;
-}
-
 @import './mixin';
+
+html, body, p {
+  margin: 0;
+}
+a { text-decoration: none; }
+img { display: block; }
 
 // view-box
 .weui-tab {
-  position: absolute;
+  position: absolute!important;
   width: 100%;
 
   background: $bgColor;

@@ -62,7 +62,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../assets/mixin';
+@import '../../styles/mixin';
 
 .message {
   .cell-hd__icon {
