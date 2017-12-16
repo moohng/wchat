@@ -22,7 +22,10 @@ export default {
   computed: {
     ...mapGetters(['loading', 'invalidResponse'])
   },
-  async mounted () {
+  created () {
+    this.$store.dispatch('profile/fetchUserInfo')
+  },
+  mounted () {
     // 获取当前用户信息（鉴权）
     // TODO..
   },

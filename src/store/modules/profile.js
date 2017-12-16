@@ -10,7 +10,10 @@ export default {
   getters: {
     name: state => state.userInfo.name,
     username: state => state.userInfo.username,
-    headIcon: state => state.userInfo.headIcon
+    headIcon: state => state.userInfo.headIcon,
+    sex: state => state.userInfo.sex,
+    address: state => state.userInfo.address,
+    aboutMe: state => state.userInfo.aboutMe
   },
   actions: {
     async fetchUserInfo ({ commit }) {

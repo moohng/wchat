@@ -1,11 +1,9 @@
 <template>
   <view-box class="wchat">
-    <x-header slot="header" :left-options="{ showBack: false }">
+    <w-header slot="header">
       <span>{{ title }}</span>
-      <template slot="right">
-        <router-view name="header-right"></router-view>
-      </template>
-    </x-header>
+      <router-view slot="right" name="header-right"></router-view>
+    </w-header>
     <transition name="fade" mode="out-in">
       <keep-alive>
         <router-view></router-view>
@@ -33,7 +31,8 @@
 </template>
 
 <script>
-import { ViewBox, XHeader, Tabbar, TabbarItem } from 'vux'
+import { ViewBox, Tabbar, TabbarItem } from 'vux'
+import { WHeader } from '@/components/wx'
 // SVG 图标
 import IconWchat from './icons/wchat'
 import IconContact from './icons/contact'
@@ -57,7 +56,7 @@ export default {
   },
   components: {
     ViewBox,
-    XHeader,
+    WHeader,
     Tabbar,
     TabbarItem,
 

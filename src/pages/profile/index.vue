@@ -60,9 +60,6 @@ export default {
       return username && `微信号：${username}`
     }
   },
-  created () {
-    this.$store.dispatch('profile/fetchUserInfo')
-  },
   components: {
     Group,
     Cell

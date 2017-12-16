@@ -1,33 +1,36 @@
 <template>
   <view-box class="setting">
-    <x-header slot="header" :left-options="{backText: '我'}">
-      <span slot="default">设置</span>
-    </x-header>
-    <template slot="default">
-      <group>
-        <cell :is-link="true" title="账号与安全"></cell>
-      </group>
-      <group>
-        <cell :is-link="true" title="新消息通知"></cell>
-        <cell :is-link="true" title="隐私"></cell>
-        <cell :is-link="true" title="通用"></cell>
-      </group>
-      <group>
-        <cell :is-link="true" title="帮助与反馈"></cell>
-        <cell :is-link="true" title="关于微信"></cell>
-      </group>
-      <group>
-        <cell id="logout" title="退出"  @click.native="showActionsheet = true"></cell>
-      </group>
-      <actionsheet v-model="showActionsheet"
-      :show-cancel="true" :menus="actionsheetMenus"
-      @on-click-menu-logout="logout"></actionsheet>
-    </template>
+    <w-header slot="header" backText="我">设置</w-header>
+    <group>
+      <cell title="新消息通知" is-link></cell>
+      <cell title="勿扰模式" is-link></cell>
+      <cell title="聊天" is-link></cell>
+      <cell title="隐私" is-link></cell>
+      <cell title="通用" is-link></cell>
+      <cell title="账号与安全" is-link></cell>
+    </group>
+    <group>
+      <cell title="关于微信" is-link></cell>
+      <cell title="帮助与反馈" is-link></cell>
+    </group>
+    <group>
+      <cell title="插件" is-link></cell>
+    </group>
+    <group>
+      <cell-box class="cell-logout" @click.native="showActionsheet = true">退出</cell-box>
+    </group>
+    <actionsheet
+      show-cancel
+      v-model="showActionsheet"
+      :menus="actionsheetMenus"
+      @on-click-menu-logout="logout"
+    ></actionsheet>
   </view-box>
 </template>
 
 <script>
-import { ViewBox, XHeader, Group, Cell, Actionsheet } from 'vux'
+import { ViewBox, Group, Cell, CellBox, Actionsheet } from 'vux'
+import { WHeader } from '@/components/wx'
 
 export default {
   name: 'setting',
@@ -48,27 +51,23 @@ export default {
     }
   },
   methods: {
-    async logout () {
-      const res = await this.$logout()
-      if (res.code === 0) {
-        this.$router.push({ name: 'login', query: { mode: 'dismiss' } })
-      } else {
-        this.$vux.toast.text(res.message, 'bottom')
-      }
+    logout () {
+      console.log('退出')
     }
   },
   components: {
     ViewBox,
-    XHeader,
+    WHeader,
     Group,
     Cell,
+    CellBox,
     Actionsheet
   }
 }
 </script>
 
 <style lang="scss">
-#logout .vux-label {
-  text-align: center;
+.cell-logout {
+  justify-content: center;
 }
 </style>
