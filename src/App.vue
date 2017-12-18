@@ -81,7 +81,7 @@ export default {
   height: 100vh;
 
   // 字体
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: '-apple-system-font', 'Helvetica Neue', Helvetica, sans-serif;
 
   // background: #000;
 

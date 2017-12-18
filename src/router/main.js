@@ -17,7 +17,8 @@ export default {
         'header-right': Message.HeaderRight
       },
       meta: {
-        title: '微信'
+        title: '微信',
+        tabIndex: 0
       }
     },
     {
@@ -28,7 +29,8 @@ export default {
         'header-right': Contact.HeaderRight
       },
       meta: {
-        title: '通讯录'
+        title: '通讯录',
+        tabIndex: 1
       }
     },
     {
@@ -36,7 +38,8 @@ export default {
       name: 'explore',
       component: Explore,
       meta: {
-        title: '发现'
+        title: '发现',
+        tabIndex: 2
       }
     },
     {
@@ -44,7 +47,8 @@ export default {
       name: 'profile',
       component: Profile,
       meta: {
-        title: '我'
+        title: '我',
+        tabIndex: 3
       }
     }
   ]

@@ -9,7 +9,7 @@
         <router-view></router-view>
       </keep-alive>
     </transition>
-    <tabbar slot="bottom" v-model="pageIndex">
+    <tabbar slot="bottom" :value="pageIndex">
       <tabbar-item :link="{ name: 'message' }">
         <icon-wchat slot="icon"></icon-wchat>
         <span slot="label">微信</span>
@@ -41,18 +41,13 @@ import IconProfile from './icons/profile'
 
 export default {
   name: 'wchat',
-  data () {
-    return {
-      pageIndex: 0
-    }
-  },
   computed: {
     title () {
       return this.$route.meta.title
+    },
+    pageIndex () {
+      return this.$route.meta.tabIndex
     }
-  },
-  created () {
-    this.pageIndex = ['message', 'contact', 'explore', 'profile'].findIndex(value => value === this.$route.name)
   },
   components: {
     ViewBox,
