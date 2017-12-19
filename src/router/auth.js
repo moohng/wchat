@@ -15,6 +15,9 @@ export default [
   {
     path: '/wellcome/register',
     name: 'register',
-    component: Register
+    component: Register,
+    meta: {
+      title: '注册'
+    }
   }
 ]

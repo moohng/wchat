@@ -23,11 +23,8 @@ export default {
     ...mapGetters(['loading', 'invalidResponse'])
   },
   created () {
+    // 获取当前用户信息
     this.$store.dispatch('profile/fetchUserInfo')
-  },
-  mounted () {
-    // 获取当前用户信息（鉴权）
-    // TODO..
   },
   watch: {
     invalidResponse (val, old) {

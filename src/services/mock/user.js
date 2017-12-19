@@ -16,3 +16,16 @@ export const fetchUserInfo = () => {
     }
   })
 }
+
+export const fetchUserContact = () => {
+  return Mock.mock({
+    code: 0,
+    msg: 'ok',
+    'data|20': [{
+      'name|1': ['@cname', '@name'],
+      username: /[0-9a-z]{6,16}/,
+      headIcon: '@dataImage',
+      'sex|1': ['男', '女']
+    }]
+  })
+}

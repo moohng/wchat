@@ -1,45 +1,37 @@
 <template>
   <div class="explore">
     <group>
-      <cell :is-link="true">
-        <span slot="title">{{ titles[0] }}</span>
-        <img slot="icon" :src="icons[0]" alt="">
+      <cell title="朋友圈" is-link>
+        <img slot="icon" src="./icons/w-explore-friend.svg" alt="friend">
       </cell>
     </group>
     <group>
-      <cell :is-link="true">
-        <span slot="title">{{ titles[1] }}</span>
-        <img slot="icon" :src="icons[1]" alt="">
+      <cell title="扫一扫" is-link>
+        <img slot="icon" src="./icons/w-explore-sao.svg" alt="sao">
       </cell>
-      <cell :is-link="true">
-        <span slot="title">{{ titles[2] }}</span>
-        <img slot="icon" :src="icons[2]" alt="">
+      <cell title="摇一摇" is-link>
+        <img slot="icon" src="./icons/w-explore-shake.svg" alt="shake">
       </cell>
     </group>
     <group>
-      <cell :is-link="true">
-        <span slot="title">{{ titles[3] }}</span>
-        <img slot="icon" :src="icons[3]" alt="">
+      <cell title="附近的人" is-link>
+        <img slot="icon" src="./icons/w-explore-nearby.svg" alt="nearby">
       </cell>
-      <cell :is-link="true">
-        <span slot="title">{{ titles[4] }}</span>
-        <img slot="icon" :src="icons[4]" alt="">
+      <cell title="漂流瓶" is-link>
+        <img slot="icon" src="./icons/w-explore-bottle.svg" alt="bottle">
       </cell>
     </group>
     <group>
-      <cell :is-link="true">
-        <span slot="title">{{ titles[5] }}</span>
-        <img slot="icon" :src="icons[5]" alt="">
+      <cell title="购物" is-link>
+        <img slot="icon" src="./icons/w-explore-shop.svg" alt="shop">
       </cell>
-      <cell :is-link="true">
-        <span slot="title">{{ titles[6] }}</span>
-        <img slot="icon" :src="icons[6]" alt="">
+      <cell title="游戏" is-link>
+        <img slot="icon" src="./icons/w-explore-game.svg" alt="game">
       </cell>
     </group>
     <group>
-      <cell :is-link="true">
-        <span slot="title">{{ titles[7] }}</span>
-        <img slot="icon" :src="icons[7]" alt="">
+      <cell title="小程序" is-link>
+        <img slot="icon" src="./icons/w-explore-app.svg" alt="app">
       </cell>
     </group>
   </div>
@@ -48,23 +40,8 @@
 <script>
 import { Group, Cell } from 'vux'
 
-import friend from './icons/w-explore-friend.svg'
-import sao from './icons/w-explore-sao.svg'
-import shake from './icons/w-explore-shake.svg'
-import nearby from './icons/w-explore-nearby.svg'
-import bottle from './icons/w-explore-bottle.svg'
-import shop from './icons/w-explore-shop.svg'
-import game from './icons/w-explore-game.svg'
-import app from './icons/w-explore-app.svg'
-
 export default {
   name: 'explore',
-  data () {
-    return {
-      icons: [friend, sao, shake, bottle, nearby, shop, game, app],
-      titles: ['朋友圈', '扫一扫', '摇一摇', '漂流瓶', '附近的人', '购物', '游戏', '小程序']
-    }
-  },
   components: {
     Cell,
     Group
