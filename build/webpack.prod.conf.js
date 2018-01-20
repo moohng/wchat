@@ -55,27 +55,17 @@ const webpackConfig = merge(baseWebpackConfig, {
     // Compress extracted CSS. We are using this plugin so that possible
     // duplicated CSS from different components can be deduped.
     new OptimizeCSSPlugin({
-<<<<<<< HEAD
       cssProcessorOptions: config.build.productionSourceMap
         ? { safe: true, map: { inline: false } }
         : { safe: true }
-=======
-      cssProcessorOptions: {
-        safe: true
-      }
->>>>>>> b39e96c421f3aaf6c586489ea3dfeda0e0b0f9a6
     }),
     // generate dist index.html with correct asset hash for caching.
     // you can customize output by editing /index.html
     // see https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
-<<<<<<< HEAD
       filename: process.env.NODE_ENV === 'testing'
         ? 'index.html'
         : config.build.index,
-=======
-      filename: config.build.index,
->>>>>>> b39e96c421f3aaf6c586489ea3dfeda0e0b0f9a6
       template: 'index.html',
       inject: true,
       minify: {
@@ -88,7 +78,6 @@ const webpackConfig = merge(baseWebpackConfig, {
       // necessary to consistently work with multiple chunks via CommonsChunkPlugin
       chunksSortMode: 'dependency'
     }),
-<<<<<<< HEAD
     // keep module.id stable when vender modules does not change
     new webpack.HashedModuleIdsPlugin(),
     // enable scope hoisting
@@ -97,12 +86,6 @@ const webpackConfig = merge(baseWebpackConfig, {
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       minChunks (module) {
-=======
-    // split vendor js into its own file
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
-      minChunks: function (module, count) {
->>>>>>> b39e96c421f3aaf6c586489ea3dfeda0e0b0f9a6
         // any required modules inside node_modules are extracted to vendor
         return (
           module.resource &&
@@ -117,7 +100,6 @@ const webpackConfig = merge(baseWebpackConfig, {
     // prevent vendor hash from being updated whenever app bundle is updated
     new webpack.optimize.CommonsChunkPlugin({
       name: 'manifest',
-<<<<<<< HEAD
       minChunks: Infinity
     }),
     // This instance extracts shared chunks from code splitted chunks and bundles them
@@ -130,10 +112,6 @@ const webpackConfig = merge(baseWebpackConfig, {
       minChunks: 3
     }),
 
-=======
-      chunks: ['vendor']
-    }),
->>>>>>> b39e96c421f3aaf6c586489ea3dfeda0e0b0f9a6
     // copy custom static assets
     new CopyWebpackPlugin([
       {
@@ -146,11 +124,7 @@ const webpackConfig = merge(baseWebpackConfig, {
 })
 
 if (config.build.productionGzip) {
-<<<<<<< HEAD
   const CompressionWebpackPlugin = require('compression-webpack-plugin')
-=======
-  var CompressionWebpackPlugin = require('compression-webpack-plugin')
->>>>>>> b39e96c421f3aaf6c586489ea3dfeda0e0b0f9a6
 
   webpackConfig.plugins.push(
     new CompressionWebpackPlugin({
@@ -168,11 +142,7 @@ if (config.build.productionGzip) {
 }
 
 if (config.build.bundleAnalyzerReport) {
-<<<<<<< HEAD
   const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
-=======
-  var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
->>>>>>> b39e96c421f3aaf6c586489ea3dfeda0e0b0f9a6
   webpackConfig.plugins.push(new BundleAnalyzerPlugin())
 }
 
