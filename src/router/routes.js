@@ -9,6 +9,8 @@ import AddFriend from '@/pages/contact/add-friend'
 import Online from '@/pages/contact/online'
 import Detail from '@/pages/contact/detail'
 
+import PlayGround from '@/pages/playground'
+
 export default [
   {
     path: '/',
@@ -43,5 +45,13 @@ export default [
     path: '/wchat/contact/detail',
     name: 'detail',
     component: Detail
+  },
+  {
+    path: '/playground',
+    name: 'playground',
+    component: PlayGround,
+    meta: {
+      title: 'Playground'
+    }
   }
 ]
