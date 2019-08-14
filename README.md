@@ -18,24 +18,24 @@
 
 ## 在线预览
 
-~~[点击这里在线查看效果](http://mohng.com/wchat-vue)，建议使用谷歌浏览器，并开启手机调试模式（由于项目仍在开发中，部分功能可能不是最新、或暂不可用）。~~
+~~[点击这里在线查看效果](http://mohng.com/wchat)，建议使用谷歌浏览器，并开启手机调试模式（由于项目仍在开发中，部分功能可能不是最新、或暂不可用）。~~
 
 ~~新用户必须通过注册账号进入，已注册用户可直接登录进入。目前占不支持离线消息，也不支持添加离线用户为好友（即时通信相关功能必须保证对方在线）~~
 
 ## 本地使用
 
-建议使用谷歌浏览器并在手机调试模式下查看(http://localhost:8808/)。
+建议使用谷歌浏览器并在手机调试模式下查看(http://localhost:8080/)。
 
 ``` bash
 # clone
-$ git clone https://github.com/moohng/wchat-vue.git
+$ git clone https://github.com/moohng/wchat.git
 
 # 进入到目录 并安装所有依赖（建议修改成淘宝镜像）
-$ cd wchat-vue
+$ cd wchat
 $ yarn
 
-# 启动本地服务 监听8808端口
-$ yarn dev
+# 启动本地服务 监听8080端口
+$ yarn serve
 ```
 
 `node-sass`安装失败的解决办法：
