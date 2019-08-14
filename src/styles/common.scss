@@ -1,0 +1,61 @@
+@import './theme';
+
+html, body, p {
+  margin: 0;
+}
+body {
+  font-size: 14px;
+}
+a { text-decoration: none; }
+img { display: block; }
+
+// view-box
+.weui-tab {
+  position: absolute!important;
+  width: 100%;
+
+  background: $bgColor;
+}
+
+// x-header
+.vux-header {
+  background: #000;
+
+  .vux-header-left,
+  .vux-header-right {
+    color: #fff;
+    font-size: 16px;
+  }
+
+  .vux-header-left {
+    a.vux-header-back {
+      color: #fff;
+    }
+    .left-arrow::before {
+      border-color: #fff;
+    }
+  }
+}
+
+// cell
+.weui-cell {
+  .weui-cell__hd {
+    img {
+      margin-right: 8px;
+      width: 28px;
+    }
+  }
+  .weui-cell__ft {
+    font-size: 15px;
+  }
+}
+
+// x-input
+.vux-x-input {
+  .weui-cell__hd {
+    display: flex;
+    align-items: center;
+
+    margin-right: 8px;
+  }
+}
