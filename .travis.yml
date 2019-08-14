@@ -9,7 +9,7 @@ cache: npm
 #   - npm install
 
 script:
-  - npm run build
+  - npm run build:travis
 
 deploy:
   provider: pages
