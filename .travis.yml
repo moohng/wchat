@@ -5,8 +5,8 @@ cache: npm
 #before_install:
 #  - npm i -g npm
 
-install:
-  - npm install
+# install:
+#   - npm install
 
 script:
   - npm run build
