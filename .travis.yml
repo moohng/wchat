@@ -9,7 +9,7 @@ install:
   - npm install
 
 script:
-  - npm run build:travis
+  - npm run build
 
 deploy:
   provider: pages
